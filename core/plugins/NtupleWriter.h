@@ -65,6 +65,8 @@ class NtupleWriter : public edm::EDFilter {
       bool doTrigHTEmu;
       bool doAllPFParticles;
 
+      bool doEleAddVars;//Add variables to trace possible issues with the ECAL slew rate mitigation
+
       // added by Alex and Dennis
       bool doHOTVR;
       bool doXCone;
@@ -83,7 +85,8 @@ class NtupleWriter : public edm::EDFilter {
       edm::EDGetToken generator_token;
       edm::EDGetToken pus_token;
       edm::EDGetToken lhe_token;
-
+      edm::EDGetToken dupECALClusters_token;
+      edm::EDGetToken hitsNotReplaced_token;
       std::vector<edm::EDGetToken> genjet_tokens;
       std::vector<std::vector<Particle>> genjets;
       double genjet_ptmin;
@@ -95,6 +98,9 @@ class NtupleWriter : public edm::EDFilter {
       std::vector<std::vector<GenTopJet>> gentopjets;
       double gentopjet_ptmin;
       double gentopjet_etamax;
+      std::vector<edm::EDGetToken> gentopjet_tau1_tokens;
+      std::vector<edm::EDGetToken> gentopjet_tau2_tokens;
+      std::vector<edm::EDGetToken> gentopjet_tau3_tokens;
 
       std::vector<edm::EDGetToken> genjetwithparts_tokens;
       std::vector<std::vector<GenJetWithParts>> genjetwithparts;
