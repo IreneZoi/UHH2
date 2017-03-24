@@ -36,7 +36,7 @@
 class JetHistsBase: public uhh2::Hists {
 protected:
   struct jetHist{
-      TH1F* pt, *eta, *phi, *mass, *csv, *mvahiggsdiscr, *prunedmass, *subjet_sum_mass; 
+    TH1F* pt, *eta, *phi, *mass, *csv, *mvahiggsdiscr, *prunedmass, *subjet_sum_mass, *CHF, *tau21; //irene added CHF and tau21 
   };
     
   JetHistsBase(uhh2::Context & ctx, const std::string & dirname);
@@ -92,7 +92,7 @@ class TopJetHists: public JetHistsBase{
   void fill_topJetHist(const TopJet & jet, JetHistsBase::jetHist & jet_hist, double  weight);
 
   struct subjetHist {
-    TH1F* number, *sum4Vec, *pt, *eta, *phi, *mass, *csv;
+    TH1F* number, *sum4Vec, *pt, *eta, *phi, *mass, *csv, *subjet_sum_mass;
   };
   subjetHist book_subjetHist(const std::string & axisSuffix, const std::string & histSuffix, double minPt, double maxPt);
   void fill_subjetHist(const TopJet & topjet, subjetHist & subjet_hist, double weight);

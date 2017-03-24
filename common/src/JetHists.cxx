@@ -132,6 +132,8 @@ JetHistsBase::jetHist TopJetHists::book_topJetHist(const std::string & axisSuffi
   jet_hist.mvahiggsdiscr = book<TH1F>("mvahiggsdiscr"+histSuffix,"mva-higgs-disriminator "+axisSuffix,50,0,1);
   jet_hist.prunedmass = book<TH1F>("mass_pruned"+histSuffix,"M^{ "+axisSuffix+"}_{pruned} [GeV/c^{2}]", 100, 0, 300);
   jet_hist.subjet_sum_mass = book<TH1F>("mass_subjet_sum"+histSuffix,"M^{ "+axisSuffix+"}_{subjet sum} [GeV/c^{2}]", 100, 0, 300);
+  jet_hist.CHF = book<TH1F>("CHF"+histSuffix,"Charged Hadron Energy Fraction"+axisSuffix, 100, 0, 1); //irene for CHF  
+  jet_hist.tau21 = book<TH1F>("tau21"+histSuffix, "#tau_{2}/#tau_{1}", 50, 0, 1.0); //irene for tau21 for various jets
   return jet_hist;
 }
 
@@ -144,6 +146,8 @@ void TopJetHists::fill_topJetHist(const TopJet & jet, JetHistsBase::jetHist & je
   jet_hist.mvahiggsdiscr->Fill(jet.mvahiggsdiscr(), weight);
   jet_hist.prunedmass->Fill(jet.prunedmass(), weight);
   jet_hist.subjet_sum_mass->Fill(subjet_sum.M(), weight);
+  jet_hist.CHF->Fill(jet.chargedHadronEnergyFraction(), weight); //irene for CHF
+  jet_hist.tau21->Fill(jet.tau2()/jet.tau1(),weight);  //irene for tau21 for various jets
 }
 
 TopJetHists::TopJetHists(Context & ctx,
@@ -155,7 +159,7 @@ TopJetHists::TopJetHists(Context & ctx,
   topjetid = boost::none;
   alljets = book_topJetHist("topjet","",20,1500);
   allsubjets = book_subjetHist("subjet","_subjets",0,500);
-  vector<double> maxPt {900,600,400,300};
+  vector<double> maxPt {1500,600,400,300}; //irene changed from 900 to 1400
   string axis_suffix = "topjet";
   string axis_subjetSuffix = "subjets ";
   vector<string> axis_singleSubjetSuffix {"first ","second ","third ","fourth "};
@@ -172,7 +176,7 @@ TopJetHists::TopJetHists(Context & ctx,
   deltaRmin_1 = book<TH1F>("deltaRmin_1", "#Delta R_{min}(first jet,nearest jet)", 40, 0, 8.0);
   deltaRmin_2 = book<TH1F>("deltaRmin_2", "#Delta R_{min}(2nd jet,nearest jet)", 40, 0, 8.0);
   tau32 = book<TH1F>("tau32", "#tau_{3}/#tau_{2}", 50, 0, 1.0);
-  tau21 = book<TH1F>("tau21", "#tau_{2}/#tau_{1}", 50, 0, 1.0);
+  //irene for tau21 for various jets  tau21 = book<TH1F>("tau21", "#tau_{2}/#tau_{1}", 50, 0, 1.0);
   deltaR_ak4jet= book<TH1F>("deltaR_ak4jet", "#Delta R(jet,ak4 jet)", 40, 0, 8.0);
   invmass_topjetak4jet = book<TH1F>("invmass_topjetak4jet", "invariant mass(jet,ak4 jet)", 100, 0, 1000);
   deltaR_lepton= book<TH1F>("deltaR_lepton", "#Delta R(jet,lepton)", 40, 0, 8.0);
@@ -209,7 +213,7 @@ void TopJetHists::fill(const Event & event){
       fill_topJetHist(jet,alljets,w);
       fill_subjetHist(jet,allsubjets,w);
       tau32->Fill(jet.tau3()/jet.tau2(),w);
-      tau21->Fill(jet.tau2()/jet.tau1(),w);
+      //irene for tau21 for various jets      tau21->Fill(jet.tau2()/jet.tau1(),w);
       for (unsigned int m =0; m<m_usertopjet.size(); ++m){ 
         if(m_usertopjet[m] == i){  
           fill_topJetHist(jet,usertopjets[m],w);

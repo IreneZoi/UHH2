@@ -109,7 +109,7 @@ private:
     const int runnr_BCD = 276811;
     const int runnr_EFearly = 278802;
     const int runnr_FlateG = 280385;
-    
+
     bool mclumiweight = true, mcpileupreweight = true, jersmear = true, jec = true, lumisel=true, jetlepcleaner = false, topjetlepcleaner =false, jetptsort = false, metfilters = true, pvfilter = true, jetpfidcleaner=true, do_metcorrection = false;
     
     double topjetcleanerDR;
