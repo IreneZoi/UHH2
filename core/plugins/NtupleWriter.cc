@@ -20,6 +20,8 @@
 #include "SimDataFormats/PileupSummaryInfo/interface/PileupSummaryInfo.h"
 #include "DataFormats/HepMCCandidate/interface/GenParticle.h"
 #include "DataFormats/HepMCCandidate/interface/GenParticleFwd.h"
+#include "DataFormats/Common/interface/EDCollection.h"
+
 
 #include "RecoBTau/JetTagComputer/interface/GenericMVAJetTagComputer.h"
 #include "RecoBTau/JetTagComputer/interface/GenericMVAJetTagComputerWrapper.h"
@@ -183,6 +185,7 @@ NtupleWriter::NtupleWriter(const edm::ParameterSet& iConfig): outfile(0), tr(0),
   const bool save_lepton_keys = iConfig.exists("save_lepton_keys") ? iConfig.getParameter<bool>("save_lepton_keys") : false;
 
   bool doElectrons = iConfig.getParameter<bool>("doElectrons");
+  
   bool doMuons = iConfig.getParameter<bool>("doMuons");
   bool doTaus = iConfig.getParameter<bool>("doTaus");
   bool doJets = iConfig.getParameter<bool>("doJets");
@@ -207,6 +210,9 @@ NtupleWriter::NtupleWriter(const edm::ParameterSet& iConfig): outfile(0), tr(0),
   doGenHOTVR = iConfig.getParameter<bool>("doGenHOTVR");
   doGenXCone = iConfig.getParameter<bool>("doGenXCone");
 
+  doEleAddVars = iConfig.getParameter<bool>("doEleAddVars");//Add variables to trace possible issues with the ECAL slew rate mitigation
+
+
   auto pv_sources = iConfig.getParameter<std::vector<std::string> >("pv_sources");
 
   // important: initialize first all module_writers, so that they can
@@ -214,7 +220,7 @@ NtupleWriter::NtupleWriter(const edm::ParameterSet& iConfig): outfile(0), tr(0),
   if(doElectrons){
       using uhh2::NtupleWriterElectrons;
       auto electron_source = iConfig.getParameter<edm::InputTag>("electron_source");
-
+      
       NtupleWriterElectrons::Config cfg(*context, consumesCollector(), electron_source, electron_source.label());
       cfg.id_keys = iConfig.getParameter<std::vector<std::string>>("electron_IDtags");
       assert(pv_sources.size() > 0); // note: pvs are needed for electron id.
@@ -414,6 +420,19 @@ NtupleWriter::NtupleWriter(const edm::ParameterSet& iConfig): outfile(0), tr(0),
     event->rho = -1;
   }
 
+  branch(tr, "dupECALClusters",&event->dupECALClusters);
+  branch(tr, "ishitsNotReplaced",&event->ishitsNotReplaced);
+  if(doEleAddVars){
+    auto dupECALClusters_source = iConfig.getParameter<edm::InputTag>("dupECALClusters_source");
+    dupECALClusters_token = consumes<bool>(dupECALClusters_source);
+    auto hitsNotReplaced_source = iConfig.getParameter<edm::InputTag>("hitsNotReplaced_source");
+    hitsNotReplaced_token = consumes<edm::EDCollection<DetId>>(hitsNotReplaced_source);
+  }
+  else{
+    event->dupECALClusters = false;
+    event->ishitsNotReplaced = false;
+  }
+
   //input tokens for objects with fixed names, not defined in the ntuplewriter.py script
   bs_token = consumes<reco::BeamSpot>( edm::InputTag("offlineBeamSpot"));
   generator_token = consumes<GenEventInfoProduct>( edm::InputTag("generator"));
@@ -439,16 +458,28 @@ NtupleWriter::NtupleWriter(const edm::ParameterSet& iConfig): outfile(0), tr(0),
     }
   }
   if(doGenTopJets){
-    auto gentopjet_sources = iConfig.getParameter<std::vector<std::string> >("gentopjet_sources");
+    auto gentopjet_sources = iConfig.getParameter<std::vector<edm::InputTag> >("gentopjet_sources");
     gentopjet_ptmin = iConfig.getParameter<double> ("gentopjet_ptmin");
     gentopjet_etamax = iConfig.getParameter<double> ("gentopjet_etamax");
     gentopjets.resize(gentopjet_sources.size());
     for(size_t j=0; j< gentopjet_sources.size(); ++j){
-      gentopjet_tokens.push_back(consumes<reco::BasicJetCollection>(gentopjet_sources[j]));
-      branch(tr, gentopjet_sources[j].c_str(), "std::vector<GenTopJet>", &gentopjets[j]);
+      gentopjet_tokens.push_back(consumes<edm::View<reco::Jet> >(gentopjet_sources[j]));
+      branch(tr, gentopjet_sources[j].encode().c_str(), "std::vector<GenTopJet>", &gentopjets[j]);
     }
     if(!gentopjet_sources.empty()){
         event->gentopjets = &gentopjets[0];
+    }
+    auto gentopjet_tau1 = iConfig.getParameter<std::vector<edm::InputTag> >("gentopjet_tau1");
+    for(size_t j=0; j< gentopjet_tau1.size(); ++j){
+      gentopjet_tau1_tokens.push_back(consumes<edm::ValueMap<float> >(gentopjet_tau1[j]));
+    }
+    auto gentopjet_tau2 = iConfig.getParameter<std::vector<edm::InputTag> >("gentopjet_tau2");
+    for(size_t j=0; j< gentopjet_tau2.size(); ++j){
+      gentopjet_tau2_tokens.push_back(consumes<edm::ValueMap<float> >(gentopjet_tau2[j]));
+    }
+    auto gentopjet_tau3 = iConfig.getParameter<std::vector<edm::InputTag> >("gentopjet_tau3");
+    for(size_t j=0; j< gentopjet_tau3.size(); ++j){
+      gentopjet_tau3_tokens.push_back(consumes<edm::ValueMap<float> >(gentopjet_tau3[j]));
     }
   }
 
@@ -597,7 +628,22 @@ bool NtupleWriter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
       iEvent.getByToken(rho_token, m_rho);
       event->rho=*m_rho;
    }
-   
+
+   if(doEleAddVars){
+    edm::Handle<bool> m_dupECALClusters;
+    iEvent.getByToken(dupECALClusters_token, m_dupECALClusters);
+    event->dupECALClusters=*m_dupECALClusters;
+
+    edm::Handle<edm::EDCollection<DetId>> m_hitsNotReplaced;
+    iEvent.getByToken(hitsNotReplaced_token, m_hitsNotReplaced);
+    const edm::EDCollection<DetId> & hitsNotReplaced = *m_hitsNotReplaced;
+    //    std::cout<<"hitsNotReplaced.size() = "<<hitsNotReplaced.size()<<std::endl;
+    if(hitsNotReplaced.size()>0)
+      event->ishitsNotReplaced=true;
+    else
+      event->ishitsNotReplaced=false;
+  }
+
    print_times(timer, "rho");
 
    // ------------- primary vertices and beamspot  -------------
@@ -694,6 +740,7 @@ bool NtupleWriter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
      event->genInfo->set_pileup_NumInteractions_intime(0);
      event->genInfo->set_pileup_NumInteractions_ootbefore(0);
      event->genInfo->set_pileup_NumInteractions_ootafter(0);
+     event->genInfo->set_PU_pT_hat_max(0);
      if(pus.isValid()){
        event->genInfo->set_pileup_TrueNumInteractions ( (float) pus->at(0).getTrueNumInteractions());
        for(size_t i=0; i<pus->size(); ++i){
@@ -705,8 +752,14 @@ bool NtupleWriter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
 	 else if(pus->at(i).getBunchCrossing() == +1){ // oot pileup before
 	   event->genInfo->set_pileup_NumInteractions_ootafter( event->genInfo->pileup_NumInteractions_ootafter() + pus->at(i).getPU_NumInteractions());
 	 }
+	 const std::vector<float> PU_pT_hats = pus->at(i).getPU_pT_hats();
+	 for(size_t j=0; j<PU_pT_hats.size(); ++j){
+	   if(event->genInfo->PU_pT_hat_max()<PU_pT_hats[j]) 
+	     event->genInfo->set_PU_pT_hat_max(PU_pT_hats[j]);
+	 }
        }
      }
+     //     std::cout<<"event->genInfo->PU_pT_hat_max() = "<<event->genInfo->PU_pT_hat_max()<<std::endl;
 
      edm::Handle<reco::GenParticleCollection> genPartColl;
      // use genPartColl for the Matrix-Element particles. Also use it for stable leptons
@@ -886,10 +939,19 @@ bool NtupleWriter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
 
      for(size_t j=0; j< gentopjet_tokens.size(); ++j){
        gentopjets[j].clear();
-       edm::Handle<reco::BasicJetCollection> reco_gentopjets;
+       edm::Handle<edm::View<reco::Jet> > reco_gentopjets;
        iEvent.getByToken(gentopjet_tokens[j], reco_gentopjets);
+       edm::Handle<edm::ValueMap<float> > reco_gentopjets_tau1;
+       if (j<gentopjet_tau1_tokens.size())
+         iEvent.getByToken(gentopjet_tau1_tokens[j], reco_gentopjets_tau1);
+       edm::Handle<edm::ValueMap<float> > reco_gentopjets_tau2;
+       if (j<gentopjet_tau2_tokens.size())
+         iEvent.getByToken(gentopjet_tau2_tokens[j], reco_gentopjets_tau2);
+       edm::Handle<edm::ValueMap<float> > reco_gentopjets_tau3;
+       if (j<gentopjet_tau3_tokens.size())
+         iEvent.getByToken(gentopjet_tau3_tokens[j], reco_gentopjets_tau3);
        for (unsigned int i = 0; i < reco_gentopjets->size(); i++) {
-         const reco::BasicJet & reco_gentopjet =  reco_gentopjets->at(i);
+         const reco::Jet & reco_gentopjet =  reco_gentopjets->at(i);
          if(reco_gentopjet.pt() < gentopjet_ptmin) continue;
          if(fabs(reco_gentopjet.eta()) > gentopjet_etamax) continue;
 
@@ -899,15 +961,71 @@ bool NtupleWriter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup) {
          gentopjet.set_eta(reco_gentopjet.eta());
          gentopjet.set_phi(reco_gentopjet.phi());
          gentopjet.set_energy(reco_gentopjet.energy());
+	 const auto ptr = reco_gentopjets->ptrAt(i);
+	 if(reco_gentopjets_tau1.isValid())
+	   gentopjet.set_tau1((*reco_gentopjets_tau1)[ptr]);
+	 if(reco_gentopjets_tau2.isValid())
+	   gentopjet.set_tau2((*reco_gentopjets_tau2)[ptr]);
+	 if(reco_gentopjets_tau3.isValid())
+	   gentopjet.set_tau3((*reco_gentopjets_tau3)[ptr]);
 
-         for (unsigned int k = 0; k < reco_gentopjet.numberOfDaughters(); k++) {
+	 std::vector<const reco::Candidate *> daughters;
+	 if(dynamic_cast<const reco::GenJet *>(&reco_gentopjet)) { // This is a GenJet without subjets
+            for (unsigned int l = 0; l < reco_gentopjet.numberOfDaughters(); l++) {
+	      daughters.push_back(reco_gentopjet.daughter(l));
+	    }
+         } else { // This is a BasicJet with subjets
+          for (unsigned int k = 0; k < reco_gentopjet.numberOfDaughters(); k++) {
             Particle subjet_v4;
             subjet_v4.set_pt(reco_gentopjet.daughter(k)->p4().pt());
             subjet_v4.set_eta(reco_gentopjet.daughter(k)->p4().eta());
             subjet_v4.set_phi(reco_gentopjet.daughter(k)->p4().phi()); 
             subjet_v4.set_energy(reco_gentopjet.daughter(k)->p4().E()); 
             gentopjet.add_subjet(subjet_v4);
+            for (unsigned int l = 0; l < reco_gentopjet.daughter(k)->numberOfDaughters(); l++) {
+	      daughters.push_back(reco_gentopjet.daughter(k)->daughter(l));
+	    }
+          }
+	 }
+         double chf = 0;
+         double cef = 0;
+         double nhf = 0;
+         double nef = 0;
+         for (unsigned int k = 0; k < daughters.size(); k++) {
+           switch(abs(daughters[k]->pdgId())){
+             case 11: //electron
+               cef += daughters[k]->energy();
+               break;
+             case 211: //pi+-
+             case 321: //K
+             case 2212: //p
+             case 3222: //Sigma+
+             case 3112: //Sigma-
+             case 3312: //Xi-
+             case 3334: //Omega-
+               chf += daughters[k]->energy();
+               break;
+             case 310: //KS0
+             case 130: //KL0
+             case 3122: //Lambda0
+             case 3212: //Sigma0
+             case 3322: //Xi0
+             case 2112: //n0
+               nhf += daughters[k]->energy();
+               break;
+             case 22: //photon
+               nef += daughters[k]->energy();
+               break;
+           }
          }
+         chf /= gentopjet.energy();
+         cef /= gentopjet.energy();
+         nhf /= gentopjet.energy();
+         nef /= gentopjet.energy();
+         gentopjet.set_chf(chf);
+         gentopjet.set_cef(cef);
+         gentopjet.set_nhf(nhf);
+         gentopjet.set_nef(nef);
          gentopjets[j].push_back(gentopjet);
        }
      }
