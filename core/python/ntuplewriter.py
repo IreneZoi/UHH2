@@ -56,8 +56,9 @@ process.source = cms.Source("PoolSource",
 #           '/store/mc/RunIISpring16MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-pythia8/MINIAODSIM/PUSpring16_80X_mcRun2_asymptotic_2016_miniAODv2_v0_ext3-v2/70000/00287FF4-0E40-E611-8D06-00266CFE78EC.root'
 #           '/store/mc/RunIISummer16MiniAODv2/QCD_Pt_15to6500_FwdEnriched_TuneCUETP8M1_13TeV_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/70000/26DF5A94-14BE-E611-99FC-0CC47A78A3EE.root'
 #irene            'store/mc/RunIISummer16MiniAODv2/BulkGravToWWToWlepWhad_narrow_M-2000_13TeV-madgraph/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/80000/F6EF3B47-1AB7-E611-994D-0025904C7A54.root'
-# irene, no upgrade, with pileup 'file:/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase0/EXO-RunIISummer16MiniAODv2-01758_bis.root'
-'file:/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase1/step3_inMINIAODSIM.root'
+# irene, no upgrade, with pileup
+'file:/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase0/EXO-RunIISummer16MiniAODv2-01758_bis.root'
+#'file:/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase1/step3_inMINIAODSIM.root'
            # '/store/mc/RunIISummer16MiniAODv2/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/3495D426-73C1-E611-B11B-0CC47A4D764A.root'
            #'/store/data/Run2016B/JetHT/MINIAOD/PromptReco-v2/000/273/503/00000/069FE912-3E1F-E611-8EE4-02163E011DF3.root'
            #'/store/data/Run2016B/SingleMuon/MINIAOD/PromptReco-v2/000/273/150/00000/34A57FB8-D819-E611-B0A4-02163E0144EE.root'
