@@ -32,11 +32,7 @@ namespace JERFiles {
     extern const std::vector<std::string> Summer16_23Sep2016_V4_H_L1RC_AK4PFchs_DATA;
     extern const std::vector<std::string> Summer16_23Sep2016_V4_L1RC_AK4PFchs_MC; 
 
-
-    ////
-
    //Summer16_23Sep2016_V4 --> PUPPI Jet Corrections
-
     extern const std::vector<std::string> Summer16_23Sep2016_V4_BCD_L123_AK4PFPuppi_DATA;
     extern const std::vector<std::string> Summer16_23Sep2016_V4_EF_L123_AK4PFPuppi_DATA;
     extern const std::vector<std::string> Summer16_23Sep2016_V4_G_L123_AK4PFPuppi_DATA;
@@ -47,10 +43,6 @@ namespace JERFiles {
     extern const std::vector<std::string> Summer16_23Sep2016_V4_H_L123_AK8PFPuppi_DATA;
     extern const std::vector<std::string> Summer16_23Sep2016_V4_L123_AK4PFPuppi_MC;
     extern const std::vector<std::string> Summer16_23Sep2016_V4_L123_AK8PFPuppi_MC;
-
-    ////
-
-
 
 }
 
@@ -331,11 +323,9 @@ template<typename RJ, typename GJ>
 void GenericJetResolutionSmearer::apply_JER_smearing(std::vector<RJ>& rec_jets, const std::vector<GJ>& gen_jets, LorentzVector& met){
 
   for(unsigned int i=0; i<rec_jets.size(); ++i){
-    //    std::cout << "before smearing" << std::endl;
+
     auto& jet = rec_jets.at(i);
-    auto& gjet = gen_jets.at(i); //irene
-    //std::cout << " gen jet: phi = " << gjet.v4().phi() << ", pt = " << gjet.v4().pt() << ", eta = " << gjet.v4().eta() << std::endl;
-    //std::cout << " reco jet: phi = " << jet.v4().phi() << ", pt = " << jet.v4().pt() << ", eta = " << jet.v4().eta() << std::endl;
+
     // find next genjet:
     auto closest_genjet = closestParticle(jet, gen_jets);
     // ignore unmatched jets (=no genjets at all or large DeltaR), or jets with very low genjet pt:
@@ -376,9 +366,6 @@ void GenericJetResolutionSmearer::apply_JER_smearing(std::vector<RJ>& rec_jets, 
 
     jet.set_JEC_factor_raw(factor_raw);
     jet.set_v4(jet_v4);
-    //    std::cout << "after smearing" << std::endl;
-    //    std::cout << " reco jet: phi = " << jet.v4().phi() << ", pt = " << jet.v4().pt() << ", eta = " << jet.v4().eta() << std::endl;
-
   }
 
   return;
