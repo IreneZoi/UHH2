@@ -7,7 +7,7 @@ useData = False
 if useData:
     met_sources_GL =  cms.vstring("slimmedMETs","slimmedMETsPuppi","slMETsCHS","slimmedMETsMuEGClean","slimmedMETsEGClean","slimmedMETsUncorrected")
 else:
-    met_sources_GL =  cms.vstring("slimmedMETs","slimmedMETsPuppi","slMETsCHS")#irene ,"slimmedMETsMuEGClean")
+    met_sources_GL =  cms.vstring("slimmedMETs","slimmedMETsPuppi","slMETsCHS")#,"slimmedMETsMuEGClean")
 
 # minimum pt for the large-R jets (applies for all: vanilla CA8/CA15, cmstoptag, heptoptag). Also applied for the corresponding genjets.
 fatjet_ptmin = 150.0
@@ -57,21 +57,96 @@ if isDebug:
 
 process.source = cms.Source("PoolSource",
   fileNames  = cms.untracked.vstring([
-           #'/store/mc/RunIISpring16MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-pythia8/MINIAODSIM/PUSpring16RAWAODSIM_reHLT_80X_mcRun2_asymptotic_v14_ext3-v1/00000/0064B539-803A-E611-BDEA-002590D0B060.root' #MC test file
-#           '/store/mc/RunIISpring16MiniAODv2/TT_TuneCUETP8M1_13TeV-powheg-pythia8/MINIAODSIM/PUSpring16_80X_mcRun2_asymptotic_2016_miniAODv2_v0_ext3-v2/70000/00287FF4-0E40-E611-8D06-00266CFE78EC.root'
-#           '/store/mc/RunIISummer16MiniAODv2/QCD_Pt_15to6500_FwdEnriched_TuneCUETP8M1_13TeV_pythia8/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/70000/26DF5A94-14BE-E611-99FC-0CC47A78A3EE.root'
-#irene            'store/mc/RunIISummer16MiniAODv2/BulkGravToWWToWlepWhad_narrow_M-2000_13TeV-madgraph/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/80000/F6EF3B47-1AB7-E611-994D-0025904C7A54.root'
-# irene, no upgrade, with pileup
-'file:/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase0/EXO-RunIISummer16MiniAODv2-01758_bis.root'
-#'file:/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase1/step3_inMINIAODSIM.root'
-           # '/store/mc/RunIISummer16MiniAODv2/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_ext1-v1/50000/3495D426-73C1-E611-B11B-0CC47A4D764A.root'
-           #'/store/data/Run2016B/JetHT/MINIAOD/PromptReco-v2/000/273/503/00000/069FE912-3E1F-E611-8EE4-02163E011DF3.root'
-           #'/store/data/Run2016B/SingleMuon/MINIAOD/PromptReco-v2/000/273/150/00000/34A57FB8-D819-E611-B0A4-02163E0144EE.root'
-
+#irene: VBF_RadionToWW
+#'/store/mc/RunIISummer16MiniAODv2/VBF_RadionToWW_narrow_M-2000_13TeV-madgraph/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/100000/D07B893C-96F1-E611-BF4E-02163E01425F.root'
+#irene VBF_GravitonToWW
+#'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_.root'
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_0.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_1.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_2.root',
+#'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_3.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_4.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_5.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_6.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_7.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_8.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_9.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_10.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_11.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_12.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_13.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_14.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_15.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_16.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_17.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_18.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_19.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_20.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_21.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_22.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_23.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_24.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_25.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_26.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_27.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_28.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_29.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_30.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_31.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_32.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_33.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_34.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_35.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_36.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_37.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_38.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_9_39.root',
+#'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_0.root',
+#'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_1.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_2.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_3.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_4.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_5.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_6.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_7.root',
+#'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_8.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_9.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_10.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_11.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_12.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_13.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_14.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_15.root',
+#'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_16.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_17.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_18.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_19.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_20.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_21.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_22.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_23.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_24.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_25.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_26.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_27.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_28.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_29.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_30.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_31.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_32.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_33.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_34.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_35.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_36.root',
+'file:/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/EXO-RunIISummer16MiniAODv2-01758_10_37.root'
+# irene, no upgrade, with pileup, m 2000
+#'file:/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase0/EXO-RunIISummer16MiniAODv2-01758_bis.root'
+# irene, no upgrade, with pileup, m 4000
+#'file:/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase0/G4000/EXO-RunIISummer16MiniAODv2-01758_m4000.root'
    ]),
   skipEvents = cms.untracked.uint32(0)
 )
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(30))
+#process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(30))
 #process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1000))
 #process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10000))
 #process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(50000))

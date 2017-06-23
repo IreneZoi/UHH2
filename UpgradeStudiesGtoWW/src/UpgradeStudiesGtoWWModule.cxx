@@ -13,7 +13,7 @@
 #include "UHH2/common/include/NSelections.h"
 #include "UHH2/UpgradeStudiesGtoWW/include/UpgradeStudiesGtoWWSelections.h"
 #include "UHH2/UpgradeStudiesGtoWW/include/UpgradeStudiesGtoWWHists.h"
-
+#include "UHH2/UpgradeStudiesGtoWW/include/UpgradeGenTopJetHists.h"
 using namespace std;
 using namespace uhh2;
 
@@ -35,6 +35,7 @@ private:
     std::unique_ptr<CommonModules> common;
     
     std::unique_ptr<JetCleaner> jetcleaner;
+    std::unique_ptr<TopJetCleaner> topjetcleaner;
    
     // declare the Selections to use. Use unique_ptr to ensure automatic call of delete in the destructor,
     // to avoid memory leaks.
@@ -45,7 +46,8 @@ private:
     std::unique_ptr<Hists> h_input_slimmedGenJet; //irene for w mass                                                                                                                                  
     std::unique_ptr<Hists> h_input_slimmedJet; //irene for w mass
     std::unique_ptr<Hists> h_input_slimmedJetAK8_SoftDrop; //irene for w mass                                                                                                                          
-
+    std::unique_ptr<Hists> h_input_ak8GenJetsSoftDrop; //irene for w mass
+  //    std::unique_ptr<Hists> h_input_GenParticles; //irene for VBF
 };
 
 
@@ -74,9 +76,10 @@ UpgradeStudiesGtoWWModule::UpgradeStudiesGtoWWModule(Context & ctx){
     // TODO: configure common here, e.g. by 
     // calling common->set_*_id or common->disable_*
     common->disable_mcpileupreweight(); //irene
+    common->disable_metfilters(); //irene
     common->init(ctx);
     jetcleaner.reset(new JetCleaner(ctx, 30.0, 2.4)); 
-    
+    topjetcleaner.reset(new TopJetCleaner(ctx,TopJetId(PtEtaCut(0., 2.5))));    
     // note that the JetCleaner is only kept for the sake of example;
     // instead of constructing a jetcleaner explicitly,
     // the cleaning can also be achieved with less code via CommonModules with:
@@ -95,7 +98,9 @@ UpgradeStudiesGtoWWModule::UpgradeStudiesGtoWWModule(Context & ctx){
     h_input_slimmedGenJet.reset(new GenJetsHists(ctx, "slimmedGenJet_nocuts")); //irene for w mass                                                                                                         
     h_input_slimmedJet.reset(new JetHists(ctx, "slimmedJet_nocuts")); //irene for w mass
     h_input_slimmedJetAK8_SoftDrop.reset(new TopJetHists(ctx, "slimmedJetAK8_SoftDrop_nocuts")); //irene for w mass                                                                                
-
+    h_input_ak8GenJetsSoftDrop.reset(new UpgradeGenTopJetHists(ctx, "GenJetAK8_SoftDrop_nocuts"));
+    //    h_input_GenParticles(new (ctx, "GenParticles"));
+    
 }
 
 
@@ -115,16 +120,16 @@ bool UpgradeStudiesGtoWWModule::process(Event & event) {
     // 1. run all modules other modules.
 
     common->process(event);
-
     jetcleaner->process(event);
-    
+    topjetcleaner->process(event);
     // 2. test selections and fill histograms
     h_ele->fill(event);
     h_nocuts->fill(event);
     h_input_slimmedGenJet->fill(event);     //irene for w mass
     h_input_slimmedJet->fill(event);     //irene for w mass
     h_input_slimmedJetAK8_SoftDrop->fill(event);     //irene for w mass                                                                                                                                  
-
+    h_input_ak8GenJetsSoftDrop->fill(event);     //irene for w mass 
+    //    h_input_GenParticles->fill(event);     //irene for w VBF 
 
     bool njet_selection = njet_sel->passes(event);
     if(njet_selection){

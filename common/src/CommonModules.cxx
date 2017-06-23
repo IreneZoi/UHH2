@@ -52,6 +52,7 @@ void CommonModules::init(Context & ctx, const std::string & SysType_PU){
     if(metfilters){
        metfilters_selection.reset(new AndSelection(ctx, "metfilters"));
        metfilters_selection->add<TriggerSelection>("HBHENoiseFilter", "Flag_HBHENoiseFilter");
+       //       metfilters_selection->add<TriggerSelection>("HBHENoiseFilter", "HLT_PFMET170_HBHE_BeamHaloCleaned_v5");     //irene for Upgrades
        metfilters_selection->add<TriggerSelection>("HBHENoiseIsoFilter", "Flag_HBHENoiseIsoFilter");
        metfilters_selection->add<TriggerSelection>("globalTightHalo2016Filter", "Flag_globalTightHalo2016Filter");
        metfilters_selection->add<TriggerSelection>("EcalDeadCellTriggerPrimitiveFilter", "Flag_EcalDeadCellTriggerPrimitiveFilter");

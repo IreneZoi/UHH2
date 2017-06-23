@@ -57,15 +57,16 @@ bool JetPFID::looseID(const Jet & jet) const{
       return true;   
   }
   else if(fabs(jet.eta())>2.7 && fabs(jet.eta())<=3
-	  &&jet.neutralEmEnergyFraction()<0.90
-	  &&jet.neutralMultiplicity()>2){
+	  &&jet.neutralEmEnergyFraction()<0.90){
+	  //	  &&jet.neutralMultiplicity()>2){ //irene for VBF AK4 jets
     return true;
   }
   else if(fabs(jet.eta())>3
-	  && jet.neutralMultiplicity()>10
-	  && jet.neutralEmEnergyFraction()<0.90){
-    return true;
-  }
+	  //&& jet.neutralMultiplicity()>10 //irene for VBF AK4 jets   
+	  && jet.neutralEmEnergyFraction()<0.90)
+    {
+      return true;
+    }
   return false;
 }
 

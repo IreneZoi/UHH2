@@ -6,7 +6,7 @@
 class Particle{
 public:
      
-   Particle(): m_charge(0), m_pt(0), m_eta(0), m_phi(0), m_energy(0){
+ Particle(): m_charge(0), m_pt(0), m_eta(0), m_phi(0), m_energy(0) {
    }
 
   /// four-momentum
@@ -29,6 +29,8 @@ public:
   float phi() const{return m_phi;}
   ///energy
   float energy() const{return m_energy;}
+  ///charged hadron fraction                                                                                                                                                                              
+  //float chf() const{return m_chf;}
 
   /// set charge
   void set_charge(short charge){m_charge=charge;}
@@ -40,6 +42,10 @@ public:
   void set_phi(float phi){m_phi=phi;}
   /// set energy
   void set_energy(float energy){m_energy=energy;}
+  /// set charged hadron energy fraction                                                                                                                                                               
+  //  void set_chf(float chf){m_chf=chf;}
+
+
 
   /// set four-momentum
   void set_v4(const LorentzVector & v4){
@@ -56,5 +62,6 @@ private:
   float m_eta;
   float m_phi;
   float m_energy;
+  //  float m_chf;
 };
 

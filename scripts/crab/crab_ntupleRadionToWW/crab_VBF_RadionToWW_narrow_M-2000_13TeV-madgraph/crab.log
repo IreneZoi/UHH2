@@ -1,0 +1,123 @@
+DEBUG 2017-05-12 12:11:46,564: 	 Executing command: 'submit'
+DEBUG 2017-05-12 12:11:46,564: 	 Found CRAB cache file /afs/desy.de/user/z/zoiirene/.crab3
+DEBUG 2017-05-12 12:11:46,570: 	 Checking credentials
+DEBUG 2017-05-12 12:11:46,571: 	 Found proxy file /tmp/x509up_u28517
+DEBUG 2017-05-12 12:11:46,571: 	 Getting proxy life time left
+DEBUG 2017-05-12 12:11:47,074: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -timeleft
+ output : 41878
+
+ error: 
+ retcode : 0
+DEBUG 2017-05-12 12:11:47,477: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -actimeleft
+ output : 41877
+
+ error: 
+ retcode : 0
+DEBUG 2017-05-12 12:11:47,477: 	 Proxy valid for 11:37:58 hours
+INFO 2017-05-12 12:11:47,478: 	 Will use CRAB configuration file crab_ntupleRationToWW.py
+DEBUG 2017-05-12 12:11:47,478: 	 Loading CRAB configuration file.
+DEBUG 2017-05-12 12:11:49,657: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+DEBUG 2017-05-12 12:11:49,771: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene
+
+ error: 
+ retcode : 0
+DEBUG 2017-05-12 12:11:49,771: 	 Checking credentials
+DEBUG 2017-05-12 12:11:49,771: 	 Found proxy file /tmp/x509up_u28517
+DEBUG 2017-05-12 12:11:49,771: 	 Getting proxy life time left
+DEBUG 2017-05-12 12:11:50,174: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -timeleft
+ output : 41874
+
+ error: 
+ retcode : 0
+DEBUG 2017-05-12 12:11:50,578: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -actimeleft
+ output : 41874
+
+ error: 
+ retcode : 0
+DEBUG 2017-05-12 12:11:50,578: 	 Proxy valid for 11:37:54 hours
+DEBUG 2017-05-12 12:11:50,981: 	 Executing : 
+ command : env X509_USER_PROXY=/tmp/x509up_u28517 voms-proxy-info -fqan
+ output : /cms/Role=NULL/Capability=NULL
+/cms/dcms/Role=NULL/Capability=NULL
+
+ error: 
+ retcode : 0
+DEBUG 2017-05-12 12:11:51,412: 	 Registering user credentials for server /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+DEBUG 2017-05-12 12:11:51,519: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene
+
+ error: 
+ retcode : 0
+DEBUG 2017-05-12 12:11:51,519: 	 Getting myproxy life time left for myproxy.cern.ch
+DEBUG 2017-05-12 12:11:51,519: 	 Calculating hash of /C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene_cmsweb.cern.ch for credential name
+DEBUG 2017-05-12 12:11:52,022: 	 Executing : 
+ command : myproxy-info -l 3cd82fca48badc692f8513e62d67e79566e4e718 -s myproxy.cern.ch
+ output : username: 3cd82fca48badc692f8513e62d67e79566e4e718
+owner: /C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene
+  renewal policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+  trusted retrieval policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+  timeleft: 626:12:12  (26.1 days)
+
+ error: 
+ retcode : 0
+DEBUG 2017-05-12 12:11:52,023: 	 Myproxy is valid: 2254332
+DEBUG 2017-05-12 12:11:52,023: 	 Command use: submit
+DEBUG 2017-05-12 12:11:52,023: 	 Options use: ['-c', 'crab_ntupleRationToWW.py']
+DEBUG 2017-05-12 12:11:52,723: 	 CRABClient version: 3.3.1705.patch3
+DEBUG 2017-05-12 12:11:52,723: 	 Instance is prod
+DEBUG 2017-05-12 12:11:52,723: 	 Server base url is cmsweb.cern.ch
+DEBUG 2017-05-12 12:11:52,723: 	 Command url /crabserver/prod/workflow
+DEBUG 2017-05-12 12:11:52,723: 	 Started submission
+DEBUG 2017-05-12 12:11:52,723: 	 Working on /nfs/dust/cms/user/zoiirene/CMSSW_8_0_24_patch1/src/UHH2/scripts/crab/crab_ntupleRadionToWW/crab_VBF_RadionToWW_narrow_M-2000_13TeV-madgraph
+DEBUG 2017-05-12 12:11:53,238: 	 Loading required information from the environment
+DEBUG 2017-05-12 12:11:53,238: 	 Found CMSSW_8_0_24_patch1 for slc6_amd64_gcc530 with base /nfs/dust/cms/user/zoiirene/CMSSW_8_0_24_patch1
+DEBUG 2017-05-12 12:11:53,238: 	 Loading required information from the environment
+DEBUG 2017-05-12 12:11:53,238: 	 Found CMSSW_8_0_24_patch1 for slc6_amd64_gcc530 with base /nfs/dust/cms/user/zoiirene/CMSSW_8_0_24_patch1
+DEBUG 2017-05-12 12:11:53,252: 	 UNIQUE NAME: tarUUID 18d0b00a-a0ad-46df-840a-5537b2d92e18 
+DEBUG 2017-05-12 12:11:53,253: 	 self.config: from WMCore.Configuration import Configuration
+config = Configuration()
+config.section_('General')
+config.General.transferLogs = True
+config.General.transferOutputs = True
+config.General.workArea = 'crab_ntupleRadionToWW'
+config.General.requestName = 'VBF_RadionToWW_narrow_M-2000_13TeV-madgraph'
+config.section_('JobType')
+config.JobType.psetName = '/afs/desy.de/user/z/zoiirene/CMSSW_8_0_24_patch1/src/UHH2/core/python/ntuplewriter.py'
+config.JobType.pluginName = 'Analysis'
+config.JobType.outputFiles = ['Ntuple.root']
+config.JobType.maxMemoryMB = 2500
+config.JobType.sendExternalFolder = True
+config.section_('Data')
+config.Data.inputDataset = '/VBF_RadionToWW_narrow_M-2000_13TeV-madgraph/RunIISummer16MiniAODv2-PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/MINIAODSIM'
+config.Data.publication = False
+config.Data.unitsPerJob = 7500
+config.Data.inputDBS = 'global'
+config.Data.splitting = 'EventAwareLumiBased'
+config.Data.outLFNDirBase = '/store/user/izoi/RunII_80X_v3/'
+config.section_('Site')
+config.Site.storageSite = 'T2_DE_DESY'
+config.section_('User')
+config.section_('Debug')
+
+DEBUG 2017-05-12 12:11:53,253: 	 self.config.JobType.psetName: /afs/desy.de/user/z/zoiirene/CMSSW_8_0_24_patch1/src/UHH2/core/python/ntuplewriter.py
+ERROR 2017-05-12 12:11:53,253: 	 Cannot find CMSSW configuration file /afs/desy.de/user/z/zoiirene/CMSSW_8_0_24_patch1/src/UHH2/core/python/ntuplewriter.py in /nfs/dust/cms/user/zoiirene/CMSSW_8_0_24_patch1/src/UHH2/scripts/crab
+ERROR 2017-05-12 12:11:53,253: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1705.patch3/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1705.patch3/bin/crab", line 148, in __call__
+    self.cmd()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1705.patch3/lib/python2.7/site-packages/CRABClient/Commands/submit.py", line 99, in __call__
+    dummy_inputfiles, jobconfig = plugjobtype.run(filecacheurl)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1705.patch3/lib/python2.7/site-packages/CRABClient/JobType/Analysis.py", line 86, in run
+    userConfig=self.config.JobType.psetName)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1705.patch3/lib/python2.7/site-packages/CRABClient/JobType/CMSSWConfig.py", line 40, in __init__
+    raise ConfigurationException(msg)
+ConfigurationException: Cannot find CMSSW configuration file /afs/desy.de/user/z/zoiirene/CMSSW_8_0_24_patch1/src/UHH2/core/python/ntuplewriter.py in /nfs/dust/cms/user/zoiirene/CMSSW_8_0_24_patch1/src/UHH2/scripts/crab

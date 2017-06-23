@@ -159,7 +159,7 @@ TopJetHists::TopJetHists(Context & ctx,
   topjetid = boost::none;
   alljets = book_topJetHist("topjet","",20,1500);
   allsubjets = book_subjetHist("subjet","_subjets",0,500);
-  vector<double> maxPt {1500,600,400,300}; //irene changed from 900 to 1400
+  vector<double> maxPt {1500,1500,400,300}; //irene changed from 900 to 1500 for first jet, and from 600 to 1500 for second one
   string axis_suffix = "topjet";
   string axis_subjetSuffix = "subjets ";
   vector<string> axis_singleSubjetSuffix {"first ","second ","third ","fourth "};
