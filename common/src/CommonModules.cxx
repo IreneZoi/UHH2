@@ -87,11 +87,11 @@ bool CommonModules::process(uhh2::Event & event){
     if(event.isRealData && lumisel){
         if(!lumi_selection->passes(event)) return false;
     }
-    if(metfilters){
-        if(!metfilters_selection->passes(event)) return false;
-    }
     for(auto & m : modules){
         m->process(event);
+    }
+    if(metfilters){
+        if(!metfilters_selection->passes(event)) return false;
     }
 
     if(jetlepcleaner){
