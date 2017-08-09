@@ -93,7 +93,6 @@ bool CommonModules::process(uhh2::Event & event){
     if(metfilters){
         if(!metfilters_selection->passes(event)) return false;
     }
-
     if(jetlepcleaner){
       if(is_mc) JLC_MC->process(event);
       else{
