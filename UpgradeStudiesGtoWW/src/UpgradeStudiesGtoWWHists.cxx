@@ -13,6 +13,7 @@ using namespace uhh2examples;
 UpgradeStudiesGtoWWHists::UpgradeStudiesGtoWWHists(Context & ctx, const string & dirname): Hists(ctx, dirname){
   //******************* book all histograms here *****************************
   
+
   //ratios (Reco -Gen)/Gen
   book<TH1F>("Mass_Ratio", "(RecoJetMass-GenJetMass)/GenJetMass", 100, -1, 7); //irene
   
@@ -28,6 +29,30 @@ UpgradeStudiesGtoWWHists::UpgradeStudiesGtoWWHists(Context & ctx, const string &
   book<TH1F>("SoftDropMass_ratio", "(RecoSDMass-GenSDMass)/GenSDMass", 100,-2,2);
   book<TH1F>("SoftDropMass_ratio_range", "(RecoSDMass-GenSDMass)/GenSDMass", 100,-2,2);
   book<TH1F>("PrunedMass_ratio", "(RecoSDMass-GenSDMass)/GenSDMass", 100,-2,2);
+
+  //QstarToQW histos
+  //  book<TH1F>("Qstar_Mass_Ratio", "(RecoJetMass-GenJetMass)/GenJetMass", 100, -1, 7); //irene
+  
+  //book<TH1F>("Qstar_Tau_Ratio", "(RecoTau21-GenTau21)/GenTau21", 100,-1, 7); //irene                                                                                                                
+  book<TH1F>("Qstar_Tau21", "#tau_{21}", 50,0., 1.); //irene                                                                                                                
+  book<TH1F>("Qstar_Tau21_PT1500", "#tau_{21}", 50,0., 1.); //irene                                                                                                                
+  book<TH1F>("Qstar_Tau21_PT2000", "#tau_{21}", 50,0., 1.); //irene                                                                                                                
+  book<TH1F>("Qstar_Tau21_PT2500", "#tau_{21}", 50,0., 1.); //irene                                                                                                                
+
+  //  book<TH1F>("Qstar_CHF_RecoJet", "CHF", 50,0,1); //irene                                                                                                                                     
+  //book<TH1F>("Qstar_CHF_Ratio_Up", "(RecoCHF-GenCHF)/GenCHF", 24,-1,1); //irene before 100, -1, 7     
+  //book<TH1F>("Qstar_CHF_Ratio", "(RecoCHF-GenCHF)/GenCHF", 100,-1,7); //irene
+  //book<TH1F>("Qstar_CHF_Ratio_RecoGen", "RecoCHF/GenCHF", 24,0,2); //irene before 100, -1, 7     
+
+
+  book<TH1F>("Qstar_SoftDropMass_RECO", "M_{SD} [GeV/c^{2}]", 100,0,300);
+  book<TH1F>("Qstar_PT", "p_{T} [GeV/c]", 100,0,3500);
+  //book<TH1F>("Qstar_SoftDropMass_ratio", "(RecoSDMass-GenSDMass)/GenSDMass", 100,-2,2);
+  //book<TH1F>("Qstar_SoftDropMass_ratio_range", "(RecoSDMass-GenSDMass)/GenSDMass", 100,-2,2);
+  //book<TH1F>("Qstar_PrunedMass_ratio", "(RecoSDMass-GenSDMass)/GenSDMass", 100,-2,2);
+
+
+
 
   // jets
   book<TH1F>("N_jets", "N_{jets}", 20, 0, 20);  
@@ -45,6 +70,11 @@ UpgradeStudiesGtoWWHists::UpgradeStudiesGtoWWHists(Context & ctx, const string &
   // primary vertices
   book<TH1F>("N_pv", "N^{PV}", 250, 0, 250);
 
+  //event weight
+  book<TH1F>("weight", "weight", 100, 0, 0.01);
+
+  h_particles = ctx.get_handle<std::vector <GenParticle> >("genparticles");
+
 }
 
 
@@ -56,6 +86,7 @@ void UpgradeStudiesGtoWWHists::fill(const Event & event){
   
   // Don't forget to always use the weight when filling.
   double weight = event.weight;
+  hist("weight")->Fill(weight);
   
   std::vector<Jet>* jets = event.jets;
 
@@ -116,12 +147,115 @@ void UpgradeStudiesGtoWWHists::fill(const Event & event){
   hist("SoftDropMass_ratio_range")->Fill((RecoJetSDMass1-GenJetSDMass1)/GenJetSDMass1, weight);
   hist("SoftDropMass_RECO")->Fill(RecoJetSDMass1, weight);
 
+  //  hist("ROC_curve_mass_tau21")->Fill(RecoJetSDMass1,RecoTau21_1);
+
   //Puppi 
   auto RecoJetPuppiMass1 = event.topjets->at(0).prunedmass();
   hist("PrunedMass_ratio")->Fill((RecoJetPuppiMass1-GenJetSDMass1)/GenJetSDMass1, weight);
  
 //end irene for ratios histograms
- 
+
+// irene: histos for Qstar 
+  assert(event.genparticles);
+
+  //Generator-Teilchen                                                                                                                                                                                        
+  if(!event.is_valid(h_particles)){
+    return;
+  }
+
+  const std::vector<GenParticle> &  genp = event.get(h_particles);
+
+
+      for(unsigned int j=0; j<event.topjets->size(); j++)
+       	{
+		     const auto & tjet = Tjets[j];
+
+  // for(const TopJet ak8:*event.topjets)
+  //   {                                                                                                                                                                   
+
+     // for(const GenParticle part:*genp)
+     //   {
+      for(unsigned int i=0; i<genp.size(); i++)
+       	{
+      	  const GenParticle & gp = genp[i];
+	 	 if(abs(gp.pdgId())==24 && deltaR(tjet,gp)<0.4)
+		   //	 if(abs(genp.pdgId())==24 && deltaR(ak8,genp)<0.4)
+		   {
+		     //	      cout << " W from Qstar" <<endl;
+		     // 	     RecoJetMass = ak8.v4().M();
+		     // GenJetMass  = event.gentopjets->at(0).v4().M();
+		     // hist("Mass_Ratio")->Fill((RecoJetMass-GenJetMass)/GenJetMass, weight);
+	      
+  
+		     RecoTau21_1 = tjet.tau2()/tjet.tau1();
+		     // auto GenTau1_1   = event.gentopjets->at(0).tau1();
+		     // auto GenTau2_1   = event.gentopjets->at(0).tau2();
+		     // auto GenTau21_1  = GenTau2_1/GenTau1_1;
+		     hist("Qstar_PT")->Fill(tjet.pt(), weight);
+		     hist("Qstar_Tau21")->Fill(RecoTau21_1, weight);
+		     if(tjet.pt()>1500)
+		       hist("Qstar_Tau21_PT1500")->Fill(RecoTau21_1, weight);
+		     if(tjet.pt()>2000)
+		       hist("Qstar_Tau21_PT2000")->Fill(RecoTau21_1, weight);
+		     if(tjet.pt()>2500)
+		       hist("Qstar_Tau21_PT2500")->Fill(RecoTau21_1, weight);
+		     
+		     // auto RecoJCHF_1 = event.jets->at(0).chargedHadronEnergyFraction();
+		     // hist("CHF_RecoJet")->Fill(RecoJCHF_1,weight);
+		     // auto RecoCHF_1 = event.topjets->at(0).chargedHadronEnergyFraction();
+		     // auto GenCHF_1  = event.gentopjets->at(0).chf();
+		     // hist("CHF_Ratio")->Fill((RecoCHF_1-GenCHF_1)/GenCHF_1, weight);
+		     // hist("CHF_Ratio_Up")->Fill((RecoJCHF_1-GenCHF_1)/GenCHF_1, weight);
+		     // hist("CHF_Ratio_RecoGen")->Fill(RecoJCHF_1/GenCHF_1, weight);
+		     
+		     //SoftDrop 
+		     // // RecoJetSDMass1 = event.topjets->at(0).softdropmass();
+		     // vector<TopJet> Tjets = *event.topjets;
+		     // if(Tjets.size()<1) return;
+		     // const auto & jet = Tjets[j];
+		     LorentzVector subjet_sum;
+		     for (const auto s : tjet.subjets()) {
+		      	subjet_sum += s.v4();
+		      }
+		     // vector<GenTopJet> GTjets = *event.gentopjets;
+		     // if(GTjets.size()<1) return;
+		     // const auto & gjet = GTjets[0];
+		     // LorentzVector gsubjet_sum;
+		     // for (const auto sg : gjet.subjets()) {
+		     // 	gsubjet_sum += sg.v4();
+		     // }
+	      
+	      
+	      
+		     RecoJetSDMass1 = subjet_sum.M();
+		     // //auto GenJetSDMass1 = event.gentopjets->at(0).v4().M();
+		     // auto GenJetSDMass1 = gsubjet_sum.M();
+		     hist("Qstar_SoftDropMass_RECO")->Fill(RecoJetSDMass1, weight);
+		     // if((RecoJetSDMass1>40 && RecoJetSDMass1<120)&&(GenJetSDMass1>40&& GenJetSDMass1<120))
+		     // 	hist("SoftDropMass_ratio_range")->Fill((RecoJetSDMass1-GenJetSDMass1)/GenJetSDMass1, weight);
+		     // hist("SoftDropMass_RECO")->Fill(RecoJetSDMass1, weight);
+	      
+	      
+		     // //Puppi 
+		     // auto RecoJetPuppiMass1 = event.topjets->at(0).prunedmass();
+		     // hist("PrunedMass_ratio")->Fill((RecoJetPuppiMass1-GenJetSDMass1)/GenJetSDMass1, weight);
+	      
+	    }
+       }
+    }	      
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
   if(Njets>=1){
     hist("eta_jet1")->Fill(jets->at(0).eta(), weight);
   }

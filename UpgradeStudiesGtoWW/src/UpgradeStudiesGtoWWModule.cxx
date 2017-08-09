@@ -39,14 +39,19 @@ private:
    
     // declare the Selections to use. Use unique_ptr to ensure automatic call of delete in the destructor,
     // to avoid memory leaks.
-    std::unique_ptr<Selection> njet_sel, dijet_sel;
+  std::unique_ptr<Selection> njet_sel, dijet_sel, SDmass_sel, ptLow_sel, ptMedium_sel, ptHigh_sel;
     
     // store the Hists collection as member variables. Again, use unique_ptr to avoid memory leaks.
-    std::unique_ptr<Hists> h_nocuts, h_njet, h_dijet, h_ele;
-    std::unique_ptr<Hists> h_input_slimmedGenJet; //irene for w mass                                                                                                                                  
-    std::unique_ptr<Hists> h_input_slimmedJet; //irene for w mass
-    std::unique_ptr<Hists> h_input_slimmedJetAK8_SoftDrop; //irene for w mass                                                                                                                          
-    std::unique_ptr<Hists> h_input_ak8GenJetsSoftDrop; //irene for w mass
+  std::unique_ptr<Hists> h_nocuts, h_njet, h_dijet, h_ele, h_Qstar;
+  std::unique_ptr<Hists> h_start_ak8; //irene for w mass
+  std::unique_ptr<Hists> h_input_slimmedGenJet; //irene for w mass                                                                                                                                  
+  std::unique_ptr<Hists> h_input_slimmedJet; //irene for w mass
+  std::unique_ptr<Hists> h_ptLow_slimmedJetAK8_SoftDrop; //irene for w mass                                                                                                                          
+  std::unique_ptr<Hists> h_ptMedium_slimmedJetAK8_SoftDrop; //irene for w mass                                                                                                                          
+  std::unique_ptr<Hists> h_ptHigh_slimmedJetAK8_SoftDrop; //irene for w mass                                                                                                                          
+  std::unique_ptr<Hists> h_input_slimmedJetAK8_SoftDrop; //irene for w mass                                                                                                                          
+  std::unique_ptr<Hists> h_SDmass_slimmedJetAK8_SoftDrop; //irene for w mass                                                                                                                          
+  std::unique_ptr<Hists> h_input_ak8GenJetsSoftDrop; //irene for w mass
   //    std::unique_ptr<Hists> h_input_GenParticles; //irene for VBF
 };
 
@@ -89,15 +94,25 @@ UpgradeStudiesGtoWWModule::UpgradeStudiesGtoWWModule(Context & ctx){
     // 2. set up selections
     njet_sel.reset(new NJetSelection(2)); // see common/include/NSelections.h
     dijet_sel.reset(new DijetSelection()); // see UpgradeStudiesGtoWWSelections
+    ptLow_sel.reset(new LowPtSelection()); // see UpgradeStudiesGtoWWSelections
+    ptMedium_sel.reset(new MediumPtSelection()); // see UpgradeStudiesGtoWWSelections
+    ptHigh_sel.reset(new HighPtSelection()); // see UpgradeStudiesGtoWWSelections
+    SDmass_sel.reset(new SDMassSelection()); // see UpgradeStudiesGtoWWSelections
 
     // 3. Set up Hists classes:
+    h_start_ak8.reset(new TopJetHists(ctx, "start_ak8")); //irene for w mass                           
     h_nocuts.reset(new UpgradeStudiesGtoWWHists(ctx, "NoCuts"));
+    h_Qstar.reset(new UpgradeStudiesGtoWWHists(ctx, "Qstar"));
     h_njet.reset(new UpgradeStudiesGtoWWHists(ctx, "Njet"));
     h_dijet.reset(new UpgradeStudiesGtoWWHists(ctx, "Dijet"));
     h_ele.reset(new ElectronHists(ctx, "ele_nocuts"));
     h_input_slimmedGenJet.reset(new GenJetsHists(ctx, "slimmedGenJet_nocuts")); //irene for w mass                                                                                                         
     h_input_slimmedJet.reset(new JetHists(ctx, "slimmedJet_nocuts")); //irene for w mass
     h_input_slimmedJetAK8_SoftDrop.reset(new TopJetHists(ctx, "slimmedJetAK8_SoftDrop_nocuts")); //irene for w mass                                                                                
+    h_ptLow_slimmedJetAK8_SoftDrop.reset(new TopJetHists(ctx, "slimmedJetAK8_SoftDrop_ptLow")); //irene for w mass                                                                                
+    h_ptMedium_slimmedJetAK8_SoftDrop.reset(new TopJetHists(ctx, "slimmedJetAK8_SoftDrop_ptMedium")); //irene for w mass                                                                                
+    h_ptHigh_slimmedJetAK8_SoftDrop.reset(new TopJetHists(ctx, "slimmedJetAK8_SoftDrop_ptHigh")); //irene for w mass                                                                                
+    h_SDmass_slimmedJetAK8_SoftDrop.reset(new TopJetHists(ctx, "slimmedJetAK8_SoftDrop_SDmass")); //irene for w mass                                                                                
     h_input_ak8GenJetsSoftDrop.reset(new UpgradeGenTopJetHists(ctx, "GenJetAK8_SoftDrop_nocuts"));
     //    h_input_GenParticles(new (ctx, "GenParticles"));
     
@@ -118,7 +133,7 @@ bool UpgradeStudiesGtoWWModule::process(Event & event) {
     cout << "UpgradeStudiesGtoWWModule: Starting to process event (runid, eventid) = (" << event.run << ", " << event.event << "); weight = " << event.weight << endl;
     
     // 1. run all modules other modules.
-
+    h_start_ak8->fill(event);
     common->process(event);
     jetcleaner->process(event);
     topjetcleaner->process(event);
@@ -138,6 +153,23 @@ bool UpgradeStudiesGtoWWModule::process(Event & event) {
     bool dijet_selection = dijet_sel->passes(event);
     if(dijet_selection){
         h_dijet->fill(event);
+    }
+    bool ptLow_selection = ptLow_sel->passes(event);
+    if(ptLow_selection){
+      h_ptLow_slimmedJetAK8_SoftDrop->fill(event);
+    }
+    bool ptMedium_selection = ptMedium_sel->passes(event);
+    if(ptMedium_selection){
+      h_ptMedium_slimmedJetAK8_SoftDrop->fill(event);
+    }
+    bool ptHigh_selection = ptHigh_sel->passes(event);
+    if(ptHigh_selection){
+      h_ptHigh_slimmedJetAK8_SoftDrop->fill(event);
+      h_Qstar->fill(event);
+    }
+    bool SDmass_selection = SDmass_sel->passes(event);
+    if(SDmass_selection){
+      h_SDmass_slimmedJetAK8_SoftDrop->fill(event);
     }
     // 3. decide whether or not to keep the current event in the output:
     return njet_selection && dijet_selection;

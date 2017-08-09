@@ -19,4 +19,46 @@ private:
 };
 
 
+class SDMassSelection: public uhh2::Selection {
+public:
+    SDMassSelection(float Mass_sd_min = 65.0f, float Mass_sd_max = 105.0f);
+    virtual bool passes(const uhh2::Event & event) override;
+private:
+    float Mass_sd_min, Mass_sd_max;
+};
+
+class LowPtSelection: public uhh2::Selection {
+public:
+    LowPtSelection(float pt_min = 500.0f, float pt_max = 1500.0f);
+    virtual bool passes(const uhh2::Event & event) override;
+private:
+    float pt_min, pt_max;
+};
+
+class MediumPtSelection: public uhh2::Selection {
+public:
+    MediumPtSelection(float pt_min = 1500.0f, float pt_max = 2500.0f);
+    virtual bool passes(const uhh2::Event & event) override;
+private:
+    float pt_min, pt_max;
+};
+
+class HighPtSelection: public uhh2::Selection {
+public:
+    HighPtSelection(float pt_min = 2500.0f);
+    virtual bool passes(const uhh2::Event & event) override;
+private:
+    float pt_min;
+};
+
+
+/* class DeltaRSelection: public uhh2::Selection { */
+/* public: */
+/*     DeltaRSelection(float deltaR_max = 0.4f); */
+/*     virtual bool passes(const uhh2::Event & event) override; */
+/* private: */
+/*     float deltaR_max; */
+/* }; */
+
+
 }
