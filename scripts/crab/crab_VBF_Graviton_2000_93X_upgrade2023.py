@@ -14,10 +14,9 @@ import sys, os
 sys.path.append('/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/scripts/crab')
 from DasQuery import autocomplete_Datasets
 
-#inputDatasets = ['/DYJetsToLL_M-50_HT-*to*_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/RunIISummer16MiniAODv2-PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6_*/MINIAODSIM']
 inputDatasets = ['/VBF_BulkGravToWW_narrow_M-2000_14TeV-madgraph/PhaseIITDRFall17MiniAOD-noPU_93X_upgrade2023_realistic_v2-v1/MINIAODSIM']
 inputDatasets = autocomplete_Datasets(inputDatasets)
-requestNames = ['VBF_BulkGravToWW_narrow_M-2000_14TeV_PhaseIITDRFall17_noPU_new']
+requestNames = ['VBF_BulkGravToWW_narrow_M-2000_14TeV_PhaseIITDRFall17_noPU_new2']
 for x in inputDatasets:
     name = x.split('/')[1]
     modified_name =name.replace('VBF_BulkGravToWW_narrow_M-2000_14TeV_noPU','')
@@ -40,7 +39,7 @@ config.General.transferLogs = True
         
 config.JobType.pluginName = 'Analysis'
 config.JobType.psetName = '/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/core/python/ntuplewriter_93X_irene.py'
-config.JobType.outputFiles = ["Ntuple_AK8.root"]
+config.JobType.outputFiles = ["Ntuple_AK8_fix.root"]
 config.JobType.maxMemoryMB = 2500
 #config.JobType.inputFiles = ['/nfs/dust/cms/user/gonvaq/CMSSW/CMSSW_7_4_15_patch1/src/UHH2/core/python/Summer15_25nsV2_MC.db']
         

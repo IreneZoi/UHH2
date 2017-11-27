@@ -15,9 +15,9 @@ sys.path.append('/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/ne
 from DasQuery import autocomplete_Datasets
 
 #inputDatasets = ['/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/PhaseIITDRFall17MiniAOD-noPU_93X_upgrade2023_realistic_v2-v1/MINIAODSIM']
-inputDatasets = ['/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/PhaseIITDRFall17MiniAOD-PU200_93X_upgrade2023_realistic_v2-v1/MINIAODSIM']
+inputDatasets = ['/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/PhaseIITDRFall17MiniAOD-PU200_93X_upgrade2023_realistic_v2-v2/MINIAODSIM']
 inputDatasets = autocomplete_Datasets(inputDatasets)
-requestNames = ['QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_fixSplit']
+requestNames = ['QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6']
 for x in inputDatasets:
     name = x.split('/')[1]
     modified_name =name.replace('QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PU200','')
@@ -34,7 +34,7 @@ from CRABClient.UserUtilities import config, getUsernameFromSiteDB
 
 
 config = config()
-config.General.workArea = 'crab_Graviton'
+config.General.workArea = 'crab_QCD'
 config.General.transferOutputs = True
 config.General.transferLogs = True
         
@@ -46,8 +46,8 @@ config.JobType.maxMemoryMB = 2500
         
 config.Data.inputDBS = 'global'
 config.Data.splitting = 'EventAwareLumiBased'
-config.Data.unitsPerJob = 200
-config.Data.outLFNDirBase = '/store/user/%s/RunII_93X_v2-v1/QCD_flat_PU200_fix' % (getUsernameFromSiteDB())
+config.Data.unitsPerJob = 1000
+config.Data.outLFNDirBase = '/store/user/%s/RunII_93X_v2-v2/QCD_flat_PU200_fix' % (getUsernameFromSiteDB())
 config.Data.publication = False
 config.JobType.sendExternalFolder = True 
 config.Data.allowNonValidInputDataset = True
@@ -55,6 +55,7 @@ config.Data.allowNonValidInputDataset = True
 #config.Data.publishDataName = 'CRAB3_tutorial_May2015_MC_analysis'
 
 config.Site.storageSite = 'T2_DE_DESY'
+config.Site.blacklist = 'T2_IT_Rome'
 
 config.General.requestName = requestNames[0]
 config.Data.inputDataset = inputDatasets[0]

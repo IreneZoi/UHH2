@@ -1,0 +1,308 @@
+Adding groomed genjets  ak8GenJetsSoftDrop
+Adding ungroomed genjets  ak8GenJets
+Adding ungroomed patJetsAk8CHSJets
+adding grommed jets patJetsAk8CHSJetsSoftDrop
+adding grommed jets' subjets patJetsAk8CHSJetsSoftDropSubjets
+Adding groomed genjets  ak8GenJetsSoftDrop
+Adding ungroomed genjets  ak8GenJetsFat
+Adding ungroomed patJetsAk8PuppiJetsFat
+adding grommed jets patJetsAk8PuppiJetsSoftDrop
+adding grommed jets' subjets patJetsAk8PuppiJetsSoftDropSubjets
+Adding groomed genjets  ak8GenJetsPruned
+Adding ungroomed genjets  ak8GenJets
+adding grommed jets patJetsAk8CHSJetsPruned
+adding grommed jets' subjets patJetsAk8CHSJetsPrunedSubjets
+Switching PV collection for PF2PAT: cms.InputTag("offlineSlimmedPrimaryVertices")
+***********************************
+DEBUG 2017-11-20 09:58:47,457: 	 Executing command: 'submit'
+DEBUG 2017-11-20 09:58:47,457: 	 Found CRAB cache file /afs/desy.de/user/z/zoiirene/.crab3
+DEBUG 2017-11-20 09:58:47,461: 	 Checking credentials
+DEBUG 2017-11-20 09:58:47,461: 	 Found proxy file /tmp/x509up_u28517
+DEBUG 2017-11-20 09:58:47,461: 	 Getting proxy life time left
+DEBUG 2017-11-20 09:58:47,864: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -timeleft
+ output : 39347
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 09:58:48,267: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -actimeleft
+ output : 39346
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 09:58:48,268: 	 Proxy valid for 10:55:47 hours
+INFO 2017-11-20 09:58:48,268: 	 Will use CRAB configuration file crab_QCD_93X_pu_upgrade2023.py
+DEBUG 2017-11-20 09:58:48,268: 	 Loading CRAB configuration file.
+DEBUG 2017-11-20 09:58:51,065: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+DEBUG 2017-11-20 09:58:51,178: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 09:58:51,178: 	 Checking credentials
+DEBUG 2017-11-20 09:58:51,178: 	 Found proxy file /tmp/x509up_u28517
+DEBUG 2017-11-20 09:58:51,178: 	 Getting proxy life time left
+DEBUG 2017-11-20 09:58:51,581: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -timeleft
+ output : 39343
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 09:58:51,984: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -actimeleft
+ output : 39343
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 09:58:51,985: 	 Proxy valid for 10:55:43 hours
+DEBUG 2017-11-20 09:58:52,388: 	 Executing : 
+ command : env X509_USER_PROXY=/tmp/x509up_u28517 voms-proxy-info -fqan
+ output : /cms/Role=NULL/Capability=NULL
+/cms/dcms/Role=NULL/Capability=NULL
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 09:58:53,613: 	 Registering user credentials for server /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+DEBUG 2017-11-20 09:58:53,719: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 09:58:53,719: 	 Getting myproxy life time left for myproxy.cern.ch
+DEBUG 2017-11-20 09:58:53,719: 	 Calculating hash of /C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene_cmsweb.cern.ch for credential name
+DEBUG 2017-11-20 09:58:54,322: 	 Executing : 
+ command : myproxy-info -l 3cd82fca48badc692f8513e62d67e79566e4e718 -s myproxy.cern.ch
+ output : username: 3cd82fca48badc692f8513e62d67e79566e4e718
+owner: /C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene
+  renewal policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+  trusted retrieval policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+  timeleft: 494:32:15  (20.6 days)
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 09:58:54,323: 	 Myproxy is valid: 1780335
+DEBUG 2017-11-20 09:58:54,323: 	 Command use: submit
+DEBUG 2017-11-20 09:58:54,323: 	 Options use: ['-c', 'crab_QCD_93X_pu_upgrade2023.py']
+DEBUG 2017-11-20 09:58:55,526: 	 CRABClient version: 3.3.1707.patch1
+DEBUG 2017-11-20 09:58:55,526: 	 Instance is prod
+DEBUG 2017-11-20 09:58:55,526: 	 Server base url is cmsweb.cern.ch
+DEBUG 2017-11-20 09:58:55,526: 	 Command url /crabserver/prod/workflow
+DEBUG 2017-11-20 09:58:55,526: 	 Started submission
+DEBUG 2017-11-20 09:58:55,526: 	 Working on /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/scripts/crab/crab_QCD/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4
+DEBUG 2017-11-20 09:58:56,727: 	 Loading required information from the environment
+DEBUG 2017-11-20 09:58:56,728: 	 Found CMSSW_9_3_2 for slc6_amd64_gcc630 with base /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2
+DEBUG 2017-11-20 09:58:56,728: 	 Loading required information from the environment
+DEBUG 2017-11-20 09:58:56,728: 	 Found CMSSW_9_3_2 for slc6_amd64_gcc630 with base /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2
+DEBUG 2017-11-20 09:58:56,736: 	 UNIQUE NAME: tarUUID 91b2c652-7454-494f-a4e2-cd46099eb1b7 
+DEBUG 2017-11-20 09:58:56,736: 	 self.config: from WMCore.Configuration import Configuration
+config = Configuration()
+config.section_('General')
+config.General.transferLogs = True
+config.General.transferOutputs = True
+config.General.workArea = 'crab_QCD'
+config.General.requestName = 'QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4'
+config.section_('JobType')
+config.JobType.psetName = '/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/core/python/ntuplewriter_93X_irene.py'
+config.JobType.pluginName = 'Analysis'
+config.JobType.outputFiles = ['Ntuple_AK8_fix.root']
+config.JobType.maxMemoryMB = 2500
+config.JobType.sendExternalFolder = True
+config.section_('Data')
+config.Data.inputDataset = '/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/PhaseIITDRFall17MiniAOD-PU200_93X_upgrade2023_realistic_v2-v2/MINIAODSIM'
+config.Data.allowNonValidInputDataset = True
+config.Data.publication = False
+config.Data.unitsPerJob = 500
+config.Data.inputDBS = 'global'
+config.Data.splitting = 'EventAwareLumiBased'
+config.Data.outLFNDirBase = '/store/user/izoi/RunII_93X_v2-v2/QCD_flat_PU200_fix'
+config.section_('Site')
+config.Site.storageSite = 'T2_DE_DESY'
+config.section_('User')
+config.section_('Debug')
+
+DEBUG 2017-11-20 09:58:56,736: 	 self.config.JobType.psetName: /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/core/python/ntuplewriter_93X_irene.py
+INFO 2017-11-20 09:58:56,737: 	 Importing CMSSW configuration /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/core/python/ntuplewriter_93X_irene.py
+INFO 2017-11-20 09:58:58,634: 	 Finished importing CMSSW configuration /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/core/python/ntuplewriter_93X_irene.py
+DEBUG 2017-11-20 09:58:58,634: 	 Writing CMSSW configuration to /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/scripts/crab/crab_QCD/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4/inputs/PSet.py
+DEBUG 2017-11-20 09:58:59,481: 	 The following EDM output files will be collected: []
+DEBUG 2017-11-20 09:58:59,481: 	 The following TFile output files will be collected: []
+DEBUG 2017-11-20 09:58:59,481: 	 The following user output files will be collected: ['Ntuple_AK8_fix.root']
+DEBUG 2017-11-20 09:58:59,481: 	 Loading required information from the environment
+DEBUG 2017-11-20 09:58:59,481: 	 Found CMSSW_9_3_2 for slc6_amd64_gcc630 with base /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2
+DEBUG 2017-11-20 09:58:59,481: 	 Making tarball in /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/scripts/crab/crab_QCD/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4/inputs/91b2c652-7454-494f-a4e2-cd46099eb1b7default.tgz
+DEBUG 2017-11-20 09:58:59,492: 	 Checking directory /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/lib
+DEBUG 2017-11-20 09:58:59,492: 	 Adding directory /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/lib to tarball
+DEBUG 2017-11-20 09:59:01,485: 	 Checking directory /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/biglib
+DEBUG 2017-11-20 09:59:01,485: 	 Adding directory /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/biglib to tarball
+DEBUG 2017-11-20 09:59:01,486: 	 Checking directory /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/module
+DEBUG 2017-11-20 09:59:01,486: 	 Checking directory /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/external
+DEBUG 2017-11-20 09:59:01,486: 	 Adding directory /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/external to tarball
+DEBUG 2017-11-20 09:59:04,345: 	 Adding data directory /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/common/data to tarball
+DEBUG 2017-11-20 09:59:07,421: 	 Adding data directory /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/JetMETObjects/data to tarball
+DEBUG 2017-11-20 09:59:08,444: 	 Adding data directory /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/JetMETObjects/interface to tarball
+DEBUG 2017-11-20 09:59:08,610: 	 Uploading archive /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/scripts/crab/crab_QCD/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4/inputs/91b2c652-7454-494f-a4e2-cd46099eb1b7default.tgz (12 MB) to the CRAB cache. Using URI https://cmsweb.cern.ch/crabcache
+DEBUG 2017-11-20 09:59:13,557: 	 Loading required information from the environment
+DEBUG 2017-11-20 09:59:13,557: 	 Found CMSSW_9_3_2 for slc6_amd64_gcc630 with base /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2
+DEBUG 2017-11-20 09:59:13,557: 	 Making tarball in /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/scripts/crab/crab_QCD/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4/inputs/debugFiles.tgz
+DEBUG 2017-11-20 09:59:13,565: 	 Uploading archive /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/scripts/crab/crab_QCD/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4/inputs/debugFiles.tgz (12 KB) to the CRAB cache. Using URI https://cmsweb.cern.ch/crabcache
+DEBUG 2017-11-20 09:59:14,649: 	 Result uploading input files: b6439a997772807a3943ad59df2030c8f7a8570a2dc939991f44d067a51e65ad.tar.gz 
+INFO 2017-11-20 09:59:14,649: 	 Sending the request to the server
+DEBUG 2017-11-20 09:59:14,649: 	 Submitting {'maxjobruntime': 1250, 'extrajdl': [], 'ignorelocality': 0, 'savelogsflag': 1, 'useparent': 0, 'asyncdest': 'T2_DE_DESY', 'algoargs': 500, 'cachefilename': 'b6439a997772807a3943ad59df2030c8f7a8570a2dc939991f44d067a51e65ad.tar.gz', 'numcores': 1, 'addoutputfiles': ['Ntuple_AK8_fix.root'], 'generator': 'pythia', 'maxmemory': 2500, 'publishdbsurl': 'https://cmsweb.cern.ch/dbs/prod/phys03/DBSWriter', 'priority': 10, 'jobsw': 'CMSSW_9_3_2', 'edmoutfiles': [], 'userfiles': [], 'primarydataset': '', 'inputdata': '/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/PhaseIITDRFall17MiniAOD-PU200_93X_upgrade2023_realistic_v2-v2/MINIAODSIM', 'lfn': '/store/user/izoi/RunII_93X_v2-v2/QCD_flat_PU200_fix', 'dryrun': 0, 'workflow': 'crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4', 'cacheurl': u'https://cmsweb.cern.ch/crabcache', 'nonprodsw': 0, 'tfileoutfiles': [], 'oneEventMode': 0, 'debugfilename': 'd3c6dbd672662b78b50be8520792de82fb6fa0fc74afc3c617bcb1a6eeb32a8f.tar.gz', 'saveoutput': 1, 'publication': 0, 'jobarch': 'slc6_amd64_gcc630', 'totalunits': 0, 'splitalgo': 'EventAwareLumiBased', 'ignoreglobalblacklist': 0, 'nonvaliddata': 1, 'dbsurl': 'https://cmsweb.cern.ch/dbs/prod/global/DBSReader', 'publishgroupname': 0, 'jobtype': 'Analysis', 'publishname2': ''} 
+DEBUG 2017-11-20 09:59:14,649: 	 Encoded submit request: maxjobruntime=1250&ignorelocality=0&savelogsflag=1&useparent=0&asyncdest=T2_DE_DESY&algoargs=500&cachefilename=b6439a997772807a3943ad59df2030c8f7a8570a2dc939991f44d067a51e65ad.tar.gz&numcores=1&generator=pythia&maxmemory=2500&publishdbsurl=https%3A%2F%2Fcmsweb.cern.ch%2Fdbs%2Fprod%2Fphys03%2FDBSWriter&priority=10&jobsw=CMSSW_9_3_2&primarydataset=&inputdata=%2FQCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8%2FPhaseIITDRFall17MiniAOD-PU200_93X_upgrade2023_realistic_v2-v2%2FMINIAODSIM&lfn=%2Fstore%2Fuser%2Fizoi%2FRunII_93X_v2-v2%2FQCD_flat_PU200_fix&dryrun=0&workflow=crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4&cacheurl=https%3A%2F%2Fcmsweb.cern.ch%2Fcrabcache&nonprodsw=0&oneEventMode=0&debugfilename=d3c6dbd672662b78b50be8520792de82fb6fa0fc74afc3c617bcb1a6eeb32a8f.tar.gz&saveoutput=1&publication=0&jobarch=slc6_amd64_gcc630&totalunits=0&splitalgo=EventAwareLumiBased&ignoreglobalblacklist=0&nonvaliddata=1&dbsurl=https%3A%2F%2Fcmsweb.cern.ch%2Fdbs%2Fprod%2Fglobal%2FDBSReader&publishgroupname=0&jobtype=Analysis&publishname2=&addoutputfiles=Ntuple_AK8_fix.root
+DEBUG 2017-11-20 09:59:15,995: 	 Result: {u'result': [{u'RequestName': u'171120_085915:izoi_crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4'}]}
+INFO 2017-11-20 09:59:15,997: 	 Success: Your task has been delivered to the CRAB3 server.
+INFO 2017-11-20 09:59:15,997: 	 Task name: 171120_085915:izoi_crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4
+INFO 2017-11-20 09:59:15,998: 	 Please use 'crab status' to check how the submission process proceeds.
+DEBUG 2017-11-20 09:59:15,998: 	 About to return
+INFO 2017-11-20 09:59:16,001: 	 Log file is /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/scripts/crab/crab_QCD/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4/crab.log
+DEBUG 2017-11-20 09:59:45,844: 	 Executing command: 'status'
+DEBUG 2017-11-20 09:59:45,844: 	 Found CRAB cache file /afs/desy.de/user/z/zoiirene/.crab3
+DEBUG 2017-11-20 09:59:45,851: 	 Checking credentials
+DEBUG 2017-11-20 09:59:45,851: 	 Found proxy file /tmp/x509up_u28517
+DEBUG 2017-11-20 09:59:45,851: 	 Getting proxy life time left
+DEBUG 2017-11-20 09:59:46,253: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -timeleft
+ output : 39288
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 09:59:46,657: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -actimeleft
+ output : 39288
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 09:59:46,657: 	 Proxy valid for 10:54:48 hours
+DEBUG 2017-11-20 09:59:46,766: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 09:59:46,766: 	 Checking credentials
+DEBUG 2017-11-20 09:59:46,766: 	 Found proxy file /tmp/x509up_u28517
+DEBUG 2017-11-20 09:59:46,766: 	 Getting proxy life time left
+DEBUG 2017-11-20 09:59:47,169: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -timeleft
+ output : 39287
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 09:59:47,573: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -actimeleft
+ output : 39287
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 09:59:47,573: 	 Proxy valid for 10:54:47 hours
+DEBUG 2017-11-20 09:59:48,742: 	 Registering user credentials for server /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+DEBUG 2017-11-20 09:59:48,848: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 09:59:48,848: 	 Getting myproxy life time left for myproxy.cern.ch
+DEBUG 2017-11-20 09:59:48,848: 	 Calculating hash of /C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene_cmsweb.cern.ch for credential name
+DEBUG 2017-11-20 09:59:49,451: 	 Executing : 
+ command : myproxy-info -l 3cd82fca48badc692f8513e62d67e79566e4e718 -s myproxy.cern.ch
+ output : username: 3cd82fca48badc692f8513e62d67e79566e4e718
+owner: /C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene
+  renewal policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+  trusted retrieval policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+  timeleft: 494:31:20  (20.6 days)
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 09:59:49,452: 	 Myproxy is valid: 1780280
+DEBUG 2017-11-20 09:59:49,452: 	 Command use: status
+DEBUG 2017-11-20 09:59:49,452: 	 Options use: []
+DEBUG 2017-11-20 09:59:50,505: 	 CRABClient version: 3.3.1707.patch1
+DEBUG 2017-11-20 09:59:50,505: 	 Instance is prod
+DEBUG 2017-11-20 09:59:50,505: 	 Server base url is cmsweb.cern.ch
+DEBUG 2017-11-20 09:59:50,505: 	 Command url /crabserver/prod/workflow
+DEBUG 2017-11-20 09:59:51,454: 	 Got information from server oracle database: {u'result': [u'171120_085915:izoi_crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4', u'None', u'SUBMITFAILED', u'2017-11-20 08:59:15.975056', u'None', u'2017-11-20 08:59:44.700455', u'The splitting on your task generated 12304 jobs. The maximum number of jobs in each task is 10000', u'CMSSW_9_3_2', u'slc6_amd64_gcc630', u'/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/PhaseIITDRFall17MiniAOD-PU200_93X_upgrade2023_realistic_v2-v2/MINIAODSIM', u'[]', u'[]', u'EventAwareLumiBased', u"{'splitOnRun': False, 'events_per_job': 500, 'halt_job_on_file_boundaries': False, 'runs': [], 'lumis': []}", u'0', u'b6439a997772807a3943ad59df2030c8f7a8570a2dc939991f44d067a51e65ad.tar.gz', u'https://cmsweb.cern.ch/crabcache', u'izoi', u'/C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene', u'cms', u'None', u'None', u'crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4-00000000000000000000000000000000', u'T2_DE_DESY', u'https://cmsweb.cern.ch/dbs/prod/global/DBSReader', u'https://cmsweb.cern.ch/dbs/prod/phys03/DBSWriter', u'F', u'Analysis', u'{}', u'[]', u'T', u'vocms052', u'[]', u'1250', u'1', u'2500', u'10', u'None', u'None', u'None', u'None', u'[]', u'[]', u'[]', u'pythia', u"['Ntuple_AK8_fix.root']", u'[]', u'[]', u'https://cmsweb.cern.ch/crabserver/prod', u'None', u'0', u'cmssrv221.fnal.gov:9620', u'None', u'F', u'[]', u'T', u'/store/user/izoi/RunII_93X_v2-v2/QCD_flat_PU200_fix', u'F', u'None', u'F', u'F', u'T', u'None', u'QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8', u'filetransfers', u'SUBMIT', u'None', u'd3c6dbd672662b78b50be8520792de82fb6fa0fc74afc3c617bcb1a6eeb32a8f.tar.gz', u'131.169.168.54', u'F', u'None'], u'desc': {u'columns': [u'tm_taskname', u'panda_jobset_id', u'tm_task_status', u'tm_start_time', u'tm_start_injection', u'tm_end_injection', u'tm_task_failure', u'tm_job_sw', u'tm_job_arch', u'tm_input_dataset', u'tm_site_whitelist', u'tm_site_blacklist', u'tm_split_algo', u'tm_split_args', u'tm_totalunits', u'tm_user_sandbox', u'tm_cache_url', u'tm_username', u'tm_user_dn', u'tm_user_vo', u'tm_user_role', u'tm_user_group', u'tm_publish_name', u'tm_asyncdest', u'tm_dbs_url', u'tm_publish_dbs_url', u'tm_publication', u'tm_job_type', u'tm_arguments', u'panda_resubmitted_jobs', u'tm_save_logs', u'tw_name', u'tm_user_infiles', u'tm_maxjobruntime', u'tm_numcores', u'tm_maxmemory', u'tm_priority', u'tm_output_dataset', u'tm_user_webdir', u'tm_activity', u'tm_scriptexe', u'tm_scriptargs', u'tm_extrajdl', u'tm_task_warnings', u'tm_generator', u'tm_outfiles', u'tm_tfile_outfiles', u'tm_edm_outfiles', u'tm_asourl', u'tm_events_per_lumi', u'tm_use_parent', u'tm_collector', u'tm_schedd', u'tm_dry_run', u'tm_user_files', u'tm_transfer_outputs', u'tm_output_lfn', u'tm_ignore_locality', u'tm_fail_limit', u'tm_one_event_mode', u'tm_publish_groupname', u'tm_nonvalid_input_dataset', u'tm_secondary_input_dataset', u'tm_primary_dataset', u'tm_asodb', u'tm_task_command', u'clusterid', u'tm_debug_files', u'tm_submitter_ip_addr', u'tm_ignore_global_blacklist', u'tm_last_publication']}}
+INFO 2017-11-20 09:59:51,454: 	 CRAB project directory:		/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/scripts/crab/crab_QCD/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4
+INFO 2017-11-20 09:59:51,454: 	 Task name:			171120_085915:izoi_crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4
+INFO 2017-11-20 09:59:51,454: 	 Status on the CRAB server:	SUBMITFAILED
+INFO 2017-11-20 09:59:51,454: 	 Task URL to use for HELP:	https://cmsweb.cern.ch/crabserver/ui/task/171120_085915%3Aizoi_crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4
+ERROR 2017-11-20 09:59:51,455: 	 Failure message from the server:		The splitting on your task generated 12304 jobs. The maximum number of jobs in each task is 10000
+DEBUG 2017-11-20 09:59:51,455: 	 The task has not been submitted to the Grid scheduler yet. Not printing job information.
+INFO 2017-11-20 09:59:51,467: 	 Log file is /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/scripts/crab/crab_QCD/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4/crab.log
+DEBUG 2017-11-20 10:00:26,947: 	 Executing command: 'status'
+DEBUG 2017-11-20 10:00:26,947: 	 Found CRAB cache file /afs/desy.de/user/z/zoiirene/.crab3
+DEBUG 2017-11-20 10:00:26,952: 	 Checking credentials
+DEBUG 2017-11-20 10:00:26,952: 	 Found proxy file /tmp/x509up_u28517
+DEBUG 2017-11-20 10:00:26,952: 	 Getting proxy life time left
+DEBUG 2017-11-20 10:00:27,355: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -timeleft
+ output : 39247
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 10:00:27,758: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -actimeleft
+ output : 39247
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 10:00:27,759: 	 Proxy valid for 10:54:07 hours
+DEBUG 2017-11-20 10:00:27,868: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 10:00:27,868: 	 Checking credentials
+DEBUG 2017-11-20 10:00:27,868: 	 Found proxy file /tmp/x509up_u28517
+DEBUG 2017-11-20 10:00:27,868: 	 Getting proxy life time left
+DEBUG 2017-11-20 10:00:28,271: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -timeleft
+ output : 39246
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 10:00:28,674: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -actimeleft
+ output : 39246
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 10:00:28,674: 	 Proxy valid for 10:54:06 hours
+DEBUG 2017-11-20 10:00:29,899: 	 Registering user credentials for server /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+DEBUG 2017-11-20 10:00:30,005: 	 Executing : 
+ command : openssl x509 -in ~/.globus/usercert.pem -subject -noout
+ output : subject= /C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 10:00:30,005: 	 Getting myproxy life time left for myproxy.cern.ch
+DEBUG 2017-11-20 10:00:30,005: 	 Calculating hash of /C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene_cmsweb.cern.ch for credential name
+DEBUG 2017-11-20 10:00:30,408: 	 Executing : 
+ command : myproxy-info -l 3cd82fca48badc692f8513e62d67e79566e4e718 -s myproxy.cern.ch
+ output : username: 3cd82fca48badc692f8513e62d67e79566e4e718
+owner: /C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene
+  renewal policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+  trusted retrieval policy: /DC=ch/DC=cern/OU=computers/CN=vocms(045|052|021|031|0118|0118a|0119|0108|0105|0109).cern.ch
+  timeleft: 494:30:39  (20.6 days)
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 10:00:30,409: 	 Myproxy is valid: 1780239
+DEBUG 2017-11-20 10:00:30,409: 	 Command use: status
+DEBUG 2017-11-20 10:00:30,409: 	 Options use: []
+DEBUG 2017-11-20 10:00:31,427: 	 CRABClient version: 3.3.1707.patch1
+DEBUG 2017-11-20 10:00:31,427: 	 Instance is prod
+DEBUG 2017-11-20 10:00:31,427: 	 Server base url is cmsweb.cern.ch
+DEBUG 2017-11-20 10:00:31,427: 	 Command url /crabserver/prod/workflow
+DEBUG 2017-11-20 10:00:32,422: 	 Got information from server oracle database: {u'result': [u'171120_085915:izoi_crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4', u'None', u'SUBMITFAILED', u'2017-11-20 08:59:15.975056', u'None', u'2017-11-20 08:59:44.700455', u'The splitting on your task generated 12304 jobs. The maximum number of jobs in each task is 10000', u'CMSSW_9_3_2', u'slc6_amd64_gcc630', u'/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/PhaseIITDRFall17MiniAOD-PU200_93X_upgrade2023_realistic_v2-v2/MINIAODSIM', u'[]', u'[]', u'EventAwareLumiBased', u"{'splitOnRun': False, 'events_per_job': 500, 'halt_job_on_file_boundaries': False, 'runs': [], 'lumis': []}", u'0', u'b6439a997772807a3943ad59df2030c8f7a8570a2dc939991f44d067a51e65ad.tar.gz', u'https://cmsweb.cern.ch/crabcache', u'izoi', u'/C=DE/O=GermanGrid/OU=uni-hamburg/CN=Zoi Irene', u'cms', u'None', u'None', u'crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4-00000000000000000000000000000000', u'T2_DE_DESY', u'https://cmsweb.cern.ch/dbs/prod/global/DBSReader', u'https://cmsweb.cern.ch/dbs/prod/phys03/DBSWriter', u'F', u'Analysis', u'{}', u'[]', u'T', u'vocms052', u'[]', u'1250', u'1', u'2500', u'10', u'None', u'None', u'None', u'None', u'[]', u'[]', u'[]', u'pythia', u"['Ntuple_AK8_fix.root']", u'[]', u'[]', u'https://cmsweb.cern.ch/crabserver/prod', u'None', u'0', u'cmssrv221.fnal.gov:9620', u'None', u'F', u'[]', u'T', u'/store/user/izoi/RunII_93X_v2-v2/QCD_flat_PU200_fix', u'F', u'None', u'F', u'F', u'T', u'None', u'QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8', u'filetransfers', u'SUBMIT', u'None', u'd3c6dbd672662b78b50be8520792de82fb6fa0fc74afc3c617bcb1a6eeb32a8f.tar.gz', u'131.169.168.54', u'F', u'None'], u'desc': {u'columns': [u'tm_taskname', u'panda_jobset_id', u'tm_task_status', u'tm_start_time', u'tm_start_injection', u'tm_end_injection', u'tm_task_failure', u'tm_job_sw', u'tm_job_arch', u'tm_input_dataset', u'tm_site_whitelist', u'tm_site_blacklist', u'tm_split_algo', u'tm_split_args', u'tm_totalunits', u'tm_user_sandbox', u'tm_cache_url', u'tm_username', u'tm_user_dn', u'tm_user_vo', u'tm_user_role', u'tm_user_group', u'tm_publish_name', u'tm_asyncdest', u'tm_dbs_url', u'tm_publish_dbs_url', u'tm_publication', u'tm_job_type', u'tm_arguments', u'panda_resubmitted_jobs', u'tm_save_logs', u'tw_name', u'tm_user_infiles', u'tm_maxjobruntime', u'tm_numcores', u'tm_maxmemory', u'tm_priority', u'tm_output_dataset', u'tm_user_webdir', u'tm_activity', u'tm_scriptexe', u'tm_scriptargs', u'tm_extrajdl', u'tm_task_warnings', u'tm_generator', u'tm_outfiles', u'tm_tfile_outfiles', u'tm_edm_outfiles', u'tm_asourl', u'tm_events_per_lumi', u'tm_use_parent', u'tm_collector', u'tm_schedd', u'tm_dry_run', u'tm_user_files', u'tm_transfer_outputs', u'tm_output_lfn', u'tm_ignore_locality', u'tm_fail_limit', u'tm_one_event_mode', u'tm_publish_groupname', u'tm_nonvalid_input_dataset', u'tm_secondary_input_dataset', u'tm_primary_dataset', u'tm_asodb', u'tm_task_command', u'clusterid', u'tm_debug_files', u'tm_submitter_ip_addr', u'tm_ignore_global_blacklist', u'tm_last_publication']}}
+INFO 2017-11-20 10:00:32,422: 	 CRAB project directory:		/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/scripts/crab/crab_QCD/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4
+INFO 2017-11-20 10:00:32,422: 	 Task name:			171120_085915:izoi_crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4
+INFO 2017-11-20 10:00:32,422: 	 Status on the CRAB server:	SUBMITFAILED
+INFO 2017-11-20 10:00:32,422: 	 Task URL to use for HELP:	https://cmsweb.cern.ch/crabserver/ui/task/171120_085915%3Aizoi_crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4
+ERROR 2017-11-20 10:00:32,423: 	 Failure message from the server:		The splitting on your task generated 12304 jobs. The maximum number of jobs in each task is 10000
+DEBUG 2017-11-20 10:00:32,423: 	 The task has not been submitted to the Grid scheduler yet. Not printing job information.
+INFO 2017-11-20 10:00:32,429: 	 Log file is /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/scripts/crab/crab_QCD/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try4/crab.log

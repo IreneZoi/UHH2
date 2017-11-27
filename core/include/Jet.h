@@ -9,7 +9,18 @@
 class Jet : public FlavorParticle {
 
  public:
-  enum tag { /* for future use (more b-taggers, etc.) */ };
+  enum tag {
+    puppiMultiplicity,
+    chargedPuppiMultiplicity,
+    chargedHadronPuppiMultiplicity,
+    neutralPuppiMultiplicity,
+    neutralHadronPuppiMultiplicity,
+    photonPuppiMultiplicity,
+    electronPuppiMultiplicity,
+    muonPuppiMultiplicity,
+    HFHadronPuppiMultiplicity,
+    HFEMPuppiMultiplicity
+  };
 
   Jet(){
 

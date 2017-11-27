@@ -77,3 +77,85 @@ Traceback (most recent call last):
     raise ConfigException("Working area '%s' already exists \nPlease change the requestName in the config file" % fullpath)
 ConfigException: Working area '/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/scripts/crab/crab_Graviton/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_fix' already exists 
 Please change the requestName in the config file
+DEBUG 2017-11-20 09:54:27,252: 	 Executing command: 'submit'
+DEBUG 2017-11-20 09:54:27,253: 	 Found CRAB cache file /afs/desy.de/user/z/zoiirene/.crab3
+DEBUG 2017-11-20 09:54:27,257: 	 Checking credentials
+DEBUG 2017-11-20 09:54:27,257: 	 Found proxy file /tmp/x509up_u28517
+DEBUG 2017-11-20 09:54:27,257: 	 Getting proxy life time left
+DEBUG 2017-11-20 09:54:27,660: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -timeleft
+ output : 39607
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 09:54:28,063: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u28517 -actimeleft
+ output : 39606
+
+ error: 
+ retcode : 0
+DEBUG 2017-11-20 09:54:28,063: 	 Proxy valid for 11:00:07 hours
+INFO 2017-11-20 09:54:28,064: 	 Will use CRAB configuration file crab_QCD_93X_pu_upgrade2023.py
+DEBUG 2017-11-20 09:54:28,064: 	 Loading CRAB configuration file.
+DEBUG 2017-11-20 09:54:30,643: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+ERROR 2017-11-20 09:54:30,643: 	 Working area '/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/scripts/crab/crab_QCD/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2' already exists 
+Please change the requestName in the config file
+ERROR 2017-11-20 09:54:30,643: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/bin/crab", line 146, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/submit.py", line 34, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 302, in __init__
+    getattr(self.configuration.General, 'requestName', None))
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/ClientUtilities.py", line 396, in createWorkArea
+    raise ConfigException("Working area '%s' already exists \nPlease change the requestName in the config file" % fullpath)
+ConfigException: Working area '/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/scripts/crab/crab_QCD/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2' already exists 
+Please change the requestName in the config file
+DEBUG 2017-11-20 10:24:49,079: 	 Executing command: 'status'
+DEBUG 2017-11-20 10:24:49,079: 	 Found CRAB cache file /afs/desy.de/user/z/zoiirene/.crab3
+ERROR 2017-11-20 10:24:49,079: 	 Error: crab_QCD/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_try6 is not a valid CRAB project directory.
+ERROR 2017-11-20 10:24:49,079: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/bin/crab", line 146, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/status.py", line 38, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 257, in __init__
+    self.validateOptions()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/status.py", line 878, in validateOptions
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 566, in validateOptions
+    raise ConfigurationException(msg)
+ConfigurationException: [91mError[0m: crab_QCD/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_try6 is not a valid CRAB project directory.
+DEBUG 2017-11-20 13:51:06,214: 	 Executing command: 'resubmit'
+DEBUG 2017-11-20 13:51:06,214: 	 Found CRAB cache file /afs/desy.de/user/z/zoiirene/.crab3
+DEBUG 2017-11-20 22:27:53,787: 	 Executing command: 'resubmit'
+DEBUG 2017-11-20 22:27:53,789: 	 Found CRAB cache file /afs/desy.de/user/z/zoiirene/.crab3
+DEBUG 2017-11-21 07:15:39,696: 	 Executing command: 'resubmit'
+DEBUG 2017-11-21 07:15:39,697: 	 Found CRAB cache file /afs/desy.de/user/z/zoiirene/.crab3
+DEBUG 2017-11-21 09:06:33,038: 	 Executing command: 'status'
+DEBUG 2017-11-21 09:06:33,039: 	 Could not find CRAB cache file /afs/desy.de/user/z/zoiirene/.crab3; creating a new one.
+ERROR 2017-11-21 09:06:33,041: 	 Unhandled Exception!
+ERROR 2017-11-21 09:06:33,041: 	 [Errno 13] Permission denied: '/afs/desy.de/user/z/zoiirene/.crab3.1652'
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/bin/crab", line 146, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/status.py", line 38, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 244, in __init__
+    self.crab3dic = self.getConfiDict()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.1707.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 463, in getConfiDict
+    with open(crabCacheFileName_tmp, 'w') as fd:
+IOError: [Errno 13] Permission denied: '/afs/desy.de/user/z/zoiirene/.crab3.1652'
+ERROR 2017-11-21 09:06:33,042: 	 ERROR: IOError: [Errno 13] Permission denied: '/afs/desy.de/user/z/zoiirene/.crab3.1652'
+ERROR 2017-11-21 09:06:33,042: 	 
+	Please email hn-cms-computing-tools@cern.ch for support with the crab.log file or crab.log URL.
+ERROR 2017-11-21 09:06:33,042: 	 	Client Version: 3.3.1707.patch1
+ERROR 2017-11-21 09:06:33,042: 	 	Please use 'crab uploadlog' to upload the log file /nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/framework93X/new932/CMSSW_9_3_2/src/UHH2/scripts/crab/crab.log to the CRAB cache.

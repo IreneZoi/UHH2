@@ -52,7 +52,9 @@ public:
     struct Config: public NtupleWriterModule::Config {
         using NtupleWriterModule::Config::Config;
         
-        bool do_btagging = true, do_btagging_subjets = true, do_taginfo_subjets;
+
+        bool do_btagging = false, do_btagging_subjets = false, do_taginfo_subjets;
+	//        bool do_btagging = true, do_btagging_subjets = true, do_taginfo_subjets;
 
         edm::InputTag substructure_variables_src;// a jet collection from where to take the subjet variables (after DeltaR-matching)
 	edm::InputTag substructure_groomed_variables_src;

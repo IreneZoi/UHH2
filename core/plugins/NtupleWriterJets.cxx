@@ -148,8 +148,15 @@ void NtupleWriterJets::fill_jet_info(const pat::Jet & pat_jet, Jet & jet, bool d
   jet.set_energy(pat_jet.energy());
   jet.set_flavor(pat_jet.partonFlavour());
   jet.set_hadronFlavor(pat_jet.hadronFlavour());
-  jet.set_numberOfDaughters (pat_jet.numberOfDaughters());
   jet.set_jetArea(pat_jet.jetArea());
+  // auto weight=0;
+  // for (unsigned i = 0; i < pat_jet.numberOfDaughters(); i++) {
+  //   const pat::PackedCandidate &dau = static_cast<const pat::PackedCandidate &>(*pat_jet.daughter(i));
+  //   //    const pat::PackedCandidate &dau = dynamic_cast<const pat::PackedCandidate &>(*pat_jet.daughter(i));
+  //   weight = dau.puppiWeight();
+  // }
+  // jet.set_numberOfDaughters (weight);
+  jet.set_numberOfDaughters (pat_jet.numberOfDaughters());
   if(pat_jet.isPFJet()){
     jet.set_neutralEmEnergyFraction (pat_jet.neutralEmEnergyFraction());
     jet.set_neutralHadronEnergyFraction (pat_jet.neutralHadronEnergyFraction());
@@ -283,6 +290,88 @@ void NtupleWriterJets::fill_jet_info(const pat::Jet & pat_jet, Jet & jet, bool d
       // throw runtime_error("did not find all b-taggers; see output for details");
     }
   }
+
+  float puppiMultiplicity = 0;
+  float chargedPuppiMultiplicity = 0;
+  float chargedHadronPuppiMultiplicity = 0;
+  float neutralPuppiMultiplicity = 0;
+  float neutralHadronPuppiMultiplicity = 0;
+  float photonPuppiMultiplicity = 0;
+  float electronPuppiMultiplicity = 0;
+  float muonPuppiMultiplicity = 0;
+  float HFHadronPuppiMultiplicity = 0;
+  float HFEMPuppiMultiplicity = 0;
+
+  for (unsigned i = 0; i < pat_jet.numberOfDaughters(); i++) {
+    const pat::PackedCandidate &dau = static_cast<const pat::PackedCandidate &>(*pat_jet.daughter(i));
+    auto weight = dau.puppiWeight();
+    puppiMultiplicity += weight;
+    switch (std::abs(dau.pdgId())) {
+    case 211: //PFCandidate::h:       // charged hadron
+      // chargedHadronEnergy += pfCand->energy();
+      chargedHadronPuppiMultiplicity += weight;
+      chargedPuppiMultiplicity += weight;
+      break;
+
+    case 130: //PFCandidate::h0 :    // neutral hadron
+      // neutralHadronEnergy += pfCand->energy();
+      neutralHadronPuppiMultiplicity += weight;
+      neutralPuppiMultiplicity += weight;
+      break;
+
+    case 22: //PFCandidate::gamma:   // photon
+      // photonEnergy += pfCand->energy();
+      photonPuppiMultiplicity += weight;
+      // neutralEmEnergy += pfCand->energy();
+      neutralPuppiMultiplicity += weight;
+      break;
+
+    case 11: // PFCandidate::e:       // electron
+      // electronEnergy += pfCand->energy();
+      electronPuppiMultiplicity += weight;
+      // chargedEmEnergy += pfCand->energy();
+      chargedPuppiMultiplicity += weight;
+      break;
+
+    case 13: //PFCandidate::mu:      // muon
+      // muonEnergy += pfCand->energy();
+      muonPuppiMultiplicity += weight;
+      // chargedMuEnergy += pfCand->energy();
+      chargedPuppiMultiplicity += weight;
+      break;
+
+    case 1: // PFCandidate::h_HF :    // hadron in HF
+      // HFHadronEnergy += pfCand->energy();
+      HFHadronPuppiMultiplicity += weight;
+      // neutralHadronEnergy += pfCand->energy();
+      neutralPuppiMultiplicity += weight;
+      break;
+
+    case 2: //PFCandidate::egamma_HF :    // electromagnetic in HF
+      // HFEMEnergy += pfCand->energy();
+      HFEMPuppiMultiplicity += weight;
+      // neutralEmEnergy += pfCand->energy();
+      neutralPuppiMultiplicity += weight;
+      break;
+
+    default:
+      edm::LogWarning("DataNotFound") << "Unknown PackedCandidate::ParticleType: " << dau.pdgId() << " is ignored\n";
+      break;
+    }
+  }
+  //std::cout << "sumPuppiWeights: " << sumPuppiWeights << std::endl;
+  jet.set_tag(Jet::puppiMultiplicity, puppiMultiplicity);
+  jet.set_tag(Jet::chargedPuppiMultiplicity, chargedPuppiMultiplicity);
+  jet.set_tag(Jet::chargedHadronPuppiMultiplicity, chargedHadronPuppiMultiplicity);
+  jet.set_tag(Jet::neutralPuppiMultiplicity, neutralPuppiMultiplicity);
+  jet.set_tag(Jet::neutralHadronPuppiMultiplicity, neutralHadronPuppiMultiplicity);
+  jet.set_tag(Jet::photonPuppiMultiplicity, photonPuppiMultiplicity);
+  jet.set_tag(Jet::electronPuppiMultiplicity, electronPuppiMultiplicity);
+  jet.set_tag(Jet::muonPuppiMultiplicity, muonPuppiMultiplicity);
+  jet.set_tag(Jet::HFHadronPuppiMultiplicity, HFHadronPuppiMultiplicity);
+  jet.set_tag(Jet::HFEMPuppiMultiplicity, HFEMPuppiMultiplicity);
+
+
 }
 
 
