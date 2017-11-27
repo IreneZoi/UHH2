@@ -11,3 +11,4 @@ core/python/__init__.py
 VLQToHiggsPairProd/*
 ZprimeSemiLeptonic/*
 *.tgz
+*.log
