@@ -37,7 +37,11 @@ namespace JERFiles {
     extern const std::vector<std::string> Summer16_23Sep2016_V4_H_L1RC_AK4PFchs_DATA;
     extern const std::vector<std::string> Summer16_23Sep2016_V4_L1RC_AK4PFchs_MC; 
 
+
+    ////
+
    //Summer16_23Sep2016_V4 --> PUPPI Jet Corrections
+
     extern const std::vector<std::string> Summer16_23Sep2016_V4_BCD_L123_AK4PFPuppi_DATA;
     extern const std::vector<std::string> Summer16_23Sep2016_V4_EF_L123_AK4PFPuppi_DATA;
     extern const std::vector<std::string> Summer16_23Sep2016_V4_G_L123_AK4PFPuppi_DATA;
@@ -49,12 +53,8 @@ namespace JERFiles {
     extern const std::vector<std::string> Summer16_23Sep2016_V4_L123_AK4PFPuppi_MC;
     extern const std::vector<std::string> Summer16_23Sep2016_V4_L123_AK8PFPuppi_MC;
 
+    ////
 
-    //PhaseIIFall17 HGCAL TDR 
-    /* extern const std::vector<std::string> PhaseIIFall17_V2_MC_L2Relative_AK4PUPPI; */
-    /* extern const std::vector<std::string> PhaseIIFall17_V2_MC_L2Relative_AK8PUPPI; */
-    extern const std::vector<std::string> PhaseIIFall17_V3_MC_L2Relative_AK4PUPPI;
-    extern const std::vector<std::string> PhaseIIFall17_V3_MC_L2Relative_AK8PUPPI;
 
 
 }
@@ -301,9 +301,29 @@ class GenericJetResolutionSmearer : public uhh2::AnalysisModule {
 
   int direction = 0; // -1 = down, +1 = up, 0 = nominal
   JERSmearing::SFtype1 JER_SFs_;
+<<<<<<< HEAD
+};
+
+template<typename RJ, typename GJ>
+void GenericJetResolutionSmearer::apply_JER_smearing(std::vector<RJ>& rec_jets, const std::vector<GJ>& gen_jets, LorentzVector& met){
+
+  for(unsigned int i=0; i<rec_jets.size(); ++i){
+    //    std::cout << "before smearing" << std::endl;
+    auto& jet = rec_jets.at(i);
+    auto& gjet = gen_jets.at(i); //irene
+    //std::cout << " gen jet: phi = " << gjet.v4().phi() << ", pt = " << gjet.v4().pt() << ", eta = " << gjet.v4().eta() << std::endl;
+    //std::cout << " reco jet: phi = " << jet.v4().phi() << ", pt = " << jet.v4().pt() << ", eta = " << jet.v4().eta() << std::endl;
+    // find next genjet:
+    auto closest_genjet = closestParticle(jet, gen_jets);
+    // ignore unmatched jets (=no genjets at all or large DeltaR), or jets with very low genjet pt:
+    if(closest_genjet == nullptr || uhh2::deltaR(*closest_genjet, jet) > 0.3) continue;
+    const float genpt = closest_genjet->pt();
+    if(genpt < 15.) continue;
+=======
   TString m_ResolutionFileName;
 
   std::ifstream m_resfile;
+>>>>>>> 699b6d9... latest JER recommendation with hybrid method
 
   float getResolution(float eta, float rho, float pt);
   TFormula* res_formula;
@@ -335,8 +355,17 @@ public:
 
     virtual bool process(uhh2::Event & event) override;
 
+<<<<<<< HEAD
+    jet.set_JEC_factor_raw(factor_raw);
+    jet.set_v4(jet_v4);
+    //    std::cout << "after smearing" << std::endl;
+    //    std::cout << " reco jet: phi = " << jet.v4().phi() << ", pt = " << jet.v4().pt() << ", eta = " << jet.v4().eta() << std::endl;
+
+  }
+=======
     virtual ~JetResolutionSmearer();
 private:
+>>>>>>> 699b6d9... latest JER recommendation with hybrid method
 
     GenericJetResolutionSmearer* m_gjrs;
 };

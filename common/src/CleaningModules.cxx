@@ -47,7 +47,7 @@ PrimaryVertexCleaner::PrimaryVertexCleaner(const PrimaryVertexId & vtx_id_): vtx
 
 bool PrimaryVertexCleaner::process(Event & event){
     assert(event.pvs);
-    clean_collection(*event.pvs, event, vtx_id);\
+    clean_collection(*event.pvs, event, vtx_id);
     return true;
 }
 
