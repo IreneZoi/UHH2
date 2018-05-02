@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JobConfiguration PUBLIC "" "JobConfig.dtd">
+
+<!-- OutputLevel controls which messages are printed; set to VERBOSE or DEBUG for more verbosity, to WARNING or ERROR for less -->
+<JobConfiguration JobName="ExampleCycleJob" OutputLevel="INFO">
+    <Library Name="libSUHH2UpgradeStudiesGtoWW"/>
+    <Package Name="SUHH2UpgradeStudiesGtoWW.par" />
+
+   <Cycle Name="uhh2::AnalysisModuleRunner" OutputDirectory="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase0Official/Output/" PostFix="" TargetLumi="1" >
+   <!-- <Cycle Name="uhh2::AnalysisModuleRunner"  RunMode="PROOF" ProofServer="lite://"  ProofWorkDir="/nfs/dust/cms/user/ottjoc/proof-wd/" ProofNodes="2" OutputDirectory="./" PostFix="" TargetLumi="1" >  -->
+        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="VBF_BulkG2000toWW_noPU_Puppi_subj_eta_jec" Cacheable="False">
+<!--qui VBF_G2000WW_noPU-->
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_49.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_48.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_47.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_46.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_45.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_44.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_43.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_42.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_41.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_40.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_39.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_38.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_37.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_36.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_35.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_34.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_33.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_32.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_31.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_30.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_29.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_28.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_27.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_26.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_25.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_24.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_23.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_22.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_21.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_20.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_19.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_18.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_17.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_16.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_15.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_14.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_13.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_12.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_11.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_10.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_9.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_8.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_7.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_6.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_5.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_4.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_3.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_2.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/DiBoson/GravitonToWW/Ntuple/2000/VBF_Graviton2000ToWW_Ntuple_1.root" Lumi="0.0"/>
+            <InputTree Name="AnalysisTree" /> 
+        </InputData>
+        <!--
+        <InputData Lumi="1" NEventsMax="100" Type="MC" Version="BpJ_TW_1200" Cacheable="False">
+            <In FileName="/nfs/dust/cms/user/ottjoc/gc-output/PHYS14v1/signals/MC_BpJ_TW_M1200_20x25_19_Ntuple.root" Lumi="0.0"/> 
+            <InputTree Name="AnalysisTree" /> 
+        </InputData>
+            -->
+        <UserConfig>
+            <!-- define which collections to read from the input. Only specify what you need to save I/O time -->
+            <Item Name="PrimaryVertexCollection" Value="offlineSlimmedPrimaryVertices" /> 
+            <Item Name="ElectronCollection" Value="slimmedElectronsUSER" /> 
+            <Item Name="MuonCollection" Value="slimmedMuonsUSER" /> 
+            <Item Name="TauCollection" Value="slimmedTaus" />
+<!--            <Item Name="JetCollection" Value="slimmedJets" />-->
+            <Item Name="JetCollection" Value="patJetsAK8PFPUPPI" />
+<!--            <Item Name="TopJetCollection" Value="slimmedJetsAK8_SoftDrop" />  -->
+	    <Item Name="TopJetCollection" Value="patJetsAk8PuppiJetsSoftDropPacked_daughters" />
+            <Item Name="GenJetCollection" Value="slimmedGenJets" />
+            <Item Name="GenParticleCollection" Value="GenParticles" />
+<!--            <Item Name="METName" Value="slimmedMETs" />-->
+            <Item Name="METName" Value="slimmedMETsPuppi" />
+            <Item Name="GenTopJetCollection" Value="ak8GenJetsSoftDrop" />  <!-- FOR MASS -->
+<!--        <Item Name="GenTopJetCollection" Value="ak8GenJets" />--> <!-- FOR NSubjettines and CHF-->
+            <Item Name="phase" Value="phase0" />
+            
+            <!-- The list of available collections to read in corresponds to the pointer members in event. The 'Name's to use here in the configuration are:
+            
+                 PrimaryVertexCollection
+                 ElectronCollection
+                 MuonCollection
+                 TauCollection
+                 PhotonCollection
+                 JetCollection
+                 TopJetCollection
+                 METName
+                 
+                 GenInfoName
+                 GenJetCollection
+                 GenTopJetCollection
+                 GenParticleCollection
+                 
+                 Note that the last four are only read in for MC (InputData Type="MC"), so it is save to specify
+                 them for real data, although those branches do not exist.
+                 
+                 As 'Value', always use the branch name (if in doubt, open the input file in ROOT).
+                 
+                 By default, triggers are read. To explicitly disable reading triggers, use:
+                 <Item Name="readTrigger" Value="false" />
+            -->
+            
+            <!-- the class name of the AnalysisModule subclasses to run: -->
+            <Item Name="AnalysisModule" Value="UpgradeStudiesGtoWWModule" /> 
+            
+            <!-- tell AnalysisModuleRunner NOT to use the MC event weight from SFrame; rather let
+                 MCLumiWeight (called via CommonModules) calculate the MC event weight. The MC
+                 event weight assigned by MCLumiWeight is InputData.Lumi / Cycle.TargetLumi. -->
+            <Item Name="use_sframe_weight" Value="false" />
+         
+            
+            <!-- configuration for MCPileupReweight (run as part of CommonModules): -->
+         <!-- <Item Name="pileup_directory_data" Value="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/pileup.root" /> 
+	  <Item Name="pileup_directory" Value="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/pileup.root" /> -->
+	  <Item Name="pileup_directory" Value="" /> 
+          <Item Name="pileup_directory_data" Value="" />
+            
+            <!-- Some test configuration; see UpgradeStudiesGtoWWModule.cxx for how to access it: -->
+            <Item Name="TestKey" Value="TestKeyValue" />
+        </UserConfig>
+    </Cycle>
+</JobConfiguration>

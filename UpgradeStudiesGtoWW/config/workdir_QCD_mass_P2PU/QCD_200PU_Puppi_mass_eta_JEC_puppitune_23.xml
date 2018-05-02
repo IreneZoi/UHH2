@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JobConfiguration PUBLIC "" "JobConfig.dtd">
+
+
+<!--
+<ConfigParse NEventsBreak="0" FileSplit="50" />                                                                                                                                                          
+<ConfigSGE RAM ="8" DISK ="2" Mail="irene.zoi@desy.de" Notification="as" Workdir="workdir_QCD_mass_P2PU"/>                                                                                                       
+-->
+
+
+<!-- OutputLevel controls which messages are printed; set to VERBOSE or DEBUG for more verbosity, to WARNING or ERROR for less -->
+<JobConfiguration JobName="ExampleCycleJob" OutputLevel="INFO">
+	<Library Name="libSUHH2UpgradeStudiesGtoWW"/>
+	<Package Name="libSUHH2UpgradeStudiesGtoWW"/>
+	<Cycle Name="uhh2::AnalysisModuleRunner" OutputDirectory="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2Official/Output//workdir_QCD_mass_P2PU/" PostFix="_22" TargetLumi="1">
+		<InputData Cacheable="False" Lumi="1.0" Type="MC" Version="QCD_200PU_Puppi_mass_eta_JEC_puppitune">
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8899.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8898.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8897.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8896.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8895.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8894.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8893.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8892.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8891.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8890.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8889.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8888.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8887.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8886.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8885.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8884.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8883.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8882.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8881.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8880.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8879.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8878.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8877.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8876.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8875.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8874.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8873.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8872.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8871.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8870.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8869.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8868.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8867.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8866.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8865.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8864.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8863.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8862.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8861.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8860.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8859.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8858.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8857.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8856.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8855.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8854.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8853.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8852.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8851.root" Lumi="0.0"/>
+			<In FileName="/pnfs/desy.de/cms/tier2/store/user/hinzmann/RunII_93X_v2-v2/QCD_flat_PU200_fix/QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_pythia8/crab_QCD_Flat_Pt-15to7000_TuneCUETP8M1_14TeV_PhaseIITDRFall17_PU200_v2_try6_puppiTune/180131_164529/0008/Ntuple_AK8_fix_8850.root" Lumi="0.0"/>
+			<InputTree Name="AnalysisTree"/>
+		</InputData>
+		<UserConfig>
+			<Item Name="PrimaryVertexCollection" Value="offlineSlimmedPrimaryVertices"/>
+			<Item Name="ElectronCollection" Value="slimmedElectrons"/>
+			<Item Name="MuonCollection" Value="slimmedMuons"/>
+			<Item Name="TauCollection" Value="slimmedTaus"/>
+			<Item Name="JetCollection" Value="slimmedJetsAK8"/>
+			<Item Name="TopJetCollection" Value="patJetsAk8PuppiJetsSoftDropPacked_daughters"/>
+			<Item Name="GenJetCollection" Value="slimmedGenJets"/>
+			<Item Name="GenParticleCollection" Value="GenParticles"/>
+			<Item Name="METName" Value="slimmedMETsPuppi"/>
+			<Item Name="GenTopJetCollection" Value="ak8GenJetsSoftDrop"/>
+			<Item Name="phase" Value="phase2"/>
+			<Item Name="AnalysisModule" Value="UpgradeStudiesGtoWWModule"/>
+			<Item Name="use_sframe_weight" Value="false"/>
+			<Item Name="pileup_directory" Value=""/>
+			<Item Name="pileup_directory_data" Value=""/>
+			<Item Name="TestKey" Value="TestKeyValue"/>
+		</UserConfig>
+	</Cycle>
+</JobConfiguration>

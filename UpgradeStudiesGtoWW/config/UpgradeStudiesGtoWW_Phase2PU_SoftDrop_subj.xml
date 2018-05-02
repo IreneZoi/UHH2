@@ -8,7 +8,7 @@
 
    <Cycle Name="uhh2::AnalysisModuleRunner" OutputDirectory="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Output/" PostFix="" TargetLumi="1" >
    <!-- <Cycle Name="uhh2::AnalysisModuleRunner"  RunMode="PROOF" ProofServer="lite://"  ProofWorkDir="/nfs/dust/cms/user/ottjoc/proof-wd/" ProofNodes="2" OutputDirectory="./" PostFix="" TargetLumi="1" >  -->
-        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="G2000toWWToWlepWhad_NoSelection_SoftDrop_subj_eta25" Cacheable="False">
+        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="G2000toWWToWlepWhad_NoSelection_SoftDrop_subj_eta" Cacheable="False">
             <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_G2000toWlepWhad_Phase2PU.root" Lumi="0.0"/>
 <!--            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase0/NTuples/EXO-RunIISummer16Ntuple.root" Lumi="0.0"/>--> 
 <!--            <In FileName="/nfs/dust/cms/user/ottjoc/gc-output/PHYS14v1/signals/MC_BpJ_TW_M800_20x25_15_Ntuple.root" Lumi="0.0"/> 

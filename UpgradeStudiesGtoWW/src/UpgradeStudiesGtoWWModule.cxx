@@ -31,24 +31,38 @@ public:
     virtual bool process(Event & event) override;
 
 private:
-    
-    std::unique_ptr<CommonModules> common;
-    
-    std::unique_ptr<JetCleaner> jetcleaner;
-    std::unique_ptr<TopJetCleaner> topjetcleaner;
+  std::string phase_;    
+  std::unique_ptr<CommonModules> common;
+  
+  std::unique_ptr<JetCleaner> jetcleaner;
+  std::unique_ptr<TopJetCleaner> topjetcleaner;
    
+  std::unique_ptr<JetCorrector> jet_corrector;
+  std::unique_ptr<TopJetCorrector> topjet_corrector;
+
     // declare the Selections to use. Use unique_ptr to ensure automatic call of delete in the destructor,
     // to avoid memory leaks.
-  std::unique_ptr<Selection> njet_sel, dijet_sel, SDmass_sel, ptLow_sel, ptMedium_sel, ptHigh_sel;
+  std::unique_ptr<Selection> SDmass_sel, ptLow_sel, ptMedium_sel, ptHigh_sel, barrel_sel, endcap_sel, ptMin_qcd, ptMed_qcd, ptMax_qcd;
     
     // store the Hists collection as member variables. Again, use unique_ptr to avoid memory leaks.
-  std::unique_ptr<Hists> h_nocuts, h_njet, h_dijet, h_ele, h_Qstar;
+  std::unique_ptr<Hists> h_Qstar, h_Qstar_barrel, h_Qstar_endcap;
+  std::unique_ptr<Hists> h_qcd_lowPt, h_qcd_lowPt_barrel, h_qcd_lowPt_endcap, h_qcd_mediumPt, h_qcd_mediumPt_barrel, h_qcd_mediumPt_endcap, h_qcd_highPt, h_qcd_highPt_barrel, h_qcd_highPt_endcap;
+  std::unique_ptr<Hists> h_qcd_minPt, h_qcd_minPt_barrel, h_qcd_minPt_endcap, h_qcd_medPt, h_qcd_medPt_barrel, h_qcd_medPt_endcap, h_qcd_maxPt, h_qcd_maxPt_barrel, h_qcd_maxPt_endcap;
   std::unique_ptr<Hists> h_start_ak8; //irene for w mass
   std::unique_ptr<Hists> h_input_slimmedGenJet; //irene for w mass                                                                                                                                  
   std::unique_ptr<Hists> h_input_slimmedJet; //irene for w mass
   std::unique_ptr<Hists> h_ptLow_slimmedJetAK8_SoftDrop; //irene for w mass                                                                                                                          
   std::unique_ptr<Hists> h_ptMedium_slimmedJetAK8_SoftDrop; //irene for w mass                                                                                                                          
   std::unique_ptr<Hists> h_ptHigh_slimmedJetAK8_SoftDrop; //irene for w mass                                                                                                                          
+
+  std::unique_ptr<Hists> h_ptLow_Barrel_slimmedJetAK8_SoftDrop; //irene for w mass                                                                                                                          
+  std::unique_ptr<Hists> h_ptMedium_Barrel_slimmedJetAK8_SoftDrop; //irene for w mass
+  std::unique_ptr<Hists> h_ptHigh_Barrel_slimmedJetAK8_SoftDrop; //irene for w mass
+
+  std::unique_ptr<Hists> h_ptLow_Endcap_slimmedJetAK8_SoftDrop; //irene for w mass                                                                                                                          
+  std::unique_ptr<Hists> h_ptMedium_Endcap_slimmedJetAK8_SoftDrop; //irene for w mass 
+  std::unique_ptr<Hists> h_ptHigh_Endcap_slimmedJetAK8_SoftDrop; //irene for w mass 
+
   std::unique_ptr<Hists> h_input_slimmedJetAK8_SoftDrop; //irene for w mass                                                                                                                          
   std::unique_ptr<Hists> h_SDmass_slimmedJetAK8_SoftDrop; //irene for w mass                                                                                                                          
   std::unique_ptr<Hists> h_input_ak8GenJetsSoftDrop; //irene for w mass
@@ -75,6 +89,9 @@ UpgradeStudiesGtoWWModule::UpgradeStudiesGtoWWModule(Context & ctx){
         cout << " " << kv.first << " = " << kv.second << endl;
     }
     
+
+    phase_ = ctx.get("phase");
+
     // 1. setup other modules. CommonModules and the JetCleaner:
     
     common.reset(new CommonModules());
@@ -82,9 +99,37 @@ UpgradeStudiesGtoWWModule::UpgradeStudiesGtoWWModule(Context & ctx){
     // calling common->set_*_id or common->disable_*
     common->disable_mcpileupreweight(); //irene
     common->disable_metfilters(); //irene
+    common->disable_jec(); //irene
+
+
+   
+    // TopJet correctors                     
+    std::vector<std::string> JEC_AK4, JEC_AK8;
+    if(phase_=="phase2")
+      {
+	// JEC_AK4 = JERFiles::PhaseIIFall17_V2_MC_L2Relative_AK4PUPPI;
+	// JEC_AK8 = JERFiles::PhaseIIFall17_V2_MC_L2Relative_AK8PUPPI; 
+	JEC_AK4 = JERFiles::PhaseIIFall17_V3_MC_L2Relative_AK4PUPPI;
+	JEC_AK8 = JERFiles::PhaseIIFall17_V3_MC_L2Relative_AK8PUPPI; 
+      }
+    if(phase_=="phase0")
+      {
+        JEC_AK4 = JERFiles::Summer16_23Sep2016_V4_L123_AK4PFPuppi_MC;
+        JEC_AK8 = JERFiles::Summer16_23Sep2016_V4_L123_AK8PFPuppi_MC;
+      }
+
+    jet_corrector.reset(new JetCorrector(ctx, JEC_AK4));
+    topjet_corrector.reset(new TopJetCorrector(ctx, JEC_AK8));
+   
+
     common->init(ctx);
-    jetcleaner.reset(new JetCleaner(ctx, 30.0, 2.4)); 
-    topjetcleaner.reset(new TopJetCleaner(ctx,TopJetId(PtEtaCut(0., 2.5))));    
+
+    // jetcleaner.reset(new JetCleaner(ctx, 30.0, 2.4)); 
+    // topjetcleaner.reset(new TopJetCleaner(ctx,TopJetId(PtEtaCut(0., 2.5))));    
+
+    jetcleaner.reset(new JetCleaner(ctx, 30.0, 5)); 
+    topjetcleaner.reset(new TopJetCleaner(ctx,TopJetId(PtEtaCut(0., 5))));    
+
     // note that the JetCleaner is only kept for the sake of example;
     // instead of constructing a jetcleaner explicitly,
     // the cleaning can also be achieved with less code via CommonModules with:
@@ -92,29 +137,63 @@ UpgradeStudiesGtoWWModule::UpgradeStudiesGtoWWModule(Context & ctx){
     // before the 'common->init(ctx)' line.
     
     // 2. set up selections
-    njet_sel.reset(new NJetSelection(2)); // see common/include/NSelections.h
-    dijet_sel.reset(new DijetSelection()); // see UpgradeStudiesGtoWWSelections
-    ptLow_sel.reset(new LowPtSelection()); // see UpgradeStudiesGtoWWSelections
-    ptMedium_sel.reset(new MediumPtSelection()); // see UpgradeStudiesGtoWWSelections
-    ptHigh_sel.reset(new HighPtSelection()); // see UpgradeStudiesGtoWWSelections
+    ptLow_sel.reset(new PtSelection(700.0f,1300.0f)); // see UpgradeStudiesGtoWWSelections
+    ptMedium_sel.reset(new PtSelection(1500.0f,2500.0f)); // see UpgradeStudiesGtoWWSelections
+    ptHigh_sel.reset(new PtSelection(2500.0f,3500.0f)); // see UpgradeStudiesGtoWWSelections
+    ptMin_qcd.reset(new PtSelection(100.0f,200.0f)); // see UpgradeStudiesGtoWWSelections
+    ptMed_qcd.reset(new PtSelection(200.0f,400.0f)); // see UpgradeStudiesGtoWWSelections
+    ptMax_qcd.reset(new PtSelection(400.0f,600.0f)); // see UpgradeStudiesGtoWWSelections
+    barrel_sel.reset(new EtaBarrelSelection()); // see UpgradeStudiesGtoWWSelections
+    endcap_sel.reset(new EtaEndcapSelection()); // see UpgradeStudiesGtoWWSelections
     SDmass_sel.reset(new SDMassSelection()); // see UpgradeStudiesGtoWWSelections
 
     // 3. Set up Hists classes:
     h_start_ak8.reset(new TopJetHists(ctx, "start_ak8")); //irene for w mass                           
-    h_nocuts.reset(new UpgradeStudiesGtoWWHists(ctx, "NoCuts"));
     h_Qstar.reset(new UpgradeStudiesGtoWWHists(ctx, "Qstar"));
-    h_njet.reset(new UpgradeStudiesGtoWWHists(ctx, "Njet"));
-    h_dijet.reset(new UpgradeStudiesGtoWWHists(ctx, "Dijet"));
-    h_ele.reset(new ElectronHists(ctx, "ele_nocuts"));
+    h_Qstar_barrel.reset(new UpgradeStudiesGtoWWHists(ctx, "Qstar_barrel"));
+    h_Qstar_endcap.reset(new UpgradeStudiesGtoWWHists(ctx, "Qstar_endcap"));
+
+    h_qcd_lowPt.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_lowPt"));
+    h_qcd_lowPt_barrel.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_lowPt_barrel"));
+    h_qcd_lowPt_endcap.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_lowPt_endcap"));
+    h_qcd_mediumPt.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_mediumPt"));
+    h_qcd_mediumPt_barrel.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_mediumPt_barrel"));
+    h_qcd_mediumPt_endcap.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_mediumPt_endcap"));
+    h_qcd_highPt.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_highPt"));
+    h_qcd_highPt_barrel.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_highPt_barrel"));
+    h_qcd_highPt_endcap.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_highPt_endcap"));
+
+    h_qcd_minPt.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_minPt"));
+    h_qcd_minPt_barrel.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_minPt_barrel"));
+    h_qcd_minPt_endcap.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_minPt_endcap"));
+    h_qcd_medPt.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_medPt"));
+    h_qcd_medPt_barrel.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_medPt_barrel"));
+    h_qcd_medPt_endcap.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_medPt_endcap"));
+    h_qcd_maxPt.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_maxPt"));
+    h_qcd_maxPt_barrel.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_maxPt_barrel"));
+    h_qcd_maxPt_endcap.reset(new UpgradeStudiesGtoWWHists(ctx, "qcd_maxPt_endcap"));
+
+
     h_input_slimmedGenJet.reset(new GenJetsHists(ctx, "slimmedGenJet_nocuts")); //irene for w mass                                                                                                         
     h_input_slimmedJet.reset(new JetHists(ctx, "slimmedJet_nocuts")); //irene for w mass
     h_input_slimmedJetAK8_SoftDrop.reset(new TopJetHists(ctx, "slimmedJetAK8_SoftDrop_nocuts")); //irene for w mass                                                                                
     h_ptLow_slimmedJetAK8_SoftDrop.reset(new TopJetHists(ctx, "slimmedJetAK8_SoftDrop_ptLow")); //irene for w mass                                                                                
     h_ptMedium_slimmedJetAK8_SoftDrop.reset(new TopJetHists(ctx, "slimmedJetAK8_SoftDrop_ptMedium")); //irene for w mass                                                                                
     h_ptHigh_slimmedJetAK8_SoftDrop.reset(new TopJetHists(ctx, "slimmedJetAK8_SoftDrop_ptHigh")); //irene for w mass                                                                                
+
+    h_ptLow_Barrel_slimmedJetAK8_SoftDrop.reset(new TopJetHists(ctx, "slimmedJetAK8_SoftDrop_ptLow_Barrel")); //irene for w mass                                           
+    h_ptMedium_Barrel_slimmedJetAK8_SoftDrop.reset(new TopJetHists(ctx, "slimmedJetAK8_SoftDrop_ptMedium_Barrel")); //irene for w mass
+    h_ptHigh_Barrel_slimmedJetAK8_SoftDrop.reset(new TopJetHists(ctx, "slimmedJetAK8_SoftDrop_ptHigh_Barrel")); //irene for w mass
+
+    h_ptLow_Endcap_slimmedJetAK8_SoftDrop.reset(new TopJetHists(ctx, "slimmedJetAK8_SoftDrop_ptLow_Endcap")); //irene for w mass  
+    h_ptMedium_Endcap_slimmedJetAK8_SoftDrop.reset(new TopJetHists(ctx, "slimmedJetAK8_SoftDrop_ptMedium_Endcap")); //irene for w mass  
+    h_ptHigh_Endcap_slimmedJetAK8_SoftDrop.reset(new TopJetHists(ctx, "slimmedJetAK8_SoftDrop_ptHigh_Endcap")); //irene for w mass 
+
     h_SDmass_slimmedJetAK8_SoftDrop.reset(new TopJetHists(ctx, "slimmedJetAK8_SoftDrop_SDmass")); //irene for w mass                                                                                
     h_input_ak8GenJetsSoftDrop.reset(new UpgradeGenTopJetHists(ctx, "GenJetAK8_SoftDrop_nocuts"));
     //    h_input_GenParticles(new (ctx, "GenParticles"));
+
+    cout << "UpgradeStudiesGtoWWModule  " <<  endl;
     
 }
 
@@ -134,45 +213,133 @@ bool UpgradeStudiesGtoWWModule::process(Event & event) {
     
     // 1. run all modules other modules.
     h_start_ak8->fill(event);
+
     common->process(event);
+    
+    
+    topjet_corrector->process(event);
+    //    subjet_corrector->process(event);
+    //    jet_corrector->process(event);
+    jet_corrector->correct_met(event);
+    
+    sort_by_pt<Jet>(*event.jets);
+    sort_by_pt<TopJet>(*event.topjets);
+
+
     jetcleaner->process(event);
     topjetcleaner->process(event);
     // 2. test selections and fill histograms
-    h_ele->fill(event);
-    h_nocuts->fill(event);
+    h_Qstar->fill(event);
     h_input_slimmedGenJet->fill(event);     //irene for w mass
     h_input_slimmedJet->fill(event);     //irene for w mass
     h_input_slimmedJetAK8_SoftDrop->fill(event);     //irene for w mass                                                                                                                                  
     h_input_ak8GenJetsSoftDrop->fill(event);     //irene for w mass 
     //    h_input_GenParticles->fill(event);     //irene for w VBF 
 
-    bool njet_selection = njet_sel->passes(event);
-    if(njet_selection){
-        h_njet->fill(event);
-    }
-    bool dijet_selection = dijet_sel->passes(event);
-    if(dijet_selection){
-        h_dijet->fill(event);
-    }
+    bool barrel_selection = barrel_sel->passes(event);
+    bool endcap_selection = endcap_sel->passes(event);
+
+    if(barrel_selection)
+      h_Qstar_barrel->fill(event);
+    if(endcap_selection)
+      h_Qstar_endcap->fill(event);
+
     bool ptLow_selection = ptLow_sel->passes(event);
     if(ptLow_selection){
       h_ptLow_slimmedJetAK8_SoftDrop->fill(event);
+      h_qcd_lowPt->fill(event);
+      if(barrel_selection)
+	{
+	  h_ptLow_Barrel_slimmedJetAK8_SoftDrop->fill(event);
+	  h_qcd_lowPt_barrel->fill(event);
+	}
+      if(endcap_selection)
+	{
+	  h_ptLow_Endcap_slimmedJetAK8_SoftDrop->fill(event);
+	  h_qcd_lowPt_endcap->fill(event);
+	}
     }
     bool ptMedium_selection = ptMedium_sel->passes(event);
     if(ptMedium_selection){
       h_ptMedium_slimmedJetAK8_SoftDrop->fill(event);
+      h_qcd_mediumPt->fill(event);
+
+      if(barrel_selection)
+	{
+	  h_ptMedium_Barrel_slimmedJetAK8_SoftDrop->fill(event);
+	  h_qcd_mediumPt_barrel->fill(event);
+	}
+      if(endcap_selection)
+	{
+	  h_ptMedium_Endcap_slimmedJetAK8_SoftDrop->fill(event);
+	  h_qcd_mediumPt_endcap->fill(event);
+	}
     }
     bool ptHigh_selection = ptHigh_sel->passes(event);
     if(ptHigh_selection){
       h_ptHigh_slimmedJetAK8_SoftDrop->fill(event);
-      h_Qstar->fill(event);
+      h_qcd_highPt->fill(event);
+
+      if(barrel_selection)
+	{
+	  h_ptHigh_Barrel_slimmedJetAK8_SoftDrop->fill(event);
+	  h_qcd_highPt_barrel->fill(event);
+	}
+      if(endcap_selection)
+	{
+	  h_ptHigh_Endcap_slimmedJetAK8_SoftDrop->fill(event);
+	  h_qcd_highPt_endcap->fill(event);
+	}
     }
+
+
+    bool ptMin_selection = ptMin_qcd->passes(event);
+    if(ptMin_selection){
+      h_qcd_minPt->fill(event);
+      if(barrel_selection)
+	{
+	  h_qcd_minPt_barrel->fill(event);
+	}
+      if(endcap_selection)
+	{
+	  h_qcd_minPt_endcap->fill(event);
+	}
+    }
+    bool ptMed_selection = ptMed_qcd->passes(event);
+    if(ptMed_selection){
+      h_qcd_medPt->fill(event);
+
+      if(barrel_selection)
+	{
+	  h_qcd_medPt_barrel->fill(event);
+	}
+      if(endcap_selection)
+	{
+	  h_qcd_medPt_endcap->fill(event);
+	}
+    }
+    bool ptMax_selection = ptMax_qcd->passes(event);
+    if(ptMax_selection){
+      h_qcd_maxPt->fill(event);
+
+      if(barrel_selection)
+	{
+	  h_qcd_maxPt_barrel->fill(event);
+	}
+      if(endcap_selection)
+	{
+	  h_qcd_maxPt_endcap->fill(event);
+	}
+    }
+
+
+
+
     bool SDmass_selection = SDmass_sel->passes(event);
     if(SDmass_selection){
       h_SDmass_slimmedJetAK8_SoftDrop->fill(event);
     }
     // 3. decide whether or not to keep the current event in the output:
-    return njet_selection && dijet_selection;
 }
 
 // as we want to run the ExampleCycleNew directly with AnalysisModuleRunner,

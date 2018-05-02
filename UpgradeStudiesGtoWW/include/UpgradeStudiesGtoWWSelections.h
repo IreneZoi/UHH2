@@ -27,28 +27,29 @@ private:
     float Mass_sd_min, Mass_sd_max;
 };
 
-class LowPtSelection: public uhh2::Selection {
+class PtSelection: public uhh2::Selection {
 public:
-    LowPtSelection(float pt_min = 500.0f, float pt_max = 1500.0f);
+    PtSelection(float pt_min = 700.0f, float pt_max = 1300.0f);
     virtual bool passes(const uhh2::Event & event) override;
 private:
     float pt_min, pt_max;
 };
 
-class MediumPtSelection: public uhh2::Selection {
+
+class EtaBarrelSelection: public uhh2::Selection {
 public:
-    MediumPtSelection(float pt_min = 1500.0f, float pt_max = 2500.0f);
+    EtaBarrelSelection(float eta_max = 0.7f);
     virtual bool passes(const uhh2::Event & event) override;
 private:
-    float pt_min, pt_max;
+    float eta_max;
 };
 
-class HighPtSelection: public uhh2::Selection {
+class EtaEndcapSelection: public uhh2::Selection {
 public:
-    HighPtSelection(float pt_min = 2500.0f);
+    EtaEndcapSelection(float eta_min = 1.9f, float eta_max = 2.4f);
     virtual bool passes(const uhh2::Event & event) override;
 private:
-    float pt_min;
+    float eta_min, eta_max;
 };
 
 

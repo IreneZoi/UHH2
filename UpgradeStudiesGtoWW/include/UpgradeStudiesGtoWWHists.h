@@ -22,7 +22,7 @@ public:
 
     uhh2::Event::Handle<std::vector <GenParticle>  > h_particles;
 
-
+    TH2F *neutralMulti_vs_eta1;
 };
 
 }

@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JobConfiguration PUBLIC "" "JobConfig.dtd">
+
+<!-- OutputLevel controls which messages are printed; set to VERBOSE or DEBUG for more verbosity, to WARNING or ERROR for less -->
+<JobConfiguration JobName="ExampleCycleJob" OutputLevel="INFO">
+    <Library Name="libSUHH2UpgradeStudiesGtoWW"/>
+    <Package Name="SUHH2UpgradeStudiesGtoWW.par" />
+
+   <Cycle Name="uhh2::AnalysisModuleRunner" OutputDirectory="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Output/" PostFix="" TargetLumi="1" >
+   <!-- <Cycle Name="uhh2::AnalysisModuleRunner"  RunMode="PROOF" ProofServer="lite://"  ProofWorkDir="/nfs/dust/cms/user/ottjoc/proof-wd/" ProofNodes="2" OutputDirectory="./" PostFix="" TargetLumi="1" >  -->
+
+<!--
+        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="G2000toWWToWlepWhad_NoSelection_Puppi_subj" Cacheable="False">
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_G2000toWlepWhad_Phase2PU.root" Lumi="0.0"/>
+            <InputTree Name="AnalysisTree" /> 
+        </InputData>
+-->
+
+        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="Qstar6000toqW_NoSelection_Puppi_subj_new" Cacheable="False">
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_1.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_2.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_3.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_1.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_2.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_3.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_5.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_6.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_7.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_9.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_10.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_11.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_12.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_13.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_14.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_15.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_16.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_17.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_18.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_19.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_5.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_6.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_7.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_8.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_9.root" Lumi="0.0"/>
+            <InputTree Name="AnalysisTree" />
+        </InputData>
+
+<!-- ************* QCD bkgd ******************* -->
+        <InputData Lumi="110200" NEventsMax="-1" Type="MC" Version="QCD_300to7000_NoSelection_Puppi_subj" Cacheable="False">
+<!--            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_15to7000_P2PU.root" Lumi="0.0"/>-->
+<!--qui-->
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_119.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_118.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_117.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_116.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_115.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_114.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_113.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_112.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_111.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_110.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_109.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_108.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_107.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_106.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_105.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_104.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_103.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_102.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_101.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_100.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_99.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_98.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_97.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_96.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_95.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_94.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_93.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_92.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_91.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_90.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_89.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_88.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_87.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_86.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_85.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_84.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_83.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_82.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_81.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_80.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_79.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_78.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_77.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_76.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_75.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_74.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_73.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_72.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_71.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_70.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_69.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_68.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_67.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_66.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_65.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_64.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_63.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_62.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_61.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_60.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_59.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_58.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_57.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_56.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_55.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_54.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_53.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_52.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_51.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_50.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_49.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_48.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_47.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_46.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_45.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_44.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_43.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_42.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_41.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_40.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_39.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_38.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_37.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_36.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_35.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_34.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_33.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_32.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_31.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_30.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_29.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_28.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_27.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_26.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_25.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_24.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_23.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_22.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_21.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_20.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_19.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_18.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_17.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_16.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_15.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_14.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_13.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_12.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_11.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_10.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_9.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_8.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_7.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_6.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_5.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_4.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_3.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_2.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_1.root" Lumi="0.0"/>
+<!--            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_119.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_118.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_117.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_116.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_115.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_114.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_113.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_112.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_111.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_110.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_109.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_108.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_107.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_106.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_105.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_104.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_103.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_102.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_101.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_100.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_99.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_98.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_97.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_96.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_95.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_94.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_93.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_92.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_91.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_90.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_89.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_88.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_87.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_86.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_85.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_84.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_83.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_82.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_81.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_80.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_79.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_78.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_77.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_76.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_75.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_74.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_73.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_72.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_71.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_70.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_69.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_68.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_67.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_66.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_65.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_64.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_63.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_62.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_61.root" Lumi="0.0"/>-->
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_60.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_59.root" Lumi="0.0"/>
+<!--            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_58.root" Lumi="0.0"/>-->
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_57.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_56.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_55.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_54.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_53.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_52.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_51.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_50.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_49.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_48.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_47.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_46.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_45.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_44.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_43.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_42.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_41.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_40.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_39.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_38.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_37.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_36.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_35.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_34.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_33.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_32.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_31.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_30.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_29.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_28.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_27.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_26.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_25.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_24.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_23.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_22.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_21.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_20.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_19.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_18.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_17.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_16.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_15.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_14.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_13.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_12.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_11.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_10.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_9.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_8.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_7.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_6.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_5.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_4.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_3.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_2.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_2000to6000_P2PU_1.root" Lumi="0.0"/>
+<!--            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_119_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_118_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_117_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_116_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_115_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_114_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_113_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_112_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_111_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_110_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_109_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_108_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_107_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_106_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_105_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_104_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_103_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_102_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_101_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_100_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_99_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_98_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_97_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_96_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_95_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_94_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_93_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_92_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_91_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_90_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_89_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_88_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_87_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_86_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_85_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_84_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_83_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_82_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_81_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_80_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_79_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_78_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_77_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_76_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_75_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_74_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_73_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_72_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_71_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_70_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_69_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_68_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_67_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_66_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_65_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_64_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_63_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_62_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_61_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_60_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_59_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_58_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_57_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_56_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_55_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_54_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_53_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_52_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_51_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_50_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_49_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_48_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_47_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_46_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_45_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_44_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_43_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_42_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_41_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_40_new.root" Lumi="0.0"/>-->
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_39_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_38_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_37_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_36_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_35_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_34_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_33_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_32_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_31_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_30_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_29_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_28_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_27_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_26_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_25_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_24_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_23_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_22_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_21_new.root" Lumi="0.0"/>
+<!--            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_20_new.root" Lumi="0.0"/>-->
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_19_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_18_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_17_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_16_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_15_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_14_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_13_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_12_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_11_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_10_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_9_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_8_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_7_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_6_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_5_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_4_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_3_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_2_new.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_QCD_300to7000_P2PU_1_new.root" Lumi="0.0"/>
+            <InputTree Name="AnalysisTree" />
+            <!-- uncomment to write tree of selected events, i.e. of those events for which the AnalysisModule::process method  returns true                                                                                If no OutputTree is given, no events will be written. Please do use "AnalysisTree" as Name. -->
+            <!-- <OutputTree Name="AnalysisTree" /> -->
+        </InputData>
+
+
+
+
+
+        <UserConfig>
+            <!-- define which collections to read from the input. Only specify what you need to save I/O time -->
+            <Item Name="PrimaryVertexCollection" Value="offlineSlimmedPrimaryVertices" /> 
+            <Item Name="ElectronCollection" Value="slimmedElectronsUSER" /> 
+            <Item Name="MuonCollection" Value="slimmedMuonsUSER" /> 
+            <Item Name="TauCollection" Value="slimmedTaus" />
+<!--            <Item Name="JetCollection" Value="slimmedJets" />-->
+            <Item Name="JetCollection" Value="slimmedJetsPuppi" />
+<!--           <Item Name="TopJetCollection" Value="slimmedJetsAK8_SoftDrop" />-->
+	    <Item Name="TopJetCollection" Value="patJetsAk8PuppiJetsSoftDropPacked_daughters" />
+            <Item Name="GenJetCollection" Value="slimmedGenJets" />
+            <Item Name="GenParticleCollection" Value="GenParticles" />
+<!--            <Item Name="METName" Value="slimmedMETs" />-->
+            <Item Name="METName" Value="slimmedMETsPuppi" />
+<!--            <Item Name="GenTopJetCollection" Value="ak8GenJetsSoftDrop" />-->  <!-- FOR MASS -->
+        <Item Name="GenTopJetCollection" Value="ak8GenJets" /> <!-- FOR NSubjettines and CHF-->
+
+
+
+
+            
+            <!-- The list of available collections to read in corresponds to the pointer members in event. The 'Name's to use here in the configuration are:
+            
+                 PrimaryVertexCollection
+                 ElectronCollection
+                 MuonCollection
+                 TauCollection
+                 PhotonCollection
+                 JetCollection
+                 TopJetCollection
+                 METName
+                 
+                 GenInfoName
+                 GenJetCollection
+                 GenTopJetCollection
+                 GenParticleCollection
+                 
+                 Note that the last four are only read in for MC (InputData Type="MC"), so it is save to specify
+                 them for real data, although those branches do not exist.
+                 
+                 As 'Value', always use the branch name (if in doubt, open the input file in ROOT).
+                 
+                 By default, triggers are read. To explicitly disable reading triggers, use:
+                 <Item Name="readTrigger" Value="false" />
+            -->
+            
+            <!-- the class name of the AnalysisModule subclasses to run: -->
+            <Item Name="AnalysisModule" Value="UpgradeStudiesGtoWWModule" /> 
+            
+            <!-- tell AnalysisModuleRunner NOT to use the MC event weight from SFrame; rather let
+                 MCLumiWeight (called via CommonModules) calculate the MC event weight. The MC
+                 event weight assigned by MCLumiWeight is InputData.Lumi / Cycle.TargetLumi. -->
+            <Item Name="use_sframe_weight" Value="false" />
+         
+            
+            <!-- configuration for MCPileupReweight (run as part of CommonModules): -->
+         <!-- <Item Name="pileup_directory_data" Value="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/pileup_new.root" /> 
+	  <Item Name="pileup_directory" Value="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/pileup.root" /> -->
+	  <Item Name="pileup_directory" Value="" /> 
+          <Item Name="pileup_directory_data" Value="" />
+            
+            <!-- Some test configuration; see UpgradeStudiesGtoWWModule.cxx for how to access it: -->
+            <Item Name="TestKey" Value="TestKeyValue" />
+        </UserConfig>
+    </Cycle>
+</JobConfiguration>

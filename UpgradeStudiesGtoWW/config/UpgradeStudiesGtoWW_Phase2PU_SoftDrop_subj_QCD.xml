@@ -10,20 +10,41 @@
    <!-- <Cycle Name="uhh2::AnalysisModuleRunner"  RunMode="PROOF" ProofServer="lite://"  ProofWorkDir="/nfs/dust/cms/user/ottjoc/proof-wd/" ProofNodes="2" OutputDirectory="./" PostFix="" TargetLumi="1" >  -->
         <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="G2000toWWToWlepWhad_NoSelection_SoftDrop_subj" Cacheable="False">
             <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/Ntuple_G2000toWlepWhad_Phase2PU.root" Lumi="0.0"/>
-<!--            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase0/NTuples/EXO-RunIISummer16Ntuple.root" Lumi="0.0"/>--> 
-<!--            <In FileName="/nfs/dust/cms/user/ottjoc/gc-output/PHYS14v1/signals/MC_BpJ_TW_M800_20x25_15_Ntuple.root" Lumi="0.0"/> 
-            <In FileName="/nfs/dust/cms/user/ottjoc/gc-output/PHYS14v1/signals/MC_BpJ_TW_M800_20x25_16_Ntuple.root" Lumi="0.0"/> -->
-            <InputTree Name="AnalysisTree" /> 
-            <!-- uncomment to write tree of selected events, i.e. of those events for which the AnalysisModule::process method  returns true
-                If no OutputTree is given, no events will be written. Please do use "AnalysisTree" as Name. -->
-            <!-- <OutputTree Name="AnalysisTree" /> -->
-        </InputData>
-        <!--
-        <InputData Lumi="1" NEventsMax="100" Type="MC" Version="BpJ_TW_1200" Cacheable="False">
-            <In FileName="/nfs/dust/cms/user/ottjoc/gc-output/PHYS14v1/signals/MC_BpJ_TW_M1200_20x25_19_Ntuple.root" Lumi="0.0"/> 
             <InputTree Name="AnalysisTree" /> 
         </InputData>
-            -->
+
+<!--
+        <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="Qstar6000toqW_NoSelection_SoftDrop_subj" Cacheable="False">
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_1.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_2.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_3.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_1.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_2.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_3.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_5.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_6.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_7.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_9.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_10.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_11.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_12.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_13.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_14.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_15.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_16.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_17.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_18.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_4_19.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_5.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_6.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_7.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_8.root" Lumi="0.0"/>
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase2PU/QstarToqW/Ntuple_Qstar6000ToqW_P2PU_9.root" Lumi="0.0"/>
+            <InputTree Name="AnalysisTree" /> 
+        </InputData>
+-->
+
+
 <!-- ************* QCD bkgd ******************* -->
         <InputData Lumi="1" NEventsMax="-1" Type="MC" Version="QCD_300to7000_NoSelection_SoftDrop_subj" Cacheable="False">
 <!--qui-->

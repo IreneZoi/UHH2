@@ -13,8 +13,9 @@
             <InputTree Name="AnalysisTree" /> 
         </InputData>
 
-<!--        <InputData Lumi="1000" NEventsMax="-1" Type="MC" Version="Qstar6000toqW_NoSelection_SoftDrop_subj" Cacheable="False">
-            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase1PU/QstarToqW/Ntuple_QstarToqW_P1PU_1.root" Lumi="0.0"/> 
+<!--
+        <InputData Lumi="1000" NEventsMax="-1" Type="MC" Version="Qstar6000toqW_NoSelection_SoftDrop_subj" Cacheable="False">
+            <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase1PU/QstarToqW/Ntuple_Qstar6000ToqW_P1PU_1.root" Lumi="0.0"/> 
             <InputTree Name="AnalysisTree" /> 
         </InputData>
 -->
@@ -24,7 +25,6 @@
             <In FileName="/nfs/dust/cms/user/zoiirene/UpgradeStudiesGtoWW/Phase1PU/Ntuple_QCD_300to7000_P1PU_2.root" Lumi="0.0"/>
             <InputTree Name="AnalysisTree" />
         </InputData>
-
 
 
         <UserConfig>
