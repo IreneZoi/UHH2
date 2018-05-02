@@ -3,7 +3,7 @@ import FWCore.ParameterSet.Config as cms
 process = cms.Process("USER")
 
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('/store/mc/RunIISummer16MiniAODv2/VBF_RadionToWW_narrow_M-2000_13TeV-madgraph/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/100000/D07B893C-96F1-E611-BF4E-02163E01425F.root'),
+    fileNames = cms.untracked.vstring('/store/mc/RunIISummer16MiniAODv2/ZjetsToQQ_HT-600ToInf_13TeV-madgraph//RunIISummer16MiniAODv2-PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/MINIAODSIM'),
     skipEvents = cms.untracked.uint32(0)
 )
 process.combinedSecondaryVertexCommon = cms.PSet(
@@ -116,10 +116,6 @@ process.ghostTrackCommon = cms.PSet(
         useVariableJTA = cms.bool(False)
     ),
     trackSort = cms.string('sip2dSig')
-)
-
-process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(1000)
 )
 
 process.mvaEleID_PHYS14_PU20bx25_nonTrig_V1_producer_config = cms.PSet(
@@ -18176,7 +18172,7 @@ process.MyNtuple = cms.EDFilter("NtupleWriter",
         'cutBasedElectronHLTPreselection_Summer16_V1', 
         'heepElectronID_HEEPV60'),
     electron_source = cms.InputTag("slimmedElectronsUSER"),
-    fileName = cms.string('Ntuple.root'),
+    fileName = cms.string('Ntuple_ZjetsToQQ_PUMoriond17_80X_mcRun2.root'),
     genjet_etamax = cms.double(5.0),
     genjet_ptmin = cms.double(10.0),
     genjet_sources = cms.vstring('slimmedGenJets', 
