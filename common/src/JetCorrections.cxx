@@ -1650,8 +1650,9 @@ float GenericJetResolutionSmearer::getResolution(float eta, float rho, float pt)
 
 
 //// -----------------------------------------------------------------
+
 SoftDropMassCalculator::SoftDropMassCalculator(uhh2::Context & ctx, bool applyCorrections, const std::string & puppiCorrFilename, const std::string & jetCollName):
-  applyCorrections_(applyCorrections)
+applyCorrections_(applyCorrections)
 {
   h_topjets_ = ctx.get_handle<std::vector<TopJet>>(jetCollName);
   if (applyCorrections_) {
@@ -1684,6 +1685,7 @@ float SoftDropMassCalculator::calcSDmass(const TopJet & jet) {
     // Important, must use UNCORRECTED subjet
     puppi_softdrop += (subjet.JEC_factor_raw() * subjet.v4());
   }
+
   return inv_mass_safe(puppi_softdrop);
 }
 
