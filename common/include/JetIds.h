@@ -50,7 +50,7 @@ private:
 
 class JetPFID {
  public:
-  enum wp {WP_LOOSE, WP_TIGHT, WP_TIGHT_LEPVETO};
+  enum wp {WP_LOOSE, WP_TIGHT, WP_TIGHT_LEPVETO, WP_LOOSE_PUPPI, WP_TIGHT_PUPPI};
   explicit JetPFID(wp working_point);
   bool operator()(const Jet&, const uhh2::Event&) const;
  private:
@@ -58,4 +58,6 @@ class JetPFID {
   bool looseID(const Jet & jet) const;
   bool tightID(const Jet & jet) const;
   bool tightLepVetoID(const Jet & jet) const;
+  bool loosePuppiID(const Jet & jet) const;
+  bool tightPuppiID(const Jet & jet) const;
 };
