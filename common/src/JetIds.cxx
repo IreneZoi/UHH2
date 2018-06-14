@@ -57,12 +57,12 @@ bool JetPFID::looseID(const Jet & jet) const{
       return true;   
   }
   else if(fabs(jet.eta())>2.7 && fabs(jet.eta())<=3
-	  &&jet.neutralEmEnergyFraction()<0.90){
-	  //	  &&jet.neutralMultiplicity()>2){ //irene for VBF AK4 jets
+	  &&jet.neutralEmEnergyFraction()<0.90)//{irene
+	  &&jet.neutralMultiplicity()>2){ //irene for VBF AK4 jets
     return true;
   }
   else if(fabs(jet.eta())>3
-	  //&& jet.neutralMultiplicity()>10 //irene for VBF AK4 jets   
+	  && jet.neutralMultiplicity()>10 //irene for VBF AK4 jets   
 	  && jet.neutralEmEnergyFraction()<0.90)
     {
       return true;
@@ -86,4 +86,48 @@ bool JetPFID::tightID(const Jet & jet) const{
 bool JetPFID::tightLepVetoID(const Jet & jet) const{
   if(!tightID(jet))return false;
   return jet.muonEnergyFraction() <0.8;
+}
+
+bool JetPFID::loosePuppiID(const Jet & jet) const{
+  if(fabs(jet.eta())<=2.7
+     && jet.numberOfDaughters()>1 
+     && jet.neutralHadronEnergyFraction()<0.99
+     && jet.neutralEmEnergyFraction()<0.99){
+    
+    if(fabs(jet.eta())>=2.4)
+      return true;
+      
+    if(jet.chargedEmEnergyFraction()<0.99
+       && jet.chargedHadronEnergyFraction()>0
+       && jet.chargedMultiplicity()>0)
+      return true;   
+  }
+  else if(fabs(jet.eta())>2.7 && fabs(jet.eta())<=3
+	  //          &&jet.neutralMultiplicity()>1
+	  ){
+    return true;
+  }
+  else if(fabs(jet.eta())>3
+          //&& jet.neutralMultiplicity()>2
+          //&& jet.neutralEmEnergyFraction()>0.5
+	  ){
+    return true;
+  }
+  return false;
+}
+        
+return false;
+}
+
+bool JetPFID::tightPuppiID(const Jet & jet) const{
+  if(!looseID(jet)) return false;
+  if(fabs(jet.eta())<=2.7 
+     && jet.neutralEmEnergyFraction()<0.90
+     && jet.neutralHadronEnergyFraction()<0.90){
+    return true;
+  }
+  else if(fabs(jet.eta())>2.7){
+    return true;
+  }
+  return false;
 }
