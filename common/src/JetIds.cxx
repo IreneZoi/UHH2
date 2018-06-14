@@ -36,6 +36,12 @@ bool JetPFID::operator()(const Jet & jet, const Event &) const{
     return tightID(jet);
   case  WP_TIGHT_LEPVETO:
     return tightLepVetoID(jet);
+  case WP_LOOSE_PUPPI:
+    return looseID(jet);
+  case WP_TIGHT_PUPPI:
+    return tightID(jet);
+  case  WP_TIGHT_LEPVETO_PUPPI:
+    return tightLepVetoID(jet);
   default:
     throw invalid_argument("invalid working point passed to CSVBTag");
   }
@@ -57,7 +63,7 @@ bool JetPFID::looseID(const Jet & jet) const{
       return true;   
   }
   else if(fabs(jet.eta())>2.7 && fabs(jet.eta())<=3
-	  &&jet.neutralEmEnergyFraction()<0.90)//{irene
+	  &&jet.neutralEmEnergyFraction()<0.90//){irene
 	  &&jet.neutralMultiplicity()>2){ //irene for VBF AK4 jets
     return true;
   }
@@ -116,8 +122,6 @@ bool JetPFID::loosePuppiID(const Jet & jet) const{
   return false;
 }
         
-return false;
-}
 
 bool JetPFID::tightPuppiID(const Jet & jet) const{
   if(!looseID(jet)) return false;
@@ -130,4 +134,9 @@ bool JetPFID::tightPuppiID(const Jet & jet) const{
     return true;
   }
   return false;
+}
+
+bool JetPFID::tightLepVetoPuppiID(const Jet & jet) const{
+  if(!tightID(jet))return false;
+  return jet.muonEnergyFraction() <0.8;
 }
