@@ -1038,7 +1038,7 @@ JetCorrector::JetCorrector(uhh2::Context & ctx, const std::vector<std::string> &
     used_puppimet = ctx.get("METName")=="slimmedMETsPuppi";
     used_chsmet = ctx.get("METName")=="slMETsCHS";
     if((used_slimmedmet || used_chsmet) && !(used_ak4chs || metprop_possible_ak8chs)) throw runtime_error("In JetCorrections.cxx: You are using slimmedMET or slMETchs but neither AK4CHS nor AK8CHS jets. You need to correct MET using one of those two.");
-    //    else if(used_puppimet && !(used_ak4puppi || metprop_possible_ak8puppi)) throw runtime_error("In JetCorrections.cxx: You are using slimmedMETpuppi but neither AK4Puppi nor AK8Puppi jets. You need to correct MET using one of those two."); //IRENE UPGRADE!!!!
+    else if(used_puppimet && !(used_ak4puppi || metprop_possible_ak8puppi)) throw runtime_error("In JetCorrections.cxx: You are using slimmedMETpuppi but neither AK4Puppi nor AK8Puppi jets. You need to correct MET using one of those two.");
 
     //if CHS MET is used, the correction is based on the (L123 - L1RC) scheme, else it is based on the standard (L123-L1).
     //See also: https://twiki.cern.ch/twiki/bin/viewauth/CMS/METType1Type2Formulae
