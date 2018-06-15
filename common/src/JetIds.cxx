@@ -37,11 +37,11 @@ bool JetPFID::operator()(const Jet & jet, const Event &) const{
   case  WP_TIGHT_LEPVETO:
     return tightLepVetoID(jet);
   case WP_LOOSE_PUPPI:
-    return looseID(jet);
+    return loosePuppiID(jet);
   case WP_TIGHT_PUPPI:
-    return tightID(jet);
+    return tightPuppiID(jet);
   case  WP_TIGHT_LEPVETO_PUPPI:
-    return tightLepVetoID(jet);
+    return tightLepVetoPuppiID(jet);
   default:
     throw invalid_argument("invalid working point passed to CSVBTag");
   }
