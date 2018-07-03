@@ -12,6 +12,9 @@
 
 #include "TFile.h"
 #include "TF1.h"
+#include "TH2.h"
+#include "TEfficiency.h"
+#include "TCanvas.h"
 
 class FactorizedJetCorrector;
 
@@ -533,4 +536,31 @@ private:
     std::unique_ptr<TF1> puppisd_corrGEN, puppisd_corrRECO_cen, puppisd_corrRECO_for;
 };
 
+//// -----------------------------------------------------------------
+
+
+
+/**
+ * Evaluate the effect of the L1 prefiring 
+ * See https://github.com/nsmith-/PrefireAnalysis section Jet prefire efficiencies
+ */
+class L1PrefiringSF: public uhh2::AnalysisModule {
+
+public:
+    explicit L1PrefiringSF(uhh2::Context & ctx,
+			   const std::string & EfficiencyFilename="",
+                                    const std::string & jetCollName="jets");
+    virtual ~L1PrefiringSF() {};
+    virtual bool process(uhh2::Event&) override;
+    float calcSF(std::vector<Jet> * jet);
+    float getEfficiency(float pt_em, float eta);
+private:
+    uhh2::Event::Handle<std::vector<Jet>> h_jets_;
+    std::unique_ptr<TFile> EfficiencyFile;
+    std::unique_ptr<TCanvas> Efficiency_c;
+    std::unique_ptr<TEfficiency> Efficiency_e;
+    //    std::unique_ptr<TH2> Efficiency_h;
+    //    TH2 * Efficiency_h;
+
+};
 //// -----------------------------------------------------------------

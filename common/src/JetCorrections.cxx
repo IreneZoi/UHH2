@@ -6,6 +6,7 @@
 #include "UHH2/JetMETObjects/interface/JetCorrectorParameters.h"
 
 #include <string>
+#include <ostream>
 
 using namespace std;
 using namespace uhh2;
@@ -1702,4 +1703,101 @@ float SoftDropMassCalculator::getPUPPIweight(float pt, float eta) {
   float genCorr = puppisd_corrGEN->Eval(pt);
   float recoCorr = (fabs(eta) <= 1.3) ? puppisd_corrRECO_cen->Eval(pt) : puppisd_corrRECO_for->Eval(pt);
   return genCorr * recoCorr;
+}
+
+
+//// -----------------------------------------------------------------
+
+L1PrefiringSF::L1PrefiringSF(uhh2::Context & ctx, const std::string & EfficiencyFilename, const std::string & jetCollName)
+{
+  cout << " starting L1 prefiring "  << endl;
+  h_jets_ = ctx.get_handle<std::vector<Jet>>(jetCollName);
+  cout << " h_jets "  << endl;
+  EfficiencyFile.reset(TFile::Open(locate_file(EfficiencyFilename).c_str()));
+  cout << " efficiency file "<< EfficiencyFilename  << endl;
+
+  if ((!EfficiencyFile) || EfficiencyFile->IsZombie())
+    {
+      cout << "Error opening file "<< EfficiencyFilename  << endl;
+    }
+  else
+    {
+      cout << " opening file "<< EfficiencyFilename  << endl;
+      EfficiencyFile->cd();
+    }
+  Efficiency_c.reset((TCanvas*) EfficiencyFile->Get("c1_n2"));
+  cout << " canvas " << Efficiency_c->GetCanvasID()   << endl;
+  Efficiency_e.reset((TEfficiency*) Efficiency_c->GetPrimitive("denom_clone"));
+  cout << " Teff bin 1"<< Efficiency_e->GetEfficiency(1)  << endl;
+
+}
+
+bool L1PrefiringSF::process(uhh2::Event & evt) {
+  std::vector<Jet>* jets(0);
+
+  if (evt.is_valid(h_jets_)) jets = &evt.get(h_jets_);
+  else throw std::runtime_error("L1PrefiringSF::process -- invalid handle to jets");
+  //  std::ostream & out;
+  //  printf(" jet 1 pt %5.5f, eta  %5.5f \n", jets->at(0).pt() , jets->at(0).eta());
+  cout << " jet 1 pt " << jets->at(0).pt() << " eta " << jets->at(0).eta()  << endl;
+  cout << " jet 2 pt " << jets->at(1).pt() << " eta " << jets->at(1).eta()  << endl;
+
+  float L1_prefiring_SF = calcSF(jets);
+  cout << " L1 prefiring SF " << L1_prefiring_SF << endl;
+  // TableOutput to({"jet1 pt", "jet1 eta", "jet2 pt", "jet2 eta", "SF"});
+  // to.add_row({ to_string(jets->at(0).pt()),to_string(jets->at(0).eta()),to_string(jets->at(1).pt()),to_string(jets->at(1).eta()),to_string(L1_prefiring_SF)});
+  // to.print(cout);
+  return true;
+}
+
+float L1PrefiringSF::calcSF(std::vector<Jet> * jet) {
+  // Calculate uncorrected SD mass from subjets
+  cout << " calcSF "  << endl;
+
+  // TH2 * Efficiency_h = Efficiency_e->GetPaintedHistogram();
+  // cout << "Efficiency_h->GetNbinsX() " << Efficiency_h->GetNbinsX() << endl;
+  // cout << "Efficiency_h->GetNbinsY() " << Efficiency_h->GetNbinsY() << endl;
+
+  cout << " convert to histo "  << endl;
+
+  float pt_em1 = jet->at(0).pt()*(jet->at(0).chargedEmEnergyFraction() + jet->at(0).neutralEmEnergyFraction());
+  cout << "pt_em1 " << pt_em1 << endl;
+  float pt_em2 = jet->at(1).pt()*(jet->at(1).chargedEmEnergyFraction() + jet->at(1).neutralEmEnergyFraction());
+  cout << "pt_em2 " << pt_em2 << endl;
+  float abs_eta_1 = abs(jet->at(0).eta());
+  cout << "abs_eta_1 " << abs_eta_1 << endl;
+  float abs_eta_2 = abs(jet->at(1).eta());
+  cout << "abs_eta_2 " << abs_eta_2 << endl;
+  float eff_1 = getEfficiency(pt_em1,abs_eta_1); //eff(ptEm_j1, absEta_j1)
+  cout << "eff_1 " << eff_1 << endl;
+  float eff_2 = getEfficiency(pt_em2,abs_eta_2); //eff(ptEm_j2, absEta_j2)
+  cout << "eff_2 " << eff_2 << endl;
+  float SF = (1-eff_1)*(1-eff_2);
+  return SF;
+}
+
+float L1PrefiringSF::getEfficiency(float pt_em, float eta) {
+  // TODO: add check /safety if outside x range
+  // Get the efficiency 
+
+  // pt and eta shold be from AK4 jets
+  double efficiency = -1;
+  cout << "efficiency " << efficiency << endl;
+  // cout << "Efficiency_h->GetNbinsX() " << Efficiency_h->GetNbinsX() << endl;
+  // cout << "Efficiency_h->GetNbinsY() " << Efficiency_h->GetNbinsY() << endl;
+
+  // for(int i=0; i< Efficiency_h->GetNbinsX() ; i++)
+  //   {
+  //     for(int j=0; j< Efficiency_h->GetNbinsY() ; j++)
+  // 	{
+  // 	  if(pt_em>Efficiency_h->GetXaxis()->GetBinLowEdge(i) && pt_em < (Efficiency_h->GetXaxis()->GetBinLowEdge(i)+Efficiency_h->GetXaxis()->GetBinWidth(i)) && eta >Efficiency_h->GetYaxis()->GetBinLowEdge(j) && eta < (Efficiency_h->GetYaxis()->GetBinLowEdge(j)+Efficiency_h->GetYaxis()->GetBinWidth(j)))
+  // 	    efficiency = Efficiency_h->GetBinContent(i,j);
+  // 	  cout << "efficiency " << efficiency << endl;
+  // 	}
+  //   }
+
+  int bin = Efficiency_e->FindFixBin(pt_em,eta);
+  cout << "bin " << bin << endl;
+  efficiency = Efficiency_e->GetEfficiency(bin);
+  return efficiency;
 }
