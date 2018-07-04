@@ -559,8 +559,6 @@ private:
     std::unique_ptr<TFile> EfficiencyFile;
     std::unique_ptr<TCanvas> Efficiency_c;
     std::unique_ptr<TEfficiency> Efficiency_e;
-    //    std::unique_ptr<TH2> Efficiency_h;
-    //    TH2 * Efficiency_h;
 
 };
 //// -----------------------------------------------------------------
