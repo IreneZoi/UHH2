@@ -1719,11 +1719,11 @@ L1PrefiringSF::L1PrefiringSF(uhh2::Context & ctx, const std::string & Efficiency
     }
   else
     {
-      //      cout << " opening file "<< EfficiencyFilename  << endl;
       EfficiencyFile->cd();
     }
-  Efficiency_c.reset((TCanvas*) EfficiencyFile->Get("c1_n2"));
-  Efficiency_e.reset((TEfficiency*) Efficiency_c->GetPrimitive("denom_clone"));
+  //  Efficiency_c.reset((TCanvas*) EfficiencyFile->Get("c1_n2"));
+  //Efficiency_e.reset((TEfficiency*) Efficiency_c->GetPrimitive("denom_clone"));
+  Efficiency_e.reset((TEfficiency*) EfficiencyFile->Get("prefireEfficiencyMap"));
 
 }
 
