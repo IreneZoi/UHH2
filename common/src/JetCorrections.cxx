@@ -1750,8 +1750,10 @@ float L1PrefiringSF::calcSF(std::vector<Jet> * jet) {
   float pt_em2 = jet->at(1).pt()*(jet->at(1).chargedEmEnergyFraction() + jet->at(1).neutralEmEnergyFraction());
   float abs_eta_1 = abs(jet->at(0).eta());
   float abs_eta_2 = abs(jet->at(1).eta());
-  float eff_1 = getEfficiency(pt_em1,abs_eta_1); 
-  float eff_2 = getEfficiency(pt_em2,abs_eta_2); 
+  //  float eff_1 = getEfficiency(pt_em1,abs_eta_1); 
+  //  float eff_2 = getEfficiency(pt_em2,abs_eta_2); 
+  float eff_1 = getEfficiency(abs_eta_1,pt_em1); 
+  float eff_2 = getEfficiency(abs_eta_2,pt_em2); 
   float SF = (1-eff_1)*(1-eff_2);
   return SF;
 }
