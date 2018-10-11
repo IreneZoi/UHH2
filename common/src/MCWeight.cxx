@@ -188,6 +188,12 @@ MCScaleVariation::MCScaleVariation(Context & ctx){
 bool MCScaleVariation::process(Event & event){
   if (event.isRealData) {return true;}
   if(event.genInfo->systweights().size() == 0) return true;
+  //  cout << " MCScaleVariation::process, event.genInfo->originalXWGTUP() = " << event.genInfo->originalXWGTUP() << endl;
+  syst_weight = event.genInfo->systweights().at(0); //event.genInfo->originalXWGTUP();
+
+  // for(int i = 0; i<109; i++)
+  //   cout << " event.genInfo->systweights().at(" << i << ") = " << event.genInfo->systweights().at(i) << endl;
+  //  cout << " i_mu_r = " << i_mu_r << " i_mu_f " <<  i_mu_f <<endl;
 
   if(i_mu_r == 0 && i_mu_f == 0) return true;
   else if(i_mu_r == 0 && i_mu_f == 1) syst_weight = event.genInfo->systweights().at(1);
@@ -201,7 +207,9 @@ bool MCScaleVariation::process(Event & event){
   else if(i_mu_r == 2 && i_mu_f == 1) syst_weight = event.genInfo->systweights().at(7);
   else if(i_mu_r == 2 && i_mu_f == 2) syst_weight = event.genInfo->systweights().at(8);
 
-  event.weight *= syst_weight/event.genInfo->originalXWGTUP();
+
+  cout << " syst_weight " << syst_weight << endl;
+  event.weight *= syst_weight/event.genInfo->systweights().at(0); //event.genInfo->originalXWGTUP();
 
   return true;
 }
