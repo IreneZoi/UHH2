@@ -73,7 +73,9 @@ std::vector<double> PDFWeights::GetWeightList(const uhh2::Event & event){
   double xpdf1 = m_pdfs[0]->xfxQ(id1, x1, q);
   double xpdf2 = m_pdfs[0]->xfxQ(id2, x2, q);
 
-  double w0 = xpdf1 * xpdf2;
+  double w0 = xpdf1 * xpdf2;//event.genInfo->pdf_xPDF1() * event.genInfo->pdf_xPDF2();
+  //  std::cout << " w0 " << w0 << " event.genInfo->pdf_xPDF1() " << event.genInfo->pdf_xPDF1() << " event.genInfo->pdf_xPDF2() " << event.genInfo->pdf_xPDF2()  << std::endl;
+
   for(unsigned int i=1; i <=m_N_unc; ++i){
     double xpdf1_new = m_pdfs[i]->xfxQ(id1, x1, q);
     double xpdf2_new = m_pdfs[i]->xfxQ(id2, x2, q);
