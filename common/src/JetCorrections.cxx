@@ -1758,13 +1758,13 @@ float L1PrefiringSF::calcSF(std::vector<Jet> * jet) {
   return SF;
 }
 
-float L1PrefiringSF::getEfficiency(float pt_em, float eta) {
+float L1PrefiringSF::getEfficiency(float eta, float pt_em) {
   // TODO: add check /safety if outside x range
   // Get the efficiency 
 
   double efficiency = -1;
-
-  int bin = Efficiency_e->FindFixBin(pt_em,eta);
+  int bin = Efficiency_e->FindFixBin(eta,pt_em);
   efficiency = Efficiency_e->GetEfficiency(bin);
   return efficiency;
+
 }
