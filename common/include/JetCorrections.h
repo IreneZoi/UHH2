@@ -229,6 +229,21 @@ namespace JERFiles {
     extern const std::vector<std::string> Summer16_07Aug2017_V11_EF_L1RC_AK4PFchs_DATA;
     extern const std::vector<std::string> Summer16_07Aug2017_V11_GH_L1RC_AK4PFchs_DATA;
     extern const std::vector<std::string> Summer16_07Aug2017_V11_L1RC_AK4PFchs_MC;
+
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_BCD_L123_AK4PFPuppi_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_EF_L123_AK4PFPuppi_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_GH_L123_AK4PFPuppi_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_BCD_L123_AK8PFPuppi_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_EF_L123_AK8PFPuppi_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_GH_L123_AK8PFPuppi_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_L123_AK4PFPuppi_MC;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_L123_AK8PFPuppi_MC;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_BCD_L1RC_AK4PFPuppi_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_EF_L1RC_AK4PFPuppi_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_GH_L1RC_AK4PFPuppi_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_L1RC_AK4PFPuppi_MC;
+
+
  }
 
 /** \brief (Re-)Correct jets according to the corrections in the passed txt files
