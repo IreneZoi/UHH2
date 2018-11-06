@@ -21,6 +21,7 @@
 class FactorizedJetCorrector;
 
 /// namespace to define some useful filename constants to be used for jet energy corrections
+
 namespace JERFiles {
     //Summer16_03Feb2017_V3_noRes needed for L2Res people
     extern const std::vector<std::string> Summer16_03Feb2017_V3_BCD_L123_noRes_AK4PFchs_DATA;
@@ -209,28 +210,25 @@ namespace JERFiles {
 }
 
 namespace JERFiles {
-    //Summer16_07Aug2017_V1_noRes needed for L2Res people
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_BCD_L123_noRes_AK4PFchs_DATA;
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_EF_L123_noRes_AK4PFchs_DATA;
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_G_L123_noRes_AK4PFchs_DATA;
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_H_L123_noRes_AK4PFchs_DATA;
+    //Summer16_07Aug2017_V11_noRes needed for L2Res people
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_BCD_L123_noRes_AK4PFchs_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_EF_L123_noRes_AK4PFchs_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_GH_L123_noRes_AK4PFchs_DATA;
 
-    //Summer16_07Aug2017_V1 --> Temporary JEC for Legacy2016
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_BCD_L123_AK4PFchs_DATA;
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_EF_L123_AK4PFchs_DATA;
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_G_L123_AK4PFchs_DATA;
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_H_L123_AK4PFchs_DATA;
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_BCD_L123_AK8PFchs_DATA;
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_EF_L123_AK8PFchs_DATA;
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_G_L123_AK8PFchs_DATA;
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_H_L123_AK8PFchs_DATA;
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_L123_AK4PFchs_MC;
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_L123_AK8PFchs_MC;
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_BCD_L1RC_AK4PFchs_DATA;
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_EF_L1RC_AK4PFchs_DATA;
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_G_L1RC_AK4PFchs_DATA;
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_H_L1RC_AK4PFchs_DATA;
-    extern const std::vector<std::string> Summer16_07Aug2017_V1_L1RC_AK4PFchs_MC;
+
+    //Summer16_07Aug2017_V11 --> JEC for Legacy2016
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_BCD_L123_AK4PFchs_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_EF_L123_AK4PFchs_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_GH_L123_AK4PFchs_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_BCD_L123_AK8PFchs_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_EF_L123_AK8PFchs_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_GH_L123_AK8PFchs_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_L123_AK4PFchs_MC;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_L123_AK8PFchs_MC;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_BCD_L1RC_AK4PFchs_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_EF_L1RC_AK4PFchs_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_GH_L1RC_AK4PFchs_DATA;
+    extern const std::vector<std::string> Summer16_07Aug2017_V11_L1RC_AK4PFchs_MC;
  }
 
 /** \brief (Re-)Correct jets according to the corrections in the passed txt files
