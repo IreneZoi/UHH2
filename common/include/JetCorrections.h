@@ -246,6 +246,44 @@ namespace JERFiles {
 
  }
 
+
+ namespace JERFiles {
+     //Fall17_17Nov2017_V8_noRes needed for L2Res people
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_BCD_L123_noRes_AK4PFchs_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_EF_L123_noRes_AK4PFchs_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_GH_L123_noRes_AK4PFchs_DATA;
+
+
+     //Fall17_17Nov2017_V8 --> JEC for Legacy2016
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_BCD_L123_AK4PFchs_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_EF_L123_AK4PFchs_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_GH_L123_AK4PFchs_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_BCD_L123_AK8PFchs_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_EF_L123_AK8PFchs_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_GH_L123_AK8PFchs_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_L123_AK4PFchs_MC;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_L123_AK8PFchs_MC;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_BCD_L1RC_AK4PFchs_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_EF_L1RC_AK4PFchs_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_GH_L1RC_AK4PFchs_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_L1RC_AK4PFchs_MC;
+
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_BCD_L123_AK4PFPuppi_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_EF_L123_AK4PFPuppi_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_GH_L123_AK4PFPuppi_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_BCD_L123_AK8PFPuppi_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_EF_L123_AK8PFPuppi_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_GH_L123_AK8PFPuppi_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_L123_AK4PFPuppi_MC;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_L123_AK8PFPuppi_MC;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_BCD_L1RC_AK4PFPuppi_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_EF_L1RC_AK4PFPuppi_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_GH_L1RC_AK4PFPuppi_DATA;
+     extern const std::vector<std::string> Fall17_17Nov2017_V8_L1RC_AK4PFPuppi_MC;
+
+
+  }
+
 /** \brief (Re-)Correct jets according to the corrections in the passed txt files
  *
  * txt files are available in JetMETObjects/data/; see README there for instructions how to produce
