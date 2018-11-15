@@ -17,6 +17,7 @@
 #include "TH2.h"
 #include "TEfficiency.h"
 #include "TCanvas.h"
+#include "TRandom3.h"
 
 class FactorizedJetCorrector;
 
@@ -519,6 +520,7 @@ class GenericJetResolutionSmearer : public uhh2::AnalysisModule {
   virtual bool process(uhh2::Event&) override;
 
   template<typename RJ, typename GJ> void apply_JER_smearing(std::vector<RJ>&, const std::vector<GJ>&, LorentzVector&, float radius, float rho);
+  float getResolution(float eta, float rho, float pt);
 
  private:
   uhh2::Event::Handle<std::vector<Jet> >       h_recjets_;
@@ -532,7 +534,6 @@ class GenericJetResolutionSmearer : public uhh2::AnalysisModule {
 
   std::ifstream m_resfile;
 
-  float getResolution(float eta, float rho, float pt);
   TFormula* res_formula;
 };
 
@@ -585,6 +586,7 @@ public:
     float getPUPPIweight(float pt, float eta);
 private:
     uhh2::Event::Handle<std::vector<TopJet>> h_topjets_;
+    uhh2::Event::Handle<std::vector<GenTopJet>> h_gentopjets_;
     bool applyCorrections_;
     std::unique_ptr<TFile> puppiCorrFile;
     std::unique_ptr<TF1> puppisd_corrGEN, puppisd_corrRECO_cen, puppisd_corrRECO_for;
@@ -603,24 +605,31 @@ class JetMassScale: public uhh2::AnalysisModule {
  public:
   explicit JetMassScale( uhh2::Context & ctx,
 			 bool applyCorrections=true,
-			 const std::string & puppiCorrFilename="",
-			 const std::string & jetCollName="topjets" );
+       const std::string & puppiCorrFilename="",
+			 const std::string & jetCollName="topjets",
+       const TString ResolutionFileName="Summer16_25nsV1_MC_PtResolution_AK4PFchs.txt" );
     virtual ~JetMassScale() {};
     virtual bool process(uhh2::Event & event) override;
-    double getJetMassScale( const TopJet & jet, std::vector<GenTopJet>* gentopjets);   // float oldmass, float jerSigmaPt, TLorentzVector puppijet_tlv, TLorentzVector AK8jet_tlv );
+    double getJetMassScale( const TopJet & jet, uhh2::Event & event);   // float oldmass, float jerSigmaPt, TLorentzVector puppijet_tlv, TLorentzVector AK8jet_tlv );
  private:
     uhh2::Event::Handle<std::vector<TopJet>> h_topjets_;
-    uhh2::Event::Handle<std::vector<GenTopJet>> h_gentopjets_;
+    //uhh2::Event::Handle<std::vector<GenTopJet>> h_gentopjets_;
+    // GenericJetResolutionSmearer* m_gjrs;
     bool applyCorrections_;
     std::unique_ptr<TFile> puppiCorrFile;
     std::unique_ptr<TF1> puppisd_corrGEN, puppisd_corrRECO_cen, puppisd_corrRECO_for;
     float mass             = 0;
     float jms              = 0;
-    float jmsUnc           = 0;
+    //float jmsUnc           = 0;
     float jmr              = 0;
-    float jmrUnc           = 0;
+    //float jmrUnc           = 0;
     float massResolution   = 0;
     bool is_signal = true;
+    TRandom3*      tr_ ;
+
+    TString m_ResolutionFileName;
+    std::ifstream m_resfile;
+    TFormula* res_formula;
 };
 
 

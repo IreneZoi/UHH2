@@ -1940,97 +1940,227 @@ float SoftDropMassCalculator::getPUPPIweight(float pt, float eta) {
 
 
 ////////////////////////////////// SMEAR WITH JET ENERGY SCALE UNCETAINTY AND RESOLUTION /////////////////////////////////////////////////////////////////
-JetMassScale::JetMassScale( Context & ctx, bool applyCorrections, const std::string & puppiCorrFilename, const std::string & jetCollName):
+/*
+Wrote by Irene, this code is inspired from https://github.com/daniSchaefer/ExoDiBosonAnalysis-1/blob/DevelopmentBranch/src/ExoDiBosonAnalysis.cxx#L3692
+Since it is imported from a different framework, I had the need to repeat part of code already implemented in other part of our code that I could not directly call
+*/
+JetMassScale::JetMassScale( Context & ctx, bool applyCorrections, const std::string & puppiCorrFilename, const std::string & jetCollName, const TString ResolutionFileName):
   applyCorrections_(applyCorrections)
 {
   auto dataset_type = ctx.get("channel");
   is_signal = dataset_type == "signal";
+  if (applyCorrections_)
+  {
+    //file from https://github.com/daniSchaefer/ExoDiBosonAnalysis-1/blob/DevelopmentBranch/data/jetmassResolution.root
+    puppiCorrFile.reset(TFile::Open(locate_file(puppiCorrFilename).c_str()));
+    puppisd_corrRECO_cen.reset((TF1*) puppiCorrFile->Get("massResolution_0eta1v3"));
+    puppisd_corrRECO_for.reset((TF1*) puppiCorrFile->Get("massResolution_1v3eta2v5"));
+  }
   if(!is_signal){
     cout << "Warning: getJetMassScale will not have an effect on this non-signal sample (dataset_type = '" + dataset_type + "')" << endl;
     return;
   }
-
+  h_topjets_ = ctx.get_handle<std::vector<TopJet>>(jetCollName);
   std::string::size_type sz;     // alias of size_t
-  //  float mars = std::stof (orbits,&sz);
 
+  //start copying code from GenericJetResolutionSmearer
+  m_ResolutionFileName = ResolutionFileName;
+  TString filename = std::getenv("CMSSW_BASE");
+  filename += "/src/UHH2/common/data/";
+  filename += ResolutionFileName;
+  m_resfile.open(filename);
+  //get the formula from the header
+  TString dummy;
+  TString formula;
+  m_resfile >>dummy;
+  m_resfile >>dummy;
+  m_resfile >>dummy;
+  m_resfile >>dummy;
+  m_resfile >>dummy;
+  m_resfile >>formula;
+  res_formula =  new TFormula("res_formula",formula);
+  //  end copying code from GenericJetResolutionSmearer
+
+
+  // getting scale factors from xml file
   auto JMS = ctx.get("JMS");
   jms =  std::stof (JMS,&sz);
-  cout << " JMS " << jms << endl;
-  auto JMSunc = ctx.get("JMSunc");
-  jmsUnc =  std::stof (JMSunc,&sz);
-  cout << " JMSunc " << jmsUnc << endl;
+  // cout << " JMS " << jms << endl;
+  //auto JMSunc = ctx.get("JMSunc");
+  //jmsUnc =  std::stof (JMSunc,&sz);
+  // cout << " JMSunc " << jmsUnc << endl;
   auto JMR = ctx.get("JMR");
   jmr =  std::stof (JMR,&sz);
-  cout << " JMR " << jmr << endl;
-  auto JMRunc = ctx.get("JMRunc");
-  jmrUnc =  std::stof (JMRunc,&sz);
-  cout << " JMRunc " << jmrUnc << endl;
-
+  // cout << " JMR " << jmr << endl;
+  //auto JMRunc = ctx.get("JMRunc");
+  //jmrUnc =  std::stof (JMRunc,&sz);
+  // cout << " JMRunc " << jmrUnc << endl;
 
 }
 
 bool JetMassScale::process( Event & event ){
+if( !is_signal ) return true;
+
   std::vector<TopJet>* topjets(0);
   if (event.is_valid(h_topjets_)) topjets = &event.get(h_topjets_);
   else throw std::runtime_error("JetMassScale::process -- invalid handle to topjets");
 
-  std::vector<GenTopJet>* gentopjets(0);
-  if(event.is_valid(h_gentopjets_)) gentopjets = &event.get(h_gentopjets_);
-  else throw std::runtime_error("JetMassScale::process -- invalid handle to gentopjets");
 
+  //std::cout << " ******************    JetMassScale *****************" << '\n';
   for (auto & jet : *topjets) {
-    float softdrop_mass_sf = getJetMassScale(jet,gentopjets);
-    float puppi_softdrop_mass = jet.softdropmass();
-    if (applyCorrections_) { puppi_softdrop_mass *= softdrop_mass_sf; }
-    jet.set_softdropmass(puppi_softdrop_mass);
+    //std::cout << " jet.softdropmass() = " << jet.softdropmass() << '\n';
+    float softdrop_mass = getJetMassScale(jet, event);
+    //std::cout << " getJetMassScale(jet,gentopjets) = " << softdrop_mass << '\n';
+    //float puppi_softdrop_mass = jet.softdropmass();
+    if (applyCorrections_) { jet.set_softdropmass(softdrop_mass);}
+    //std::cout << " jet.softdropmass() " << jet.softdropmass() << '\n';
   }
 
   return true;
 }
 
-double JetMassScale::getJetMassScale( const TopJet & jet, std::vector<GenTopJet>* gentopjets)
+double JetMassScale::getJetMassScale( const TopJet & jet, Event & event)
 { //float oldmass, float jerSigmaPt, TLorentzVector puppijet_tlv, TLorentzVector AK8jet_tlv ){
 
+  //std::cout << "JetMassScale::getJetMassScale" << '\n';
   if( !is_signal ) return jet.softdropmass();
+  //std::cout << "jet.softdropmass() " << jet.softdropmass()<< '\n';
 
 
-
+  // std::cout << "jet eta " << jet.eta() << "jet pt "<<jet.pt() <<'\n';
   if( fabs(jet.eta()) <= 1.3 ){
     massResolution = puppisd_corrRECO_cen->Eval( jet.pt() );
+    // std::cout << "cen massResolution " << massResolution<<'\n';
+
   }
   else{
     massResolution = puppisd_corrRECO_for->Eval( jet.pt() );
-  }
+    // std::cout << "for massResolution " << massResolution<<'\n';
 
+  }
+  // std::cout << "massResolution " << massResolution<<'\n';
+
+//  std::cout << "jms " << jms<<'\n';
   mass = jet.softdropmass()*jms;
   //Hist( "SoftdropMass_preJMR"  )->Fill(mass);
 
+  //std::cout << "mass " << mass <<'\n';
+  //std::cout << "jmr " << jmr<<'\n';
+
+//std::cout << "TRandom tr-" << '\n';
+  tr_ = new TRandom3(0);
+  tr_->SetSeed(42);
+  //  std::cout << "seed 42" << '\n';
 
 
-/*
-  bool scaled = false;
-  if( jmr != 0 ) {
-    int Ngentopj = gentopjets->size();
+//  std::cout << "puppi jet pt: " << jet.pt() << " eta "<< jet.eta() << '\n';
+
     //First try scaling:auto & jet : *topjets
-    for( int j = 0; j < Ngentopj ; ++j ){
-      if( gentopjets->at(j).pt() < 0.01 ) continue;
-      TLorentzVector genJet;
-      genJet.SetPtEtaPhiE( gentopjets->at(j).pt(), gentopjets->at(j).eta(), gentopjets->at(j).phi(),  gentopjets->at(j).energy());
-      // ****** irene: I am not sure about what is going on here. Is this needed because the other analysis uses chs for kinematic and puppi for substructure and so the matching is needed to correctly assign the jets??????
-      if( AK8jet_tlv.DeltaR(genJet) > 0.4 || ( fabs(AK8jet_tlv.Pt()-genJet.Pt()) > (3*AK8jet_tlv.Pt()*jerSigmaPt))) continue;
-      float genMass = (*data_.genJetAK8_softdropmass).at(j);
-      mass = max(float(0.), genMass + (jmr*(mass-genMass)));
-      //Hist( "SoftdropMass_postScaling"  )->Fill( mass );
-      scaled = true;
-      break;
+    auto closest_genjet = closestParticle(jet, *(event.gentopjets));
+  //  std::cout << "closest_genjet" << '\n';
 
-  }
-    //Scaling failed, move to smearing:
-    if( !scaled ){
-      mass = tr_->Gaus( mass, TMath::Sqrt(jmr*jmr-1)*(massResolution-1)*mass);
-      //Hist( "SoftdropMass_postSmearing" )->Fill( mass );
+    auto closest_chsjet = closestParticle(jet, *(event.toppuppijets));
+    //std::cout << "closest_chsjet" << '\n';
+    if (closest_genjet != nullptr && closest_chsjet != nullptr)
+    {
+      //std::cout << "chs jet pt: " << closest_chsjet->pt() << " eta "<< closest_chsjet->eta() << '\n';
+      //std::cout << "gen jet pt: " << closest_genjet->pt() << " eta "<< closest_genjet->eta() << '\n';
+
+
+      float resolution = 0.;
+
+      //go to beginning of the file
+      m_resfile.clear();
+      //std::cout << "res file" << '\n';
+      m_resfile.seekg(0, ios::beg);
+
+      //drop the header from the file
+      char header[1000];
+      m_resfile.getline( header, 1000);
+
+      float eta_min;
+      float eta_max;
+      float rho_min;
+      float rho_max;
+      int N;
+      float pt_min;
+      float pt_max;
+      float par0;
+      float par1;
+      float par2;
+      float par3;
+
+      bool valid=false;
+
+      while(!m_resfile.eof() && !valid){
+
+        m_resfile >> eta_min;
+        //std::cout << "eta_min " << eta_min << '\n';
+        m_resfile >> eta_max;
+        m_resfile >> rho_min;
+        m_resfile >> rho_max;
+        m_resfile >> N;
+        m_resfile >> pt_min;
+        m_resfile >> pt_max;
+        m_resfile >> par0;
+        m_resfile >> par1;
+        m_resfile >> par2;
+        m_resfile >> par3;
+
+        //find correct bin
+        if(eta_min <= closest_chsjet->eta() && eta_max > closest_chsjet->eta() && rho_min <= event.rho && rho_max > event.rho && pt_min <= closest_chsjet->pt() && pt_max > closest_chsjet->pt()){
+          valid=true;
+        }
+
+      }
+
+      if(valid){
+        res_formula->SetParameters(par0,par1,par2,par3);
+        resolution = res_formula->Eval(closest_chsjet->pt());
+      }
+
+
+        LorentzVector genJet = closest_genjet->v4();
+        //std::cout << "LorentzVector genJet = closest_genjet->v4();" << '\n';
+
+
+        //if(genJet.Pt() >0.01  && uhh2::deltaR(genJet,closest_chsjet->v4()) < 0.4 && ( fabs(closest_chsjet->pt()-genJet.Pt()) > (3*closest_chsjet->pt()*(m_gjrs->getResolution(closest_chsjet->eta(), event.rho, closest_chsjet->pt())))))
+        if(genJet.Pt() >0.01  && uhh2::deltaR(genJet,closest_chsjet->v4()) < 0.4 && ( fabs(closest_chsjet->pt()-genJet.Pt()) < (3*closest_chsjet->pt()*resolution)))
+        {
+
+             LorentzVector subjet_sum;
+             for (auto & subjet : closest_genjet->subjets())
+                {
+                  //std::cout << "subjet.v4() pt " << subjet.v4().pt() << '\n';
+                  subjet_sum += subjet.v4();
+                }
+                //std::cout << "gen Mass SD " << subjet_sum.M() << '\n';
+                float genMass = inv_mass_safe(subjet_sum);
+                if(genMass == 0) std::cout << "genMass SD " << genMass<< " : are you using the correct gentopjets collection? " <<'\n';
+                mass = max(0., jmr*mass + (1.-jmr)*genMass);//genMass + (jmr*(mass-genMass)));
+                //std::cout << "mass after jmr correction = jmr*mass + (1.-jmr)*genMass = " << mass << '\n';
+                //std::cout << "mass after jmr correction = genMass + (jmr*(mass-genMass)) = "<< genMass + (jmr*(mass-genMass)) << '\n';
+            }
+
+          else {
+              //std::cout << " if condition not satisfied on chs and gen jets" << '\n';
+              //std::cout << "jmr "<< jmr << " massResolution "<< massResolution << " mass " << mass << '\n';
+              //std::cout << "TMath::Sqrt(jmr*jmr-1)*(massResolution-1)*mass = " << TMath::Sqrt(jmr*jmr-1)*(massResolution-1)*mass << '\n';
+              //std::cout << "gaus: "<<  tr_->Gaus( mass, TMath::Sqrt(jmr*jmr-1)*(massResolution-1)*mass)<< '\n';
+              mass = tr_->Gaus( mass, TMath::Sqrt(jmr*jmr-1)*(massResolution-1)*mass);
+              mass = max(float(0.), mass);
+              //std::cout << "mass = tr_->Gaus( mass, TMath::Sqrt(jmr*jmr-1)*(massResolution-1)*mass) = "<< mass << '\n';
+        }
+      }
+      else {
+//       std::cout << " nullptr " << '\n';
+    mass = tr_->Gaus( mass, TMath::Sqrt(jmr*jmr-1)*(massResolution-1)*mass);
+    mass = max(float(0.), mass);
+  //  std::cout << "mass = tr_->Gaus( mass, TMath::Sqrt(jmr*jmr-1)*(massResolution-1)*mass) = "<< mass << '\n';
     }
-  }
+
+
+  /*
   // Now do systematics
   if( scaleUncPar_.find("JMSup")   != std::string::npos  ){
     mass = mass/jms;
@@ -2041,22 +2171,22 @@ double JetMassScale::getJetMassScale( const TopJet & jet, std::vector<GenTopJet>
     mass = mass*(jms-jmsUnc);
   }
   else if( scaleUncPar_.find("JMRup") != std::string::npos  ){
-    for( int j = 0; j < data_.ngenJetsAK8 ; ++j ){
-      if( (*data_.genJetAK8_pt).at(j) < 0.01 ) continue;
-      float genMass = (*data_.genJetAK8_softdropmass).at(j);
+    for( int j = 0; j < jet.size() ; ++j ){
+      if( jet->at(j).pt() < 0.01 ) continue;
+      float genMass = gentopjets->at(j).softdropmass();
       TLorentzVector genJet;
-      genJet.SetPtEtaPhiE( (*data_.genJetAK8_pt).at(j), (*data_.genJetAK8_eta).at(j), (*data_.genJetAK8_phi).at(j), (*data_.genJetAK8_e).at(j) );
-      if( AK8jet_tlv.DeltaR(genJet) > 0.4) continue;
+      genJet.SetPtEtaPhiE( gentopjets->at(j).pt(), gentopjets->at(j).eta(), gentopjets->at(j).phi(), gentopjets->at(j).energy() );
+      if( jet.DeltaR(genJet) > 0.4) continue;
       mass = max(float(0.), genMass + ((jmr+jmrUnc)*(mass-genMass)));
     }
   }
   else if( scaleUncPar_.find("JMRdown") != std::string::npos  ){
-    for( int j = 0; j < data_.ngenJetsAK8 ; ++j ){
-      if( (*data_.genJetAK8_pt).at(j) < 0.01 ) continue;
-      float genMass = (*data_.genJetAK8_softdropmass).at(j);
+    for( int j = 0; j <  jet.size(); ++j ){
+      if( gentopjets->at(j).pt() < 0.01 ) continue;
+      float genMass = gentopjets->at(j).softdropmass();
       TLorentzVector genJet;
-      genJet.SetPtEtaPhiE( (*data_.genJetAK8_pt).at(j), (*data_.genJetAK8_eta).at(j), (*data_.genJetAK8_phi).at(j), (*data_.genJetAK8_e).at(j) );
-      if( AK8jet_tlv.DeltaR(genJet) > 0.4) continue;
+      genJet.SetPtEtaPhiE( gentopjets->at(j).pt(), gentopjets->at(j).eta(), gentopjets->at(j).phi(), gentopjets->at(j).energy() );
+      if( jet.DeltaR(genJet) > 0.4) continue;
       mass = max(float(0.), genMass + ((jmr-jmrUnc)*(mass-genMass)));
     }
   }
