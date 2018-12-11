@@ -1815,7 +1815,7 @@ void GenericJetResolutionSmearer::apply_JER_smearing(std::vector<RJ>& rec_jets, 
       new_pt = recopt * (1 + random_gauss*sqrt(std::max( c*c-1,0.0f)));
     }
     jet_v4 *= new_pt / recopt;
-    cout << " new pt " << new_pt << endl;
+    //cout << " new pt " << new_pt << endl;
     //update JEC_factor_raw needed for smearing MET
     float factor_raw = jet.JEC_factor_raw();
     factor_raw *= recopt/new_pt;
@@ -2160,7 +2160,7 @@ double JetMassScale::getJetMassScale( const TopJet & jet, Event & event)
   }
 
 
-  
+
 return mass;
 }
 
