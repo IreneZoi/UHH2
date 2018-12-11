@@ -1764,7 +1764,7 @@ void GenericJetResolutionSmearer::apply_JER_smearing(std::vector<RJ>& rec_jets, 
     float genpt = -1.;
 
     float resolution = getResolution(jet_v4.eta(), rho, jet_v4.pt())  ;
-
+    cout << "resolution " << resolution << " for jet with pt " << jet_v4.pt() << " and eta " << jet_v4.eta() << endl;
     // ignore unmatched jets (=no genjets at all or large DeltaR), or jets with very low genjet pt. These jets will be treated with the stochastic method.
     if(!(closest_genjet == nullptr) && uhh2::deltaR(*closest_genjet, jet) < 0.5*radius){
       genpt = closest_genjet->pt();
@@ -1815,7 +1815,7 @@ void GenericJetResolutionSmearer::apply_JER_smearing(std::vector<RJ>& rec_jets, 
       new_pt = recopt * (1 + random_gauss*sqrt(std::max( c*c-1,0.0f)));
     }
     jet_v4 *= new_pt / recopt;
-
+    cout << " new pt " << new_pt << endl; 
     //update JEC_factor_raw needed for smearing MET
     float factor_raw = jet.JEC_factor_raw();
     factor_raw *= recopt/new_pt;

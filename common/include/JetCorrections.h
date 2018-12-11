@@ -514,7 +514,7 @@ class GenericJetResolutionSmearer : public uhh2::AnalysisModule {
 
  public:
   explicit GenericJetResolutionSmearer(uhh2::Context&, const std::string& recj="jets", const std::string& genj="genjets", const bool allow_met_smear=true,
-                                       const JERSmearing::SFtype1& JER_sf=JERSmearing::SF_13TeV_2016_25nsV1, const TString ResolutionFileName="Summer16_25nsV1_MC_PtResolution_AK4PFchs.txt");
+                                       const JERSmearing::SFtype1& JER_sf=JERSmearing::SF_13TeV_2016_25nsV1, const TString ResolutionFileName="Summer16_25nsV1_MC_PtResolution_AK4PFPuppi.txt");
   virtual ~GenericJetResolutionSmearer() {m_resfile.close();}
 
   virtual bool process(uhh2::Event&) override;
@@ -607,7 +607,7 @@ class JetMassScale: public uhh2::AnalysisModule {
 			 bool applyCorrections=true,
        const std::string & puppiCorrFilename="",
 			 const std::string & jetCollName="topjets",
-       const TString ResolutionFileName="Summer16_25nsV1_MC_PtResolution_AK4PFchs.txt" );
+       const TString ResolutionFileName="Summer16_25nsV1_MC_PtResolution_AK4PFPuppi.txt" );
     virtual ~JetMassScale() {};
     virtual bool process(uhh2::Event & event) override;
     double getJetMassScale( const TopJet & jet, uhh2::Event & event);   // float oldmass, float jerSigmaPt, TLorentzVector puppijet_tlv, TLorentzVector AK8jet_tlv );
