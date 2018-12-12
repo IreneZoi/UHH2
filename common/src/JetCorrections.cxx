@@ -1119,7 +1119,7 @@ namespace {
     LorentzVector jet_v4_corrected = jet.v4() * (factor_raw *correctionfactor);
 
     if(jec_unc_direction!=0){
-      cout << " Doing JEC unc " << endl;
+      //cout << " Doing JEC unc " << endl;
       if (jec_unc==NULL){
         std::cerr << "JEC variation should be applied, but JEC uncertainty object is NULL! Abort." << std::endl;
         exit(EXIT_FAILURE);
