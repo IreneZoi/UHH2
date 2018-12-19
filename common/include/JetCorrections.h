@@ -657,6 +657,7 @@ private:
     uhh2::Event::Handle<std::vector<Jet>> h_jets_;
     std::unique_ptr<TFile> EfficiencyFile;
     std::unique_ptr<TCanvas> Efficiency_c;
-    std::unique_ptr<TEfficiency> Efficiency_e;
+    std::unique_ptr<TH2F> Efficiency_h;
+    //    std::unique_ptr<TEfficiency> Efficiency_e;
 
 };

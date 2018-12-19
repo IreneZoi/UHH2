@@ -2188,7 +2188,8 @@ L1PrefiringSF::L1PrefiringSF(uhh2::Context & ctx, const std::string & Efficiency
   }
   //  Efficiency_c.reset((TCanvas*) EfficiencyFile->Get("c1_n2"));
   //Efficiency_e.reset((TEfficiency*) Efficiency_c->GetPrimitive("denom_clone"));
-  Efficiency_e.reset((TEfficiency*) EfficiencyFile->Get("prefireEfficiencyMap"));
+  //  Efficiency_e.reset((TEfficiency*) EfficiencyFile->Get("prefireEfficiencyMap"));
+  Efficiency_h.reset((TH2F*) EfficiencyFile->Get("L1prefiring_jet_2017BtoF"));
 
 }
 
@@ -2213,12 +2214,16 @@ float L1PrefiringSF::calcSF(std::vector<Jet> * jet) {
 
   float pt_em1 = jet->at(0).pt()*(jet->at(0).chargedEmEnergyFraction() + jet->at(0).neutralEmEnergyFraction());
   float pt_em2 = jet->at(1).pt()*(jet->at(1).chargedEmEnergyFraction() + jet->at(1).neutralEmEnergyFraction());
-  float abs_eta_1 = abs(jet->at(0).eta());
-  float abs_eta_2 = abs(jet->at(1).eta());
+  //  float abs_eta_1 = abs(jet->at(0).eta());
+  //float abs_eta_2 = abs(jet->at(1).eta());
+  float eta_1 = jet->at(0).eta();
+  float eta_2 = jet->at(1).eta();
   //  float eff_1 = getEfficiency(pt_em1,abs_eta_1);
   //  float eff_2 = getEfficiency(pt_em2,abs_eta_2);
-  float eff_1 = getEfficiency(abs_eta_1,pt_em1);
-  float eff_2 = getEfficiency(abs_eta_2,pt_em2);
+  //float eff_1 = getEfficiency(abs_eta_1,pt_em1);
+  //  float eff_2 = getEfficiency(abs_eta_2,pt_em2);
+  float eff_1 = getEfficiency(eta_1,pt_em1);
+  float eff_2 = getEfficiency(eta_2,pt_em2);
   float SF = (1-eff_1)*(1-eff_2);
   return SF;
 }
@@ -2228,8 +2233,10 @@ float L1PrefiringSF::getEfficiency(float eta, float pt_em) {
   // Get the efficiency
 
   double efficiency = -1;
-  int bin = Efficiency_e->FindFixBin(eta,pt_em);
-  efficiency = Efficiency_e->GetEfficiency(bin);
+  int bin = Efficiency_h->FindFixBin(eta,pt_em);
+  efficiency = Efficiency_h->GetBinContent(bin);
+  //  int bin = Efficiency_e->FindFixBin(eta,pt_em);
+  //efficiency = Efficiency_e->GetEfficiency(bin);
   return efficiency;
 
 }
