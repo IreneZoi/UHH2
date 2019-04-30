@@ -1,7 +1,8 @@
 import FWCore.ParameterSet.Config as cms
 from UHH2.core.ntuple_generator import generate_process  # use CMSSW type path for CRAB
 from UHH2.core.optionsParse import setup_opts, parse_apply_opts
-
+#default number of events is set to 500, to have more add maxEvents=2000 to the end of your cmsRun command
+#crab will automatically override that 500
 
 """NTuple config for 2018 MC datasets.
 
