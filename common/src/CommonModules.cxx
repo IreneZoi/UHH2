@@ -66,7 +66,8 @@ void CommonModules::init(Context & ctx, const std::string & SysType_PU){
     if (year != Year::is2016v2) {
       metfilters_selection->add<TriggerSelection>("BadPFMuonFilter", "Flag_BadPFMuonFilter");
     } else {
-      metfilters_selection->add<TriggerSelection>("BadPFMuonFilter", "Extra_BadPFMuonFilter");
+      //commented becuase samples were created before this addition
+      //      metfilters_selection->add<TriggerSelection>("BadPFMuonFilter", "Extra_BadPFMuonFilter");
     }
     metfilters_selection->add<TriggerSelection>("goodVertices", "Flag_goodVertices");
     metfilters_selection->add<EcalBadCalibSelection>("EcalBadCalibSelection"); // Use this instead of Flag_ecalBadCalibFilter, uses ecalBadCalibReducedMINIAODFilter in ntuple_generator
