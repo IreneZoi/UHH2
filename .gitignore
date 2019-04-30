@@ -6,7 +6,7 @@
 pydump*.py
 core/python/__init__.py
 *.pyc
-*.root
+
 *~
 *.local
 *.pdf
@@ -14,9 +14,19 @@ core/python/__init__.py
 *.json
 VLQToHiggsPairProd/*
 ZprimeSemiLeptonic/*
+UHHNtupleConverter/*
+VBFresonanceToWW/*
+core/python/*.root
 
 BaconJets/*
 JECDatabase/*
 pydump.py
 Makefile.local
 JetsTest/*
+
+scripts/crab/*.log
+scripts/crab/crab_Test/*
+scripts/crab/crab_VBF_*
+scripts/crab/crab_WJets*
+scripts/crab/crab_ZJets*
+scripts/crab/submit*.sh
