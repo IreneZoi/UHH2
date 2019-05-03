@@ -27,6 +27,13 @@ JetsTest/*
 scripts/crab/*.log
 scripts/crab/crab_Test/*
 scripts/crab/crab_VBF_*
+scripts/crab/crab_Bulk*
+scripts/crab/crab_Rad*
+scripts/crab/crab_Wprime*
+scripts/crab/crab_Zprime*
 scripts/crab/crab_WJets*
 scripts/crab/crab_ZJets*
 scripts/crab/submit*.sh
+scripts/crab/status*.sh
+scripts/crab/kill*.sh
+scripts/crab/createXML.sh
