@@ -24,7 +24,7 @@ for x in inputDatasets:
         modified_name += '_ext2'
     elif 'ext' in x:
         modified_name += '_ext'
-    requestNames.append(modified_name)
+    requestNames.append(modified_name+"_2017")
 
 
 # ===============================================================================
@@ -42,7 +42,7 @@ config.General.transferOutputs = True
 config.General.transferLogs = True
         
 config.JobType.pluginName = 'Analysis'
-config.JobType.psetName = os.path.join(os.environ['CMSSW_BASE'], 'src/UHH2/core/python/ntuplewriter_mc_2017v1.py')
+config.JobType.psetName = os.path.join(os.environ['CMSSW_BASE'], 'src/UHH2/core/python/ntuplewriter_mc_2017v2.py')
 config.JobType.outputFiles = ["Ntuple.root"]
 config.JobType.maxMemoryMB = 2500
         
