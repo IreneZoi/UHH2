@@ -873,6 +873,17 @@ def generate_process(year, useData=True, isDebug=False, fatjet_ptmin=120.):
                 )
         task.add(getattr(process, groomed_packed_name))
 
+        addJetCollection(process,labelName = 'AK4PFPUPPI',
+                         jetSource = cms.InputTag('ak4PuppiJets'),
+                         algo = 'AK', rParam=0.4, 
+                         #genJetCollection=cms.InputTag('slimmedGenJets'),
+                         jetCorrections = ('AK4PFPuppi', ['L1FastJet', 'L2Relative', 'L3Absolute'], 'None'),
+                         pfCandidates = cms.InputTag('packedPFCandidates'),
+                         pvSource = cms.InputTag('offlineSlimmedPrimaryVertices'),
+                         svSource = cms.InputTag('slimmedSecondaryVertices'),
+                         muSource =cms.InputTag( 'slimmedMuons'),
+                         elSource = cms.InputTag('slimmedElectrons')
+                         )
 
         # adapt all for b-tagging, and switch off some PAT features not supported
         # in miniAOD:
@@ -1148,21 +1159,6 @@ def generate_process(year, useData=True, isDebug=False, fatjet_ptmin=120.):
     if useData:
         producer = getattr(process, ak8chs_patname)
         modify_patjetproducer_for_data(process, producer)
-
-
-    #PUPPI AK4 jet collection
-    addJetCollection(process,labelName = 'AK4PFPUPPI', jetSource = cms.InputTag('ak4PuppiJets'), algo = 'AK', rParam=0.4, genJetCollection=cms.InputTag('slimmedGenJets'), jetCorrections = ('AK4PFPuppi', ['L1FastJet', 'L2Relative', 'L3Absolute'], 'None'),pfCandidates = cms.InputTag('packedPFCandidates'),
-                     pvSource = cms.InputTag('offlineSlimmedPrimaryVertices'),
-                     svSource = cms.InputTag('slimmedSecondaryVertices'),
-                     muSource =cms.InputTag( 'slimmedMuons'),
-                     elSource = cms.InputTag('slimmedElectrons'),
-                     getJetMCFlavour=not useData
-                     )
-    if useData:
-        producer = getattr(process, "patJetsAK4PFPUPPI")
-        modify_patjetproducer_for_data(process, producer)
-
-
 
     ###############################################
     # Packing substructure: fat jets + subjets
@@ -2545,7 +2541,7 @@ def generate_process(year, useData=True, isDebug=False, fatjet_ptmin=120.):
                                     pf_collection_source=cms.InputTag("packedPFCandidates"),
 
                                     # *** HOTVR & XCone stuff
-                                    doXCone=cms.bool(False),
+                                    doXCone=cms.bool(True),
                                     #store PF constituents for XCone_sources: doPFJetConstituentsNjets and doPFJetConstituentsMinJetPt are combined with OR
                                     doPFxconeJetConstituentsNjets=cms.uint32(0),#store constituents for N leading topjets, where N is parameter
                                     doPFxconeJetConstituentsMinJetPt=cms.double(-1),#store constituence for all topjets with pt above threshold, set to negative value if not used
@@ -2553,7 +2549,7 @@ def generate_process(year, useData=True, isDebug=False, fatjet_ptmin=120.):
                                         cms.InputTag("xconePuppi"),
                                         cms.InputTag("xconeCHS"),
                                     ),
-                                    doHOTVR=cms.bool(False),
+                                    doHOTVR=cms.bool(True),
                                     #store PF constituents for HOTVR_sources: doPFJetConstituentsNjets and doPFJetConstituentsMinJetPt are combined with OR
                                     doPFhotvrJetConstituentsNjets=cms.uint32(0),#store constituents for N leading topjets, where N is parameter
                                     doPFhotvrJetConstituentsMinJetPt=cms.double(-1),#store constituence for all topjets with pt above threshold, set to negative value if not used
@@ -2561,11 +2557,11 @@ def generate_process(year, useData=True, isDebug=False, fatjet_ptmin=120.):
                                         cms.InputTag("hotvrPuppi")
                                     ),
 
-                                    doGenHOTVR=cms.bool(False),
+                                    doGenHOTVR=cms.bool(not useData),
                                     doGenhotvrJetConstituentsNjets=cms.uint32(0),#store constituents for N leading genjets, where N is parameter
                                     doGenhotvrJetConstituentsMinJetPt=cms.double(-1),#store constituence for all genjets with pt above threshold, set to negative value if not used
 
-                                    doGenXCone=cms.bool(False),
+                                    doGenXCone=cms.bool(not useData),
                                     doGenxconeJetConstituentsNjets=cms.uint32(0),#store constituents for N leading genjets, where N is parameter
                                     doGenxconeJetConstituentsMinJetPt=cms.double(-1),#store constituence for all genjets with pt above threshold, set to negative value if not used
 
