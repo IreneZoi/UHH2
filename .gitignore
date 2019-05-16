@@ -33,6 +33,7 @@ scripts/crab/crab_Rad*
 scripts/crab/crab_Wprime*
 scripts/crab/crab_Zprime*
 scripts/crab/crab_Q*
+scripts/crab/crab_DATA*
 scripts/crab/crab_WJets*
 scripts/crab/crab_ZJets*
 scripts/crab/submit*.sh
