@@ -3,6 +3,26 @@
 using namespace std;
 using namespace uhh2;
 
+BTag::BTag(algo tagger, wp working_point) {
+  m_working_point = (int) working_point;
+  switch (tagger) {
+  case CSVV2 :
+    jet_id = CSVBTag((CSVBTag::wp) m_working_point);
+    m_algo = "CSVv2";
+    break;
+  case DEEPCSV :
+    jet_id = DeepCSVBTag((DeepCSVBTag::wp) m_working_point);
+    m_algo = "DeepCSV";
+    break;
+  case DEEPJET :
+    jet_id = DeepJetBTag((DeepJetBTag::wp) m_working_point);
+    m_algo = "DeepJet";
+    break;
+  default:
+    throw invalid_argument("invalid b-tagging algorithm passed to BTag");
+  }
+}
+
 CSVBTag::CSVBTag(wp working_point) {
   m_working_point = working_point;
 }
@@ -414,6 +434,7 @@ JetPUid::JetPUid(wp working_point):m_working_point(working_point){}
 
 
 bool JetPUid::operator()(const Jet & jet, const Event &ev) const{
+  (void) ev;
   TString wp_str;
   //  int wp_id;
   switch(m_working_point){
