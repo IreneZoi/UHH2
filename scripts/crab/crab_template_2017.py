@@ -10,21 +10,62 @@
 # 
 # autocomplete_Datasets(ListOfDatasets) works also for several entries with *
 #
+import re
 from DasQuery import autocomplete_Datasets
+def get_request_name(dataset_name):
+    """Generate short string to use for request name from full dataset name"""
+    modified_name = dataset_name.split('/')[1]
+    modified_name = modified_name.replace('_TuneCUETP8M1_13TeV-madgraphMLM-pythia8', '_P8M1')
+    modified_name = modified_name.replace('_TuneCP5_13TeV-madgraphMLM-pythia8', '_CP5')
+    modified_name = modified_name.replace('_TuneCUETP8M1_13TeV_pythia8', '_P8M1')
+
+    # request name can only be 100 characters maximum                                                                                                                                                                                                                          \
+                                                                                                                                                                                                                                                                                
+    # at this point we need to chop it down, to allow for campaign, time, date, ext2, v2                                                                                                                                                                                       \
+                                                                                                                                                                                                                                                                                
+    max_len = 100-34
+    if len(modified_name) > max_len:
+        modified_name = modified_name[:max_len]
+
+    # Add run year+period for data                                                                                                                                                                                                                                             \
+                                                                                                                                                                                                                                                                                
+    year_match = re.search(r'201[678][A-Z]', dataset_name)
+    if year_match:
+        modified_name += '_'
+        modified_name += year_match.group(0)
+
+    # Add MC campaign                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+    if "Summer16" in dataset_name:
+        modified_name += "_Summer16"
+    elif "Fall17" in dataset_name:
+        modified_name += "_Fall17"
+    elif "Autumn18" in dataset_name:
+        modified_name += "_Autumn18"
+
+    if 'ext1' in dataset_name:
+        modified_name += '_ext1'
+    elif 'ext2' in dataset_name:
+        modified_name += '_ext2'
+    elif 'ext' in dataset_name:
+        modified_name += '_ext'
+
+    # For e.g. Run2016B which is split into 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+    if "ver1" in dataset_name:
+        modified_name += "_ver1"
+    elif "ver2" in dataset_name:
+        modified_name += "_ver2"
+
+    if "-v1" in dataset_name:
+        modified_name += "_v1"
+    elif "-v2" in dataset_name:
+        modified_name += "_v2"
+
+    return modified_name
+
 
 inputDatasets = ['<INPUT>']
 inputDatasets = autocomplete_Datasets(inputDatasets)
-requestNames = []
-for x in inputDatasets:
-    name = x.split('/')[1]
-    modified_name =name.replace('<NAME>','')
-    if 'ext1' in x:
-        modified_name += '_ext1'
-    elif 'ext2' in x:
-        modified_name += '_ext2'
-    elif 'ext' in x:
-        modified_name += '_ext'
-    requestNames.append(modified_name+"_2017")
+requestNames = [get_request_name(x) for x in inputDatasets]
 
 
 # ===============================================================================
@@ -50,7 +91,6 @@ config.Data.inputDBS = 'global'
 config.Data.splitting = 'EventAwareLumiBased'
 config.Data.unitsPerJob = 24000
 try:
-#    config.Data.outLFNDirBase = '/store/user/%s/RunII_102X_v1/' % (getUsernameFromSiteDB())
     # Add subdirectory using year from config filename
      pset = os.path.basename(config.JobType.psetName)
      result = re.search(r'201[\d](v\d)?', pset)
