@@ -10,22 +10,58 @@
 # 
 # autocomplete_Datasets(ListOfDatasets) works also for several entries with *
 #
+import re
 from DasQuery import autocomplete_Datasets
+def get_request_name(dataset_name):
+    """Generate short string to use for request name from full dataset name"""
+    modified_name = dataset_name.split('/')[1]
+    modified_name = modified_name.replace('_TuneCUETP8M1_13TeV-madgraphMLM-pythia8', '_P8M1')
+    modified_name = modified_name.replace('_TuneCP5_13TeV-madgraphMLM-pythia8', '_CP5')
+    modified_name = modified_name.replace('_TuneCUETP8M1_13TeV_pythia8', '_P8M1')
+
+    # request name can only be 100 characters maximum                                                                                                                                                       
+    # at this point we need to chop it down, to allow for campaign, time, date, ext2, v2                                                                                                                    
+    max_len = 100-34
+    if len(modified_name) > max_len:
+        modified_name = modified_name[:max_len]
+
+    # Add run year+period for data                                                                                                                                                                          
+    year_match = re.search(r'201[678][A-Z]', dataset_name)
+    if year_match:
+        modified_name += '_'
+        modified_name += year_match.group(0)
+
+    # Add MC campaign                                                                                                                                                                                       
+    if "Summer16" in dataset_name:
+        modified_name += "_Summer16"
+    elif "Fall17" in dataset_name:
+        modified_name += "_Fall17"
+    elif "Autumn18" in dataset_name:
+        modified_name += "_Autumn18"
+
+    if 'ext1' in dataset_name:
+        modified_name += '_ext1'
+    elif 'ext2' in dataset_name:
+        modified_name += '_ext2'
+    elif 'ext' in dataset_name:
+        modified_name += '_ext'
+
+    # For e.g. Run2016B which is split into 2                                                                                                                                                               
+    if "ver1" in dataset_name:
+        modified_name += "_ver1"
+    elif "ver2" in dataset_name:
+        modified_name += "_ver2"
+
+    if "-v1" in dataset_name:
+        modified_name += "_v1"
+    elif "-v2" in dataset_name:
+        modified_name += "_v2"
+
+    return modified_name
 
 inputDatasets = ['<INPUT>']
 inputDatasets = autocomplete_Datasets(inputDatasets)
-requestNames = []
-for x in inputDatasets:
-    name = x.split('/')[1]
-    modified_name =name.replace('<NAME>','')
-    if 'ext1' in x:
-        modified_name += '_ext1'
-    elif 'ext2' in x:
-        modified_name += '_ext2'
-    elif 'ext' in x:
-        modified_name += '_ext'
-    requestNames.append(modified_name)
-
+requestNames = [get_request_name(x) for x in inputDatasets]
 
 # ===============================================================================
 # Classical part of crab, after resolving the * it uses in the example below just the first entry
@@ -34,7 +70,6 @@ for x in inputDatasets:
 from CRABClient.UserUtilities import config, getUsernameFromSiteDB
 from CRABClient.ClientExceptions import ProxyException
 import os
-import re
 
 config = config()
 config.General.workArea = 'crab_Test'
@@ -69,6 +104,7 @@ config.JobType.sendExternalFolder = True
 #config.Data.publishDataName = 'CRAB3_tutorial_May2015_MC_analysis'
 
 config.Site.storageSite = 'T2_DE_DESY'
+config.Site.ignoreGlobalBlacklist = True
 
 if len(inputDatasets) > 0 and len(requestNames) > 0:
     config.General.requestName = requestNames[0]

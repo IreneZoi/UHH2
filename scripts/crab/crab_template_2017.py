@@ -19,22 +19,20 @@ def get_request_name(dataset_name):
     modified_name = modified_name.replace('_TuneCP5_13TeV-madgraphMLM-pythia8', '_CP5')
     modified_name = modified_name.replace('_TuneCUETP8M1_13TeV_pythia8', '_P8M1')
 
-    # request name can only be 100 characters maximum                                                                                                                                                                                                                          \
-                                                                                                                                                                                                                                                                                
-    # at this point we need to chop it down, to allow for campaign, time, date, ext2, v2                                                                                                                                                                                       \
-                                                                                                                                                                                                                                                                                
+    # request name can only be 100 characters maximum                                                                                                                                                                                                                         
+    # at this point we need to chop it down, to allow for campaign, time, date, ext2, v2                                                                                                                                                                                      
     max_len = 100-34
     if len(modified_name) > max_len:
         modified_name = modified_name[:max_len]
 
-    # Add run year+period for data                                                                                                                                                                                                                                             \
-                                                                                                                                                                                                                                                                                
+    # Add run year+period for data                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                                               
     year_match = re.search(r'201[678][A-Z]', dataset_name)
     if year_match:
         modified_name += '_'
         modified_name += year_match.group(0)
 
-    # Add MC campaign                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+    # Add MC campaign                                                                                                                                                                                                                                                       
     if "Summer16" in dataset_name:
         modified_name += "_Summer16"
     elif "Fall17" in dataset_name:
@@ -49,7 +47,7 @@ def get_request_name(dataset_name):
     elif 'ext' in dataset_name:
         modified_name += '_ext'
 
-    # For e.g. Run2016B which is split into 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+    # For e.g. Run2016B which is split into 2                                                                                                                                                                                                                   
     if "ver1" in dataset_name:
         modified_name += "_ver1"
     elif "ver2" in dataset_name:
@@ -109,6 +107,7 @@ config.JobType.sendExternalFolder = True
 #config.Data.publishDataName = 'CRAB3_tutorial_May2015_MC_analysis'
 
 config.Site.storageSite = 'T2_DE_DESY'
+config.Site.ignoreGlobalBlacklist = True
 
 if len(inputDatasets) > 0 and len(requestNames) > 0:
     config.General.requestName = requestNames[0]
